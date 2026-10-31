@@ -1,0 +1,110 @@
+{
+ "papers": {
+  "gk-2016-fu": {
+   "questions": 135,
+   "materials": 5,
+   "bytes": 199935
+  },
+  "gk-2017-fu": {
+   "questions": 135,
+   "materials": 6,
+   "bytes": 214574
+  },
+  "gk-2018-fu": {
+   "questions": 135,
+   "materials": 6,
+   "bytes": 227864
+  },
+  "gk-2019-fu": {
+   "questions": 135,
+   "materials": 6,
+   "bytes": 244265
+  },
+  "gk-2020-fu": {
+   "questions": 135,
+   "materials": 6,
+   "bytes": 257104
+  },
+  "gk-2021-fu": {
+   "questions": 135,
+   "materials": 7,
+   "bytes": 256144
+  },
+  "gk-2022-fu": {
+   "questions": 134,
+   "materials": 6,
+   "bytes": 236749
+  },
+  "gk-2023-fu": {
+   "questions": 135,
+   "materials": 6,
+   "bytes": 250049
+  },
+  "gk-2024-fu": {
+   "questions": 135,
+   "materials": 6,
+   "bytes": 240635
+  },
+  "gk-2025-fu": {
+   "questions": 135,
+   "materials": 6,
+   "bytes": 250336
+  },
+  "gk-2026-zf": {
+   "questions": 130,
+   "materials": 4,
+   "bytes": 246736
+  },
+  "zj-2016-A": {
+   "questions": 125,
+   "materials": 0,
+   "bytes": 175539
+  },
+  "zj-2017-A": {
+   "questions": 125,
+   "materials": 0,
+   "bytes": 160142
+  },
+  "zj-2018-A": {
+   "questions": 138,
+   "materials": 0,
+   "bytes": 176681
+  },
+  "zj-2019-A": {
+   "questions": 130,
+   "materials": 0,
+   "bytes": 175445
+  },
+  "zj-2020-A": {
+   "questions": 101,
+   "materials": 0,
+   "bytes": 147430
+  },
+  "zj-2021-A": {
+   "questions": 131,
+   "materials": 0,
+   "bytes": 197386
+  },
+  "zj-2022-A": {
+   "questions": 127,
+   "materials": 0,
+   "bytes": 216450
+  },
+  "zj-2023-A": {
+   "questions": 125,
+   "materials": 0,
+   "bytes": 223340
+  },
+  "zj-2024-A": {
+   "questions": 126,
+   "materials": 0,
+   "bytes": 84808
+  },
+  "zj-2025-A": {
+   "questions": 126,
+   "materials": 0,
+   "bytes": 222560
+  }
+ },
+ "generatedAt": "2026-10-31T07:55:11.627Z"
+}
