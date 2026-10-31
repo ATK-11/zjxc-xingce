@@ -1,0 +1,26 @@
+{
+  "name": "浙考行测训练场",
+  "short_name": "浙考行测",
+  "description": "国考副省级行测 2016—2025 十年真题，逐套通关、自动批改、薄弱点诊断，记录自动云同步。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "/zjxc-xingce/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "any",
+  "background_color": "#f4f7f5",
+  "theme_color": "#146b58",
+  "categories": ["education", "productivity"],
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "逐套通关", "short_name": "通关", "url": "./index.html" },
+    { "name": "整卷模考", "short_name": "整卷", "url": "./index.html?view=home" }
+  ]
+}

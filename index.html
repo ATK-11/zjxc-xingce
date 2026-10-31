@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>浙考行测训练场 · 国考副省级 + 浙江省考行测真题</title>
+<meta name="description" content="国家公务员考试（国考）行测副省级 2016—2025 十年真题在线练习：倒计时答题、自动批改、薄弱知识点分析报告，记录自动云同步。">
+<link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+<meta name="theme-color" content="#146b58">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="浙考行测">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#" id="brandHome">
+      <span class="brand-mark">浙</span>
+      <span class="brand-text">
+        <strong>浙考行测训练场</strong>
+        <em>国考副省级 / 浙江省考 · 行政职业能力测验</em>
+      </span>
+    </a>
+    <nav class="header-nav">
+      <button class="btn btn-ghost btn-nav" id="navSync">同步</button>
+      <span class="pill pill-ghost" id="headerStat">题库 0 题</span>
+      <button class="btn btn-ghost" id="printHomeBtn" hidden>打印报告</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="app">
+
+  <!-- ================= 首页 ================= -->
+  <section id="view-home" class="view">
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">国考副省级 + 浙江省考 A 卷 · 2016—2025 · 共 20 套 2603 题</p>
+        <h1>国考副省级行测<br class="br-mobile">十年真题练习</h1>
+        <p class="hero-sub">任选一套真题 → 倒计时作答 → 提交答题卡 → 自动批改，生成模块得分与薄弱知识点报告；记录自动云同步。</p>
+        <div class="hero-tags">
+          <span>政治理论</span><span>常识判断</span><span>言语理解</span>
+          <span>数量关系</span><span>判断推理</span><span>资料分析</span>
+        </div>
+      </div>
+      <ol class="hero-steps">
+        <li><b>01</b><div><strong>选卷</strong><span>整卷模考或单模块专项</span></div></li>
+        <li><b>02</b><div><strong>作答</strong><span>倒计时 + 答题卡 + 标记疑题</span></div></li>
+        <li><b>03</b><div><strong>批改</strong><span>自动判分，按模块折算</span></div></li>
+        <li><b>04</b><div><strong>诊断</strong><span>错题解析与薄弱考点排序</span></div></li>
+      </ol>
+    </div>
+
+    <div class="mode-bar">
+      <div class="mode-copy">
+        <strong>作答模式</strong>
+        <span id="modeHint">考试模式：固定倒计时，到时自动交卷</span>
+      </div>
+      <div class="segmented" id="modeSwitch" role="tablist" aria-label="作答模式">
+        <button class="seg is-active" data-mode="exam" role="tab" aria-selected="true">考试模式</button>
+        <button class="seg" data-mode="practice" role="tab" aria-selected="false">练习模式</button>
+      </div>
+    </div>
+
+    <div class="install-bar" id="installBar" hidden>
+      <div class="install-copy">
+        <strong>安装到手机 / 平板</strong>
+        <span id="installHint">全屏运行、离线可用，学习记录保存在本机</span>
+      </div>
+      <button class="btn btn-primary" id="btnInstall">安装</button>
+    </div>
+
+    <div id="gkDaily" class="gk-daily-wrap"></div>
+    <div id="recordHint" class="record-hint" hidden></div>
+    <div id="draftBlock" class="draft-block" hidden></div>
+
+    <section class="block">
+      <div class="block-head">
+        <h2>整卷模考</h2>
+        <p>国考副省级 2016—2025，每年一套、每套 135 题，题量与模块比例与当年真题一致。</p>
+      </div>
+      <div class="exam-tabs" id="examTabs" role="tablist" aria-label="考试体系"></div>
+      <div class="year-bar" id="yearBar" role="tablist" aria-label="年份"></div>
+      <div class="paper-grid" id="paperGrid"></div>
+      <p class="section-note" id="paperNote"></p>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <h2>模块专项</h2>
+        <p>从十年真题里随机抽一组，只练一个模块，快速定位短板。专项不限交卷，交卷后同样生成诊断报告。</p>
+      </div>
+      <div class="module-grid" id="moduleGrid"></div>
+    </section>
+
+    <section class="block" id="historyBlock">
+      <div class="block-head">
+        <h2>练习记录</h2>
+        <p>本机保存，并自动同步到云端（绑定同一个同步码的设备互通）。</p>
+      </div>
+      <div class="table-wrap"><table class="data-table" id="historyTable"></table></div>
+    </section>
+
+    <section class="block note-block">
+      <div class="block-head"><h2>说明</h2></div>
+      <ul class="notes">
+        <li>收录两科行测真题，共 <b>21 套 2733 题</b>：<b>国考</b>2016—2026 共 11 套（副省级 135 题 / 2026 行政执法 130 题）、<b>浙江省考 A 卷</b>2016—2025 共 10 套（100—138 题）。限时均为 120 分钟。<b>所有试卷随时可选，不用按顺序</b>。</li>
+        <li>题目为<b>真题</b>（考生回忆版，公开整理），个别年份缺 1—2 题；真题原文版权归原命题机构，本站仅供个人学习使用。</li>
+        <li>每题按模块给定参考权重折算百分制，官方从未公布单题分值，因此得分仅用于自测对比，不等同于真实考试分数。</li>
+        <li>作答记录自动云同步：绑定同一个同步码的设备（网页版、平板 App）共享同一份作答历史、已完成标记与未交卷草稿。</li>
+      </ul>
+    </section>
+  </section>
+
+  <!-- ================= 答题 ================= -->
+  <section id="view-exam" class="view" hidden>
+    <div class="exam-bar">
+      <div class="exam-bar-left">
+        <button class="btn btn-ghost" id="btnQuit">退出</button>
+        <div class="exam-title">
+          <strong id="examTitle">—</strong>
+          <span id="examSub">—</span>
+        </div>
+      </div>
+      <div class="exam-bar-right">
+        <div class="timer" id="timer" title="剩余时间">
+          <span class="timer-dot" id="timerDot"></span>
+          <span class="timer-label" id="timerLabel">剩余</span>
+          <strong id="timerValue">00:00</strong>
+        </div>
+        <div class="answered-chip"><b id="answeredNum">0</b><span id="totalNum">/0</span> 已答</div>
+        <button class="btn btn-ghost" id="btnPause" hidden>暂停</button>
+        <button class="btn btn-ghost" id="btnUntimed" hidden>改不限时</button>
+        <button class="btn btn-primary" id="btnSubmit">交卷批改</button>
+      </div>
+      <div class="exam-progress"><i id="examProgressBar"></i></div>
+    </div>
+
+    <div class="pause-mask" id="pauseMask" hidden>
+      <div class="pause-card">
+        <b>已暂停</b>
+        <strong class="pause-time" id="pauseTimer">剩余 00:00</strong>
+        <span>计时已停止，答案和进度都保留</span>
+        <button class="btn btn-primary" id="btnResume">继续作答</button>
+      </div>
+    </div>
+
+    <div class="exam-layout">
+      <article class="q-pane" id="qPane">
+        <div class="q-head">
+          <div class="q-tags">
+            <span class="tag tag-module" id="qModule">模块</span>
+            <span class="tag" id="qSub">题型</span>
+            <span class="tag tag-diff" id="qDiff">难度</span>
+            <span class="tag tag-no">第 <b id="qIndex">1</b> / <span id="qCount">0</span> 题</span>
+          </div>
+          <button class="btn btn-flag" id="btnFlag" aria-pressed="false">
+            <span class="flag-ico">⚑</span><span id="flagText">标记</span>
+          </button>
+        </div>
+        <div class="material" id="qMaterial" hidden></div>
+        <div class="q-stem" id="qStem"></div>
+        <div class="q-figure" id="qFigure" hidden></div>
+        <div class="options" id="qOptions" role="radiogroup" aria-label="选项"></div>
+        <div class="q-foot">
+          <button class="btn btn-ghost" id="btnPrev">← 上一题</button>
+          <div class="q-foot-mid"><span id="qHint">键盘 1-4 选择，← → 切换</span></div>
+          <button class="btn btn-ghost" id="btnNext">下一题 →</button>
+        </div>
+      </article>
+
+      <aside class="sheet" id="sheet">
+        <div class="sheet-head">
+          <strong>答题卡</strong>
+          <button class="sheet-close" id="btnSheetClose" aria-label="收起答题卡">×</button>
+        </div>
+        <div class="sheet-legend">
+          <span><i class="lg lg-done"></i>已答</span>
+          <span><i class="lg lg-cur"></i>当前</span>
+          <span><i class="lg lg-flag"></i>标记</span>
+          <span><i class="lg lg-todo"></i>未答</span>
+        </div>
+        <div class="sheet-body" id="sheetBody"></div>
+        <div class="sheet-foot">
+          <div class="sheet-stat"><span>已答</span><b id="sheetDone">0</b></div>
+          <div class="sheet-stat"><span>标记</span><b id="sheetFlag">0</b></div>
+          <div class="sheet-stat"><span>未答</span><b id="sheetTodo">0</b></div>
+        </div>
+        <button class="btn btn-outline btn-block" id="btnQuickSubmit">提交答题卡</button>
+      </aside>
+    </div>
+
+    <button class="sheet-fab" id="btnSheetOpen" aria-label="打开答题卡">答题卡</button>
+  </section>
+
+  <!-- ================= 报告 ================= -->
+  <section id="view-report" class="view" hidden>
+    <div class="report-head">
+      <div class="score-ring" id="scoreRing"></div>
+      <div class="report-meta">
+        <p class="eyebrow" id="reportEyebrow">批改完成</p>
+        <h1 id="reportTitle">作答报告</h1>
+        <p class="report-line" id="reportLine">—</p>
+        <p class="report-line muted" id="reportTime">—</p>
+        <div class="report-actions">
+          <button class="btn btn-primary" id="btnResumeEdit" hidden>继续作答</button>
+          <button class="btn btn-primary" id="btnRetryWrong">错题重练</button>
+          <button class="btn btn-outline" id="btnRetryAll">再做一遍</button>
+          <button class="btn btn-ghost" id="btnPrint">打印 / 存 PDF</button>
+          <button class="btn btn-ghost" id="btnHome">返回首页</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-grid" id="statGrid"></div>
+
+    <div class="report-cols">
+      <section class="card">
+        <div class="card-head"><h2>模块得分</h2><span class="hint">按参考权重折算</span></div>
+        <div class="module-bars" id="moduleBars"></div>
+      </section>
+      <section class="card">
+        <div class="card-head"><h2>薄弱知识点</h2><span class="hint">按失分题数排序</span></div>
+        <div class="weak-list" id="weakList"></div>
+      </section>
+    </div>
+
+    <section class="card">
+      <div class="card-head"><h2>错题类型分布</h2><span class="hint">按题型聚合，括号内为失分题数</span></div>
+      <div class="type-chips" id="typeChips"></div>
+    </section>
+
+    <section class="card" id="lessonCard" hidden>
+      <div class="card-head"><h2>补课清单</h2><span class="hint">按你错的题型，直接跳到对应那一讲</span></div>
+      <div class="lesson-list" id="lessonList"></div>
+    </section>
+
+    <section class="card" id="diagnosisCard">
+      <div class="card-head"><h2>诊断与建议</h2></div>
+      <div id="diagnosis"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head"><h2>错题与解析</h2><span class="hint" id="wrongCount">0 题</span></div>
+      <div class="wrong-list" id="wrongList"></div>
+    </section>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>浙考行测训练场 · 纯前端离线运行，作答记录自动云同步</span>
+    <span>国考副省级 2016—2025 真题（考生回忆版，公开整理），仅供个人学习；个别年份缺 1—2 题</span>
+  </div>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-mask" data-modal-close></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">提示</h3>
+    <div id="modalBody"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets/js/svgkit.js"></script>
+<script src="assets/js/data/politics.js"></script>
+<script src="assets/js/data/common.js"></script>
+<script src="assets/js/data/verbal.js"></script>
+<script src="assets/js/data/quant.js"></script>
+<script src="assets/js/data/judge.js"></script>
+<script src="assets/js/data/dataanalysis.js"></script>
+<script src="assets/js/data/politics-extra.js"></script>
+<script src="assets/js/data/common-extra.js"></script>
+<script src="assets/js/data/verbal-extra.js"></script>
+<script src="assets/js/data/quant-extra.js"></script>
+<script src="assets/js/data/judge-extra.js"></script>
+<script src="assets/js/data/dataanalysis-extra.js"></script>
+<script src="assets/data/real/real-bundle.js"></script>
+<script src="assets/js/papers.js"></script>
+<script src="assets/js/plan.js"></script>
+<script src="assets/js/data/plan-w1.js"></script>
+<script src="assets/js/data/plan-w2.js"></script>
+<script src="assets/js/data/plan-w3.js"></script>
+<script src="assets/js/data/plan-w4.js"></script>
+<script src="assets/js/data/plan-w5.js"></script>
+<script src="assets/js/data/plan-w67.js"></script>
+<script src="assets/vendor/workbuddy-cloud.global.js"></script>
+<script src="assets/vendor/mqtt.min.js"></script>
+<script src="assets/js/cloud-config.js"></script>
+<script src="assets/vendor/qrcode.js"></script>
+<script src="assets/js/methods.js"></script>
+<script src="assets/js/videos.js"></script>
+<script src="assets/js/sync.js"></script>
+<script src="assets/js/content-patch.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
