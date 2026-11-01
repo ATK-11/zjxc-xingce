@@ -455,8 +455,118 @@
   function getSig() { try { return localStorage.getItem(LS_SIG) || ''; } catch (e) { return ''; } }
   function setSig(v) { try { localStorage.setItem(LS_SIG, v); } catch (e) {} }
 
+  /* ---------- GitHub Gist 持久化同步 ----------
+     背景：MQTT 公开 broker 的保留消息会随 broker 重启清空，新设备（iPhone）
+           加入时可能什么都拉不到。Gist 不会丢，所以把 Gist 作为主存储，
+           MQTT 退为「没配 token 的设备」的快速通道。 */
+  function gistOn() {
+    return !!(window.GistSync && window.GistSync.isOn());
+  }
+
+  /* 拉 Gist 并合并进本机 */
+  function gistPull() {
+    if (!gistOn()) return Promise.resolve({ ok: false, reason: 'off' });
+    return window.GistSync.pullPayload().then(function (r) {
+      if (!r.ok) return r;
+      return unpackPayload(r.env).then(function (data) {
+        if (!data) return { ok: false, reason: 'badpayload' };
+        var changed = mergeIntoLocal(data);
+        if (changed > 0) {
+          document.dispatchEvent(new CustomEvent('zjxc:synced', { detail: { changed: changed } }));
+        }
+        return { ok: true, got: true, changed: changed, remote: data };
+      });
+    });
+  }
+
+  /* 把本机数据写进 Gist */
+  function gistPush() {
+    if (!gistOn()) return Promise.resolve({ ok: false, reason: 'off' });
+    var data = readLocal();
+    var hasData = (data[HISTORY_KEY] || []).length ||
+      Object.keys(data[DAYLOG_KEY] || {}).length ||
+      Object.keys(data['zjxc.seqdone'] || {}).length ||
+      Object.keys(data[DRAFTS_KEY] || {}).length;
+    // 本机空数据不覆盖云端，避免误清把别处记录冲掉
+    if (!hasData) return Promise.resolve({ ok: true, skipped: true });
+
+    return packPayload(data).then(function (env) {
+      env.code = getCode() || '';
+      env.ts = Date.now();
+      return window.GistSync.pushPayload(env);
+    });
+  }
+
+  /* Gist 一轮同步：先拉合并，需要时再推 */
+  function gistSync(opts) {
+    opts = opts || {};
+    return gistPull().then(function (r) {
+      // notoken/nogist 是真错误；empty/nofile 说明还没数据，继续往下走（可推）
+      if (!r.ok && r.reason !== 'empty' && r.reason !== 'nofile') return r;
+
+      var localSig = sigOf(canon(readLocal()));
+      var remoteSig = r.remote ? sigOf(canon(r.remote)) : '';
+      var needPush = !!opts.forcePush || isDirty() || localSig !== getSig() || !r.got;
+
+      // 刚拉下来的内容与本机一致 → 不需要回推
+      if (!needPush || (r.got && localSig === remoteSig)) {
+        setSig(localSig);
+        return { ok: true, pushed: false, changed: r.changed || 0 };
+      }
+      return gistPush().then(function (p) {
+        if (p.ok && !p.skipped) setSig(sigOf(canon(readLocal())));
+        return { ok: p.ok, pushed: !!p.ok && !p.skipped, reason: p.reason };
+      });
+    });
+  }
+
   function syncNow(opts) {
     opts = opts || {};
+
+    /* 配了 GitHub token → 走 Gist 主通道；失败再退回 MQTT */
+    if (gistOn()) {
+      // 正在同步时不直接报失败，排队等这一轮结束再跑，避免用户点「立即备份」看到失败
+      if (busy) {
+        return new Promise(function (resolve) {
+          var iv = setInterval(function () {
+            if (!busy) { clearInterval(iv); clearTimeout(to); resolve(syncNow(opts)); }
+          }, 250);
+          var to = setTimeout(function () {
+            clearInterval(iv);
+            resolve({ ok: false, reason: 'busy' });
+          }, 30000);
+        });
+      }
+      busy = true;
+      var canMqtt = mqttOn() && !!getCode();
+      return gistSync(opts).then(function (r) {
+        busy = false;
+        if (r && r.ok) {
+          clearDirty();
+          setSig(sigOf(canon(readLocal())));
+          setLast({ ts: Date.now(), ok: true });
+          // 顺手把最新数据也发到 MQTT，让没配 token 的设备照样能拿到
+          if (canMqtt) { try { mqttPush(); } catch (e) {} }
+          renderBar();
+          if (pending) { var p = pending; pending = null; syncNow(p); }
+          return r;
+        }
+        // Gist 失败（网络/token）→ 退回 MQTT
+        renderBar();
+        if (canMqtt) return mqttSync(opts);
+        setLast({ ts: Date.now(), ok: false, msg: r && r.reason === 'badtoken' ? 'token 失效' : '同步失败' });
+        renderBar();
+        return r || { ok: false, reason: 'unknown' };
+      }).catch(function (e) {
+        busy = false;
+        renderBar();
+        if (canMqtt) return mqttSync(opts);
+        setLast({ ts: Date.now(), ok: false, msg: (e && e.message) || '同步失败' });
+        renderBar();
+        return { ok: false, reason: 'error', message: (e && e.message) || '' };
+      });
+    }
+
     if (mqttOn()) return mqttSync(opts);
     if (!cloudOn()) return Promise.resolve({ ok: false, reason: 'local' });
     var code = getCode();
@@ -651,6 +761,118 @@
     }
     bindBar();
   }
+
+  /* ---------- GitHub 备份区块（追加在同步面板下方） ---------- */
+  function renderGistUI() {
+    var box = document.getElementById('cloudSyncBox');
+    if (!box) return;
+    var old = document.getElementById('gistBox');
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+
+    var wrap = document.createElement('div');
+    wrap.id = 'gistBox';
+    wrap.className = 'cloud-gist';
+
+    var has = gistOn();
+    var ve = (window.GistSync && window.GistSync.getLast) ? window.GistSync.getLast() : null;
+
+    if (!has) {
+      wrap.innerHTML =
+        '<div class="cloud-head">' +
+          '<div><b>GitHub 备份 · 未开启</b>' +
+          '<span class="cloud-sub">开启后记录存进你自己的私有 Gist，broker 被清空也不会丢</span></div>' +
+        '</div>' +
+        '<details class="cloud-fold">' +
+          '<summary>如何开启（每台设备只需配置一次）</summary>' +
+          '<p class="cloud-sub2">1. 电脑打开 github.com/settings/tokens → Generate new token (classic)</p>' +
+          '<p class="cloud-sub2">2. Note 随便填，权限<strong>只勾 gist</strong>，生成后复制</p>' +
+          '<p class="cloud-sub2">3. 粘贴到下面，点「保存并验证」</p>' +
+          '<div class="cloud-row">' +
+            '<input class="cloud-input" id="gistToken" type="password" autocomplete="off" ' +
+              'placeholder="粘贴 ghp_ 开头的 token" />' +
+            '<button class="btn btn-primary btn-sm" id="gistSave">保存并验证</button>' +
+          '</div>' +
+          '<p class="cloud-tip" id="gistMsg"></p>' +
+          '<p class="cloud-sub2">token 只保存在本机浏览器，不会上传到任何服务器，可随时到 GitHub 删除。</p>' +
+        '</details>';
+    } else {
+      var st = ve
+        ? (ve.ok ? '上次备份 ' + fmtTime(ve.ts) : '上次失败：' + (ve.msg || '未知'))
+        : '尚未备份';
+      var url = window.GistSync.gistUrl ? window.GistSync.gistUrl() : '';
+      wrap.innerHTML =
+        '<div class="cloud-head">' +
+          '<div><b>GitHub 备份 · 已开启</b><span class="cloud-sub">' + st + '</span></div>' +
+          '<button class="btn btn-ghost btn-sm" id="gistOff">关闭</button>' +
+        '</div>' +
+        '<div class="cloud-row">' +
+          '<button class="btn btn-primary btn-sm" id="gistNow">立即备份</button>' +
+          (url ? '<a class="btn btn-outline btn-sm" href="' + url + '" target="_blank" rel="noreferrer">查看 Gist</a>' : '') +
+        '</div>' +
+        '<p class="cloud-sub2">记录同时存在 GitHub 和 MQTT。换设备时填同一个 token 就能拉到全部记录。</p>';
+    }
+
+    box.appendChild(wrap);
+    bindGist();
+  }
+
+  function bindGist() {
+    var save = document.getElementById('gistSave');
+    if (save) {
+      save.addEventListener('click', function () {
+        var inp = document.getElementById('gistToken');
+        var msg = document.getElementById('gistMsg');
+        var t = (inp && inp.value || '').trim();
+        if (!t) { if (msg) msg.textContent = '请先粘贴 token'; return; }
+        if (msg) msg.textContent = '验证中…';
+        save.disabled = true;
+        window.GistSync.verify(t).then(function (r) {
+          save.disabled = false;
+          if (!r.ok) {
+            if (msg) msg.textContent = r.reason === 'badtoken'
+              ? 'token 无效，请检查是否复制完整、是否已过期'
+              : ('验证失败：' + (r.reason || '网络错误'));
+            return;
+          }
+          window.GistSync.setToken(t);
+          if (msg) msg.textContent = '已验证（账号 ' + r.login + '），正在首次备份…';
+          syncNow({ forcePush: false }).then(function () {
+            renderBar();
+          });
+        });
+      });
+    }
+
+    var off = document.getElementById('gistOff');
+    if (off) {
+      off.addEventListener('click', function () {
+        if (!confirm('关闭后本机记录仍在，但不再备份到 GitHub。确定关闭？')) return;
+        window.GistSync.clearToken();
+        renderBar();
+      });
+    }
+
+    var now = document.getElementById('gistNow');
+    if (now) {
+      now.addEventListener('click', function () {
+        now.disabled = true;
+        now.textContent = '备份中…';
+        syncNow({ forcePush: true }).then(function (r) {
+          now.disabled = false;
+          now.textContent = '立即备份';
+          renderBar();
+          toast(r && r.ok ? '已备份到 GitHub' : '备份失败，请检查网络或 token');
+        });
+      });
+    }
+  }
+
+  /* 包一层：先渲染原有面板，再追加 GitHub 区块 */
+  var _renderBarBase = renderBar;
+  renderBar = function () {
+    try { _renderBarBase(); } catch (e) {}
+    try { renderGistUI(); } catch (e) {}
+  };
 
   function renderLocalSnaps() {
     var box = document.getElementById("localSnaps");

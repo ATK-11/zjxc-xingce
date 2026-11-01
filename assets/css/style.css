@@ -739,6 +739,13 @@ a { color: inherit; text-decoration: none; }
 .cloud-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .cloud-head b { font-size: 14px; }
 .cloud-sub { display: block; font-size: 11.5px; color: var(--ink-3); margin-top: 2px; }
+
+/* GitHub 备份区块：和上面的 MQTT 面板用虚线分隔 */
+.cloud-gist { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.cloud-gist .cloud-head b { color: var(--brand); }
+/* token 输入框不要被 .cloud-input 的大写化影响（token 区分大小写） */
+.cloud-gist .cloud-input { text-transform: none; letter-spacing: 0; }
+.cloud-gist .cloud-input[type="password"] { font-family: var(--mono); }
 .cloud-code { font-family: var(--mono); font-size: 15px; letter-spacing: .08em; background: var(--brand-soft); color: var(--brand); padding: 6px 10px; border-radius: 8px; white-space: nowrap; }
 .cloud-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
 .cloud-input { flex: 1; min-width: 150px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
