@@ -441,10 +441,11 @@
     closeSheet();
     setView('exam');
     $('#examTitle').textContent = s.title;
-    $('#examSub').textContent = s.sub + (s.mode === 'exam' && s.minutes ? ' · 限时 ' + s.minutes + ' 分钟' : ' · 不计时');
+    $('#examSub').textContent = s.sub + (s.mode === 'exam' && s.minutes ? ' · 限时 ' + s.minutes + ' 分钟' : ' · 正计时');
     $('#qCount').textContent = s.ids.length;
     $('#totalNum').textContent = '/' + s.ids.length;
-    $("#btnPause").hidden = (s.mode !== "exam");
+    $("#btnPause").hidden = false;        // 练习模式也能暂停
+    beginElapsed();
     renderQuestion();
     renderSheet();
     $("#pauseMask").hidden = true;
@@ -483,20 +484,24 @@
     state = s0;    current = Math.min(cur || 0, s0.ids.length - 1);
     setView('exam');
     $("#examTitle").textContent = s0.title;
-    $("#examSub").textContent = s0.sub + (s0.mode === "exam" && s0.minutes ? " · 限时 " + s0.minutes + " 分钟" : " · 不计时");
+    $("#examSub").textContent = s0.sub + (s0.mode === "exam" && s0.minutes ? " · 限时 " + s0.minutes + " 分钟" : " · 正计时");
     $("#qCount").textContent = s0.ids.length;
     $("#totalNum").textContent = "/" + s0.ids.length;
-    $("#btnPause").hidden = (s0.mode !== "exam");
+    $("#btnPause").hidden = false;              // 练习模式也能暂停
     $("#btnUntimed").hidden = (s0.mode !== "exam");
-    $("#timer").hidden = (s0.mode !== "exam");
+    $("#timer").hidden = false;                 // 练习模式显示正计时
     $("#pauseMask").hidden = true;
     document.body.style.overflow = "";
+    // 恢复时接续累计计时：暂停状态就不再起表，否则从现在继续累加
+    beginElapsed();
     renderQuestion();
     renderSheet();
     if (s0.paused) {
       syncPauseUI();
       $("#timerLabel").textContent = "已暂停";
-      $("#timerValue").textContent = fmtClock(s0.pausedRemain || 0);
+      $("#timerValue").textContent = s0.mode === "exam"
+        ? fmtClock(s0.pausedRemain || 0)
+        : fmtClock(elapsedNow());
     } else startTimer();
     saveProgress();
   }
@@ -632,6 +637,36 @@
   }
 
   /* ---------------- 暂停 ---------------- */
+  /* 练习模式的正计时用「累计秒数 + 本段起点」表示：
+       state.elapsedSec  已累计的秒数（暂停/退出时结算）
+       state.runSince    本段开始计时的时间戳（运行中才有）
+     这样暂停、退出、换设备继续都能接着累加，不会丢时间也不会多算。 */
+  function elapsedNow() {
+    if (!state) return 0;
+    var base = state.elapsedSec || 0;
+    if (state.paused) return base;
+    if (state.runSince) return base + Math.max(0, Math.floor((Date.now() - state.runSince) / 1000));
+    return base;
+  }
+
+  /* 结算当前这段计时，写进 elapsedSec。
+     keepRunning=true 时结算完立刻开新的一段（存草稿用，不能把表停掉） */
+  function settleElapsed(keepRunning) {
+    if (!state) return;
+    if (state.runSince && !state.paused) {
+      state.elapsedSec = elapsedNow();
+      state.runSince = keepRunning ? Date.now() : 0;
+    }
+  }
+
+  /* 开始（或恢复）计时：练习模式打上 runSince，考试模式本来就有 deadline */
+  function beginElapsed() {
+    if (!state) return;
+    if (state.mode === 'exam') return;      // 考试用倒计时，不走这套
+    if (!state.elapsedSec) state.elapsedSec = 0;
+    if (!state.paused) state.runSince = Date.now();
+  }
+
   function syncPauseUI() {
     var mask = $("#pauseMask");
     if (!mask) return;
@@ -640,26 +675,45 @@
     $("#btnPause").textContent = paused ? "继续" : "暂停";
     $("#timer").classList.toggle("is-paused", paused);
     var pt = $("#pauseTimer");
-    if (pt) pt.textContent = "剩余 " + fmtClock((state && state.pausedRemain) || 0);
+    if (pt) {
+      if (state && state.mode === 'exam') {
+        pt.textContent = "剩余 " + fmtClock(state.pausedRemain || 0);
+      } else {
+        pt.textContent = "已用 " + fmtClock(elapsedNow());
+      }
+    }
     document.body.style.overflow = paused ? "hidden" : "";
   }
 
   function pauseExam() {
-    if (!state || state.mode !== "exam" || state.paused) return;
-    state.pausedRemain = Math.max(0, Math.round((state.deadline - Date.now()) / 1000));
+    if (!state || state.paused) return;
+    if (state.mode === 'exam') {
+      state.pausedRemain = Math.max(0, Math.round((state.deadline - Date.now()) / 1000));
+    } else {
+      // 练习模式：把当前这段结算掉，冻结时间
+      settleElapsed();
+    }
     state.paused = true;
     stopTimer();
     $("#timerLabel").textContent = "已暂停";
-    $("#timerValue").textContent = fmtClock(state.pausedRemain);
+    $("#timerValue").textContent = state.mode === 'exam'
+      ? fmtClock(state.pausedRemain)
+      : fmtClock(elapsedNow());
     $("#timer").classList.remove("is-warn", "is-danger");
     syncPauseUI();
     saveProgress();
+    saveDraft();
   }
 
   function resumeExam() {
     if (!state || !state.paused) return;
-    state.deadline = Date.now() + (state.pausedRemain || 0) * 1000;
-    delete state.pausedRemain;
+    if (state.mode === 'exam') {
+      state.deadline = Date.now() + (state.pausedRemain || 0) * 1000;
+      delete state.pausedRemain;
+    } else {
+      // 练习模式：从现在起继续累加
+      state.runSince = Date.now();
+    }
     state.paused = false;
     syncPauseUI();
     startTimer();
@@ -682,7 +736,7 @@
   }
   function tick() {
     if (!state) return;
-    if (state.mode === 'exam' && state.paused) { stopTimer(); return; }
+    if (state.paused) { stopTimer(); return; }
     var el = $('#timer');
     if (state.mode === 'exam') {
       var remain = Math.max(0, Math.round((state.deadline - Date.now()) / 1000));
@@ -695,9 +749,9 @@
         doSubmit(true);
       }
     } else {
-      var used = Math.floor((Date.now() - state.startedAt) / 1000);
+      // 练习模式：正计时，按累计秒数显示（暂停时不走这里）
       $('#timerLabel').textContent = '已用';
-      $('#timerValue').textContent = fmtClock(used);
+      $('#timerValue').textContent = fmtClock(elapsedNow());
       el.classList.remove('is-warn', 'is-danger');
     }
   }
@@ -916,10 +970,18 @@
   function doSubmit(auto) {
     if (!state) return;
     stopTimer();
-    var used = Math.min(
-      state.mode === 'exam' && state.minutes ? state.minutes * 60 : 1e9,
-      Math.round((Date.now() - state.startedAt) / 1000)
-    );
+    // 练习模式用累计秒数（暂停的时间不算）；考试模式用墙钟时间，并封顶到限时
+    var used;
+    if (state.mode === 'exam') {
+      used = Math.min(
+        state.minutes ? state.minutes * 60 : 1e9,
+        Math.round((Date.now() - state.startedAt) / 1000)
+      );
+    } else {
+      used = elapsedNow();
+      // 兜底：老草稿没有 elapsedSec 字段时退回墙钟时间
+      if (!used) used = Math.max(0, Math.round((Date.now() - state.startedAt) / 1000));
+    }
     var report = grade(used);
     lastReport = report;
     saveHistory(report);
@@ -1449,6 +1511,10 @@
   function saveDraft() {
     if (!state) return;
     try {
+      // 存草稿前先结算累计计时：否则练习模式运行中 elapsedSec 一直是 0，
+      // 下次恢复会从 0 重新计时，把之前做的时间丢掉。
+      // 传 true 表示结算完继续计时，不能把表停掉。
+      if (state.mode !== 'exam' && !state.paused) settleElapsed(true);
       var d = loadDrafts();
       var key = state.ref || state.title;
       d[key] = { state: state, current: current, savedAt: Date.now() };

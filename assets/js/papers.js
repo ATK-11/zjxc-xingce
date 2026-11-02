@@ -133,45 +133,45 @@ GK_PAPERS.forEach(function (p) {
 /* ---------------- 浙江省考 A 卷：2016—2025 ---------------- */
 /* 由官方 PDF 题库还原（tools/parse-zj-pdf.py），quota 与每卷实际题量一致 */
 var ZJ_2016 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识20 · 言语31 · 数量22 · 判断40 · 资料12',
-  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语31 · 数量22 · 判断40 · 资料12',
-  quota: [0, 20, 31, 22, 40, 12] };
+  desc: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  quota: [0,20,30,20,40,15] };
 var ZJ_2017 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识20 · 言语31 · 数量22 · 判断40 · 资料12',
-  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语31 · 数量22 · 判断40 · 资料12',
-  quota: [0, 20, 31, 22, 40, 12] };
+  desc: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  quota: [0,20,30,20,40,15] };
 var ZJ_2018 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识22 · 言语32 · 数量24 · 判断44 · 资料16',
-  realTotal: 138, realCount: 138, realDetail: '常识22 · 言语32 · 数量24 · 判断44 · 资料16',
-  quota: [0, 22, 32, 24, 44, 16] };
+  desc: '常识20 · 言语20 · 数量35 · 判断23 · 资料40',
+  realTotal: 128, realCount: 128, realDetail: '常识20 · 言语20 · 数量35 · 判断23 · 资料40',
+  quota: [0,20,20,35,23,40] };
 var ZJ_2019 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识20 · 言语33 · 数量22 · 判断42 · 资料13',
-  realTotal: 130, realCount: 130, realDetail: '常识20 · 言语33 · 数量22 · 判断42 · 资料13',
-  quota: [0, 20, 33, 22, 42, 13] };
+  desc: '常识20 · 言语35 · 数量25 · 判断35 · 资料15',
+  realTotal: 130, realCount: 130, realDetail: '常识20 · 言语35 · 数量25 · 判断35 · 资料15',
+  quota: [0,20,35,25,35,15] };
 var ZJ_2020 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识17 · 言语25 · 数量17 · 判断32 · 资料10',
-  realTotal: 101, realCount: 101, realDetail: '常识17 · 言语25 · 数量17 · 判断32 · 资料10',
-  quota: [0, 17, 25, 17, 32, 10] };
+  desc: '常识15 · 言语25 · 数量20 · 判断25 · 资料15',
+  realTotal: 100, realCount: 100, realDetail: '常识15 · 言语25 · 数量20 · 判断25 · 资料15',
+  quota: [0,15,25,20,25,15] };
 var ZJ_2021 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识22 · 言语34 · 数量22 · 判断41 · 资料12',
-  realTotal: 131, realCount: 131, realDetail: '常识22 · 言语34 · 数量22 · 判断41 · 资料12',
-  quota: [0, 22, 34, 22, 41, 12] };
+  desc: '常识20 · 言语30 · 数量25 · 判断35 · 资料19',
+  realTotal: 129, realCount: 129, realDetail: '常识20 · 言语30 · 数量25 · 判断35 · 资料19',
+  quota: [0,20,30,25,35,19] };
 var ZJ_2022 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识22 · 言语32 · 数量21 · 判断41 · 资料11',
-  realTotal: 127, realCount: 127, realDetail: '常识22 · 言语32 · 数量21 · 判断41 · 资料11',
-  quota: [0, 22, 32, 21, 41, 11] };
+  desc: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  quota: [0,20,30,20,40,15] };
 var ZJ_2023 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识20 · 言语31 · 数量21 · 判断40 · 资料13',
-  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语31 · 数量21 · 判断40 · 资料13',
-  quota: [0, 20, 31, 21, 40, 13] };
+  desc: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  quota: [0,20,30,20,40,15] };
 var ZJ_2024 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识21 · 言语31 · 数量22 · 判断40 · 资料12',
-  realTotal: 126, realCount: 126, realDetail: '常识21 · 言语31 · 数量22 · 判断40 · 资料12',
-  quota: [0, 21, 31, 22, 40, 12] };
+  desc: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  quota: [0,20,30,20,40,15] };
 var ZJ_2025 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识21 · 言语32 · 数量21 · 判断41 · 资料11',
-  realTotal: 126, realCount: 126, realDetail: '常识21 · 言语32 · 数量21 · 判断41 · 资料11',
-  quota: [0, 21, 32, 21, 41, 11] };
+  desc: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  realTotal: 125, realCount: 125, realDetail: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
+  quota: [0,20,30,20,40,15] };
 
 window.EXAMS = [
   {
