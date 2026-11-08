@@ -54,6 +54,8 @@
   /* ---------------- 题库索引 ---------------- */
   var bank = [];
   var ALL = {};
+  /* 暴露给 reinforce.js 做「同类题」检索（ALL 是引用，后续 registerReal 加题可见） */
+  window.__ZJXC_ALL = ALL;
   var PLANQ = {};
   ORDER.forEach(function (m) {
     (window.BANK[m] || []).forEach(function (q) {
@@ -1060,6 +1062,12 @@
 
   /* ---------------- 题型方法库 ---------------- */
   function methodFor(item) {
+    // 优先走「题型映射」：题库是粗分类（片段阅读/数学运算），方法库是细分类
+    // （主旨概括/工程问题），由 Reinforce 把两边接起来
+    if (window.Reinforce) {
+      var list = window.Reinforce.methodsFor(item.sub || item.qtype, item.module);
+      if (list.length) return list[0].method;
+    }
     var M = window.METHODS || {};
     var sub = String(item.sub || "");
     var tail = sub.indexOf("·") >= 0 ? sub.split("·")[1] : sub;
@@ -1074,11 +1082,15 @@
 
   function methodCard(item) {
     var m = methodFor(item);
-    if (!m) return "";
+    var tip = window.Reinforce ? window.Reinforce.tipFor(item.sub || item.qtype, item.module) : '';
+    if (!m && !tip) return "";
     var typeName = (MODULES[item.module] ? MODULES[item.module].name : "") +
       (item.sub ? " · " + String(item.sub).replace(/^[^·]+·/, "") : "");
     var h = "<div class=\"wi-method\">" +
       "<div class=\"wm-head\">题型：<b>" + esc(typeName) + "</b></div>";
+    // 这一类怎么下手（点对点补强的关键：先给通用打法，再给具体方法）
+    if (tip) h += "<div class=\"wm-sec\"><span class=\"wm-tag\">这类怎么下手</span><p>" + esc(tip) + "</p></div>";
+    if (!m) return h + "</div>";
     if (m.idea) h += "<div class=\"wm-sec\"><span class=\"wm-tag\">思路</span><p>" + esc(m.idea) + "</p></div>";
     if (m.formulas && m.formulas.length) {
       h += "<div class=\"wm-sec\"><span class=\"wm-tag\">关键公式</span><ul>" +
@@ -1093,6 +1105,64 @@
         m.traps.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";
     }
     return h + "</div>";
+  }
+
+  /* ---------------- 点对点补强 ---------------- */
+  /* 点开某个失分题型：给出「这类怎么下手」+ 相关细方法 + 一键专项补强 */
+  function renderReinforce(type, module, label) {
+    var box = $('#reinforceBox');
+    if (!box || !window.Reinforce) return;
+    label = label || type;
+    var tip = window.Reinforce.tipFor(type, module);
+    var methods = window.Reinforce.methodsFor(type, module);
+    var pool = window.Reinforce.poolFor(type, module, { onlyReal: true });
+    var poolMode = 'type';
+    // 小题型题池太小时，退到模块级题池，保证「专项补强」有题可做
+    if (pool.length < 8) {
+      var mp = window.Reinforce.poolFor('', module, { onlyReal: true });
+      if (mp.length > pool.length) { pool = mp; poolMode = 'module'; }
+    }
+    var want = Math.min(20, pool.length);
+
+    var h = '<div class="rf-head"><b>' + esc(label) + '</b>' +
+      '<span class="rf-meta">' +
+        (poolMode === 'type' ? '题库同类 ' + pool.length + ' 题'
+          : '同类题偏少，改用整模块 ' + pool.length + ' 题') +
+      '</span></div>';
+
+    if (tip) {
+      h += '<div class="rf-tip"><span class="wm-tag">这类怎么下手</span><p>' + esc(tip) + '</p></div>';
+    }
+
+    if (methods.length) {
+      h += '<details class="rf-methods"><summary>相关方法 ' + methods.length + ' 个</summary><ul>';
+      methods.slice(0, 6).forEach(function (o) {
+        var m = o.method || {};
+        h += '<li><b>' + esc(o.name) + '</b>';
+        if (m.idea) h += '<span>' + esc(String(m.idea).slice(0, 130)) + '</span>';
+        h += '</li>';
+      });
+      h += '</ul></details>';
+    }
+
+    if (pool.length) {
+      h += '<div class="rf-actions">' +
+        '<button class="btn btn-primary btn-sm" id="btnReinforceDrill">专项补强 · ' + want + ' 题</button>' +
+        '<span class="rf-hint">从题库同类真题里抽题，避开刚做错的这套</span>' +
+        '</div>';
+    } else {
+      h += '<p class="rf-hint">题库里这类题不够，先多做几套整卷积累错题。</p>';
+    }
+
+    box.innerHTML = h;
+    box.hidden = false;
+
+    var drill = $('#btnReinforceDrill');
+    if (drill) {
+      drill.addEventListener('click', function () {
+        startSubset(pool.slice(0, want), label + ' · 专项补强', 0);
+      });
+    }
   }
 
   /* ---------------- 报告 ---------------- */
@@ -1226,14 +1296,49 @@
       var it = ALL[id];
       var parts = String(it.sub || '').split('·');
       var type = parts.length > 1 ? (parts[0] === '图形推理' ? parts.join('·') : parts[1]) : parts[0];
-      if (!typeMap[type]) { typeMap[type] = { type: type, module: it.module, n: 0 }; typeList.push(typeMap[type]); }
+      if (!typeMap[type]) {
+        // 数据里有些题没有题型（qtype 为空），用模块名兜底显示
+        typeMap[type] = {
+          type: type,
+          label: type || (MODULES[it.module] ? MODULES[it.module].name : it.module),
+          module: it.module,
+          n: 0
+        };
+        typeList.push(typeMap[type]);
+      }
       typeMap[type].n++;
     });
     typeList.sort(function (a, b) { return b.n - a.n; });
     $('#typeChips').innerHTML = typeList.length ? typeList.map(function (o) {
-      return '<span class="type-chip"><i style="background:' + MODULES[o.module].color + '"></i>' +
-        esc(o.type) + '<b>' + o.n + '</b><em>题</em></span>';
+      return '<button class="type-chip" type="button" data-rf-type="' + esc(o.type) +
+        '" data-rf-module="' + esc(o.module) + '" data-rf-label="' + esc(o.label) + '" ' +
+        'title="点开看这类题怎么下手，并能直接专项补强">' +
+        '<i style="background:' + MODULES[o.module].color + '"></i>' +
+        esc(o.label) + '<b>' + o.n + '</b><em>题</em></button>';
     }).join('') : '<p class="empty-line">没有错题，无需分析错题类型。</p>';
+
+    // 点题型 → 展开「这一类怎么下手 + 专项补强」
+    (function bindReinforce() {
+      var box = $('#reinforceBox');
+      var chips = $('#typeChips');
+      if (!box || !chips) return;
+      box.hidden = true;
+      box.innerHTML = '';
+      Array.prototype.forEach.call(chips.querySelectorAll('[data-rf-type]'), function (btn) {
+        btn.addEventListener('click', function () {
+          var type = btn.getAttribute('data-rf-type');
+          var mod = btn.getAttribute('data-rf-module');
+          var label = btn.getAttribute('data-rf-label') || type;
+          var wasOn = btn.classList.contains('is-on');
+          Array.prototype.forEach.call(chips.querySelectorAll('.type-chip'), function (b) {
+            b.classList.remove('is-on');
+          });
+          if (wasOn) { box.hidden = true; box.innerHTML = ''; return; }
+          btn.classList.add('is-on');
+          renderReinforce(type, mod, label);
+        });
+      });
+    })();
 
     // 模块得分
     $('#moduleBars').innerHTML = ORDER.filter(function (m) { return r.per[m].total > 0; }).map(function (m) {

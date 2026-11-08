@@ -2,7 +2,7 @@
    service-worker.js —— 离线缓存（PWA）
    更新内容后请把 VERSION 加 1，用户端会自动换新缓存
    =========================================================== */
-const VERSION = 'zjxc-v48-web';
+const VERSION = 'zjxc-v49-web';
 const CACHE = VERSION;
 
 const ASSETS = [
@@ -22,6 +22,7 @@ const ASSETS = [
   './assets/js/sync.js',
   './assets/js/content-patch.js',
   './assets/js/methods.js',
+  './assets/js/reinforce.js',
   './assets/js/videos.js',
   './assets/vendor/workbuddy-cloud.global.js',
   './assets/vendor/mqtt.min.js',
