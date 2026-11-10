@@ -63,53 +63,53 @@
   "zj-2016-A": {
    "questions": 125,
    "materials": 3,
-   "bytes": 175310
+   "bytes": 175212
   },
   "zj-2017-A": {
    "questions": 125,
-   "materials": 1,
-   "bytes": 156281
+   "materials": 3,
+   "bytes": 156084
   },
   "zj-2018-A": {
    "questions": 128,
-   "materials": 1,
-   "bytes": 165982
+   "materials": 2,
+   "bytes": 161215
   },
   "zj-2019-A": {
    "questions": 130,
-   "materials": 2,
-   "bytes": 166693
+   "materials": 3,
+   "bytes": 164748
   },
   "zj-2020-A": {
    "questions": 100,
-   "materials": 0,
-   "bytes": 144523
+   "materials": 3,
+   "bytes": 143581
   },
   "zj-2021-A": {
    "questions": 129,
-   "materials": 1,
-   "bytes": 184049
+   "materials": 3,
+   "bytes": 182127
   },
   "zj-2022-A": {
    "questions": 125,
-   "materials": 0,
-   "bytes": 207943
+   "materials": 3,
+   "bytes": 206587
   },
   "zj-2023-A": {
    "questions": 125,
-   "materials": 1,
-   "bytes": 195806
+   "materials": 3,
+   "bytes": 194318
   },
   "zj-2024-A": {
    "questions": 125,
-   "materials": 1,
-   "bytes": 213728
+   "materials": 3,
+   "bytes": 208982
   },
   "zj-2025-A": {
    "questions": 125,
-   "materials": 1,
-   "bytes": 192698
+   "materials": 3,
+   "bytes": 190422
   }
  },
- "generatedAt": "2026-11-10T10:58:50.860Z"
+ "generatedAt": "2026-11-10T11:53:42.986Z"
 }
