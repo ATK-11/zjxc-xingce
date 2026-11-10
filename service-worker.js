@@ -1,8 +1,6 @@
-/* ===========================================================
-   service-worker.js —— 离线缓存（PWA）
-   更新内容后请把 VERSION 加 1，用户端会自动换新缓存
-   =========================================================== */
-const VERSION = 'zjxc-v49-web';
+﻿/* ===========================================================
+   service-worker.js 鈥斺€?绂荤嚎缂撳瓨锛圥WA锛?   鏇存柊鍐呭鍚庤鎶?VERSION 鍔?1锛岀敤鎴风浼氳嚜鍔ㄦ崲鏂扮紦瀛?   =========================================================== */
+const VERSION = 'zjxc-v51-web';
 const CACHE = VERSION;
 
 const ASSETS = [
@@ -77,11 +75,11 @@ self.addEventListener('fetch', function (e) {
   var url = new URL(req.url);
   if (url.origin !== location.origin) return;
 
-  // 导航请求：始终回落到首页缓存，保证离线可打开
+  // 瀵艰埅璇锋眰锛氬缁堝洖钀藉埌棣栭〉缂撳瓨锛屼繚璇佺绾垮彲鎵撳紑
   if (req.mode === 'navigate') {
     e.respondWith(
       fetch(req).then(function (res) {
-        // 授权过期或服务端异常时，回落到缓存首页，保证桌面安装版仍可打开
+        // 鎺堟潈杩囨湡鎴栨湇鍔＄寮傚父鏃讹紝鍥炶惤鍒扮紦瀛橀椤碉紝淇濊瘉妗岄潰瀹夎鐗堜粛鍙墦寮€
         if (!res || res.status >= 400) return caches.match('./index.html');
         return res;
       }).catch(function () { return caches.match('./index.html'); })
