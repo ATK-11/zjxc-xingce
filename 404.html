@@ -160,6 +160,7 @@
             <span class="tag" id="qSub">题型</span>
             <span class="tag tag-diff" id="qDiff">难度</span>
             <span class="tag tag-no">第 <b id="qIndex">1</b> / <span id="qCount">0</span> 题</span>
+            <span class="tag tag-qt" id="qTime" title="本题累计用时（来回重看会继续累加）">本题 <b id="qTimeVal">0:00</b></span>
           </div>
           <button class="btn btn-flag" id="btnFlag" aria-pressed="false">
             <span class="flag-ico">⚑</span><span id="flagText">标记</span>
@@ -231,6 +232,16 @@
         <div class="weak-list" id="weakList"></div>
       </section>
     </div>
+
+    <section class="card" id="timeCard" hidden>
+      <div class="card-head"><h2>逐题用时</h2><span class="hint">来回重看的时间也累加在内</span></div>
+      <div id="timeTop" class="time-top"></div>
+      <div id="timeByModule" class="time-by-module"></div>
+      <details class="time-all">
+        <summary id="timeAllSum">展开全部题目用时</summary>
+        <div id="timeAll" class="time-all-body"></div>
+      </details>
+    </section>
 
     <section class="card">
       <div class="card-head"><h2>错题类型分布</h2><span class="hint">点题型看打法 · 一键专项补强</span></div>

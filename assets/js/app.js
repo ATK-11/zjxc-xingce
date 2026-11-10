@@ -448,6 +448,7 @@
     $('#totalNum').textContent = '/' + s.ids.length;
     $("#btnPause").hidden = false;        // 练习模式也能暂停
     beginElapsed();
+    beginQTime();
     renderQuestion();
     renderSheet();
     $("#pauseMask").hidden = true;
@@ -496,6 +497,7 @@
     document.body.style.overflow = "";
     // 恢复时接续累计计时：暂停状态就不再起表，否则从现在继续累加
     beginElapsed();
+    beginQTime();                               // 本题用时接着累加（草稿里带着 qms）
     renderQuestion();
     renderSheet();
     if (s0.paused) {
@@ -669,6 +671,53 @@
     if (!state.paused) state.runSince = Date.now();
   }
 
+  /* ---------------- 每小题用时 ----------------
+     state.qms     {题id: 已累计毫秒}
+     state.qSince  当前题本段计时的起点时间戳（0 = 没在计）
+
+     切到别的题时把上一段结算进 qms；翻回同一题再继续往同一个 id 上累加，
+     所以「跳走又返回重看」的时间是累加的。
+     暂停、切后台、锁屏都会停掉这一段，不算进任何题。 */
+  function qKey() {
+    return (state && state.ids && state.ids[current] != null) ? state.ids[current] : '';
+  }
+
+  /* 结算当前这一题。keepRunning=true 时结算完立刻开新一段（存草稿用，不能停表） */
+  function qSettle(keepRunning) {
+    if (!state) return;
+    if (!state.qms) state.qms = {};
+    if (state.qSince && !state.paused) {
+      var id = qKey();
+      if (id) state.qms[id] = (state.qms[id] || 0) + Math.max(0, Date.now() - state.qSince);
+      state.qSince = keepRunning ? Date.now() : 0;
+    }
+  }
+
+  /* 当前这一题开始（或恢复）计时 */
+  function beginQTime() {
+    if (!state) return;
+    if (!state.qms) state.qms = {};
+    state.qSince = state.paused ? 0 : Date.now();
+  }
+
+  /* 某题已用秒数（含正在计的这一段） */
+  function qSeconds(id) {
+    if (!state || !state.qms) return 0;
+    var ms = state.qms[id] || 0;
+    if (state.qSince && !state.paused && qKey() === id) ms += Math.max(0, Date.now() - state.qSince);
+    return Math.round(ms / 1000);
+  }
+
+  /* 把 qms 转成报告用的 {题id: 秒} */
+  function qTimesSnapshot() {
+    var out = {};
+    if (!state || !state.qms) return out;
+    Object.keys(state.qms).forEach(function (id) {
+      out[id] = Math.round((state.qms[id] || 0) / 1000);
+    });
+    return out;
+  }
+
   function syncPauseUI() {
     var mask = $("#pauseMask");
     if (!mask) return;
@@ -689,6 +738,7 @@
 
   function pauseExam() {
     if (!state || state.paused) return;
+    qSettle();                     // 先结算当前题的用时，再冻结
     if (state.mode === 'exam') {
       state.pausedRemain = Math.max(0, Math.round((state.deadline - Date.now()) / 1000));
     } else {
@@ -717,6 +767,7 @@
       state.runSince = Date.now();
     }
     state.paused = false;
+    beginQTime();                  // 当前题恢复计时
     syncPauseUI();
     startTimer();
     saveProgress();
@@ -756,6 +807,33 @@
       $('#timerValue').textContent = fmtClock(elapsedNow());
       el.classList.remove('is-warn', 'is-danger');
     }
+    // 本题用时小标签（两种模式都显示）
+    var qtv = $('#qTimeVal');
+    if (qtv && state.ids && state.ids[current] != null) {
+      qtv.textContent = fmtClock(qSeconds(state.ids[current]));
+    }
+  }
+
+  /* 切后台 / 锁屏：静默冻结计时（不改暂停 UI，不动答案）
+     回来时接着算 —— 锁屏 10 分钟不该被记成「这题花了 10 分钟」 */
+  function bindVisibilityTime() {
+    document.addEventListener('visibilitychange', function () {
+      if (!state || state.paused) return;
+      if (document.hidden) {
+        qSettle();                                   // 停掉本题这一段
+        if (state.mode !== 'exam') settleElapsed();  // 练习模式总计时也一起冻结
+      } else {
+        beginQTime();                                // 本题继续累加
+        if (state.mode !== 'exam' && !state.paused) state.runSince = Date.now();
+        tick();
+      }
+    });
+    // 页面被关闭/刷新前也结算一次，减少丢失
+    window.addEventListener('pagehide', function () {
+      if (!state) return;
+      qSettle();
+      if (state.mode !== 'exam') settleElapsed();
+    });
   }
 
   /* ---------------- 答题渲染 ---------------- */
@@ -915,7 +993,11 @@
     if (!state || state.paused) return;
     if (i < 0 || i >= state.ids.length) return;
     clearTimeout(autoNextTimer);
-    current = i;
+    if (i !== current) {
+      qSettle();            // 结算上一题（跳到别的题）
+      current = i;
+      beginQTime();         // 新题开始计时（翻回旧题则是继续累加）
+    }
     renderQuestion();
     var pane = $('#qPane');
     if (pane && window.innerWidth < 861) {
@@ -972,6 +1054,7 @@
   function doSubmit(auto) {
     if (!state) return;
     stopTimer();
+    qSettle();                     // 结算最后一题的用时（不再续计）
     // 练习模式用累计秒数（暂停的时间不算）；考试模式用墙钟时间，并封顶到限时
     var used;
     if (state.mode === 'exam') {
@@ -1056,7 +1139,8 @@
       total: state.ids.length,
       got: got,
       maxScore: maxScore,
-      percent: maxScore ? got / maxScore * 100 : 0
+      percent: maxScore ? got / maxScore * 100 : 0,
+      qtimes: qTimesSnapshot()
     };
   }
 
@@ -1407,7 +1491,7 @@
       var globalIdx = r.ids.indexOf(id) + 1;
       var mat = item.materialId ? window.MATERIALS[item.materialId] : null;
       var isFig = /^<svg/i.test(String(item.options[0] || '').trim());
-      return '<details class="wrong-item">' +
+      return '<details class="wrong-item" data-wrong-no="' + globalIdx + '">' +
         '<summary>' +
           '<span class="wi-no">' + globalIdx + '.</span>' +
           '<span class="wi-mod" style="background:' + MODULES[item.module].color + '">' + MODULES[item.module].short + '</span>' +
@@ -1434,6 +1518,87 @@
         '</div>' +
       '</details>';
     }).join('') : '<p class="empty-line">全部答对，没有错题。</p>';
+
+    renderTimeSection(r);         // 逐题用时（老记录没有 qtimes 会自动隐藏）
+  }
+
+  /* ---------------- 逐题用时（报告展示） ----------------
+     r.qtimes = {题id: 秒}。老记录没有这个字段 → 整块隐藏，不报错。 */
+  function renderTimeSection(r) {
+    var card = $('#timeCard');
+    if (!card) return;
+    var qt = r.qtimes || {};
+    var ids = r.ids || [];
+    var has = ids.some(function (id) { return (qt[id] || 0) > 0; });
+    if (!has) { card.hidden = true; return; }
+    card.hidden = false;
+
+    // 每题一行数据
+    var rows = ids.map(function (id, idx) {
+      var it = ALL[id] || {};
+      var sec = qt[id] || 0;
+      var a = r.answers[id];
+      var state0 = a == null ? 'blank' : (a === it.answer ? 'correct' : 'wrong');
+      return { id: id, no: idx + 1, sec: sec, module: it.module || '', state: state0, item: it };
+    });
+    var totalSec = rows.reduce(function (a, x) { return a + x.sec; }, 0) || 1;
+
+    // ① 最慢 5 题（标红第一名）
+    var slow = rows.slice().sort(function (a, b) { return b.sec - a.sec; }).slice(0, 5);
+    $('#timeTop').innerHTML =
+      '<h4 class="time-sub">最花时间的 5 题</h4>' +
+      '<div class="time-top-list">' + slow.map(function (x) {
+        var cls = x.state === 'wrong' ? ' is-wrong' : (x.state === 'blank' ? ' is-blank' : '');
+        return '<button class="time-top-item' + cls + '" type="button" data-goto-no="' + x.no + '">' +
+          '<span class="tt-no">' + x.no + '.</span>' +
+          '<span class="tt-mod" style="background:' +
+            (MODULES[x.module] ? MODULES[x.module].color : '#999') + '">' +
+            (MODULES[x.module] ? MODULES[x.module].short : '') + '</span>' +
+          '<span class="tt-sec">' + fmtDuration(x.sec) + '</span>' +
+          '<span class="tt-pct">占 ' + Math.round(x.sec / totalSec * 100) + '%</span>' +
+        '</button>';
+      }).join('') + '</div>';
+
+    // ② 分模块用时
+    $('#timeByModule').innerHTML = '<h4 class="time-sub">各模块用时</h4>' +
+      '<div class="tbm-list">' + ORDER.filter(function (m) {
+        return rows.some(function (x) { return x.module === m; });
+      }).map(function (m) {
+        var sub = rows.filter(function (x) { return x.module === m; });
+        var sec = sub.reduce(function (a, x) { return a + x.sec; }, 0);
+        var avg = sub.length ? Math.round(sec / sub.length) : 0;
+        var w = Math.round(sec / totalSec * 100);
+        return '<div class="tbm-row">' +
+          '<span class="tbm-name">' + MODULES[m].short + '</span>' +
+          '<span class="tbm-track"><i style="width:' + w + '%;background:' + MODULES[m].color + '"></i></span>' +
+          '<span class="tbm-val">' + fmtDuration(sec) + '　均 ' + avg + ' 秒</span>' +
+        '</div>';
+      }).join('') + '</div>';
+
+    // ③ 全部题目用时（折叠）
+    $('#timeAllSum').textContent = '展开全部 ' + rows.length + ' 题用时';
+    $('#timeAll').innerHTML = '<div class="tall-grid">' + rows.map(function (x) {
+      var cls = x.state === 'wrong' ? ' is-wrong' : (x.state === 'blank' ? ' is-blank' : '');
+      var w = Math.max(2, Math.round(x.sec / totalSec * 100 * 4));
+      return '<div class="tall-cell' + cls + '" title="第 ' + x.no + ' 题 · ' + fmtDuration(x.sec) + '">' +
+        '<b>' + x.no + '</b><i style="height:' + Math.min(100, w) + '%"></i>' +
+        '<span>' + (x.sec >= 60 ? Math.round(x.sec / 6) / 10 + 'm' : x.sec + 's') + '</span>' +
+      '</div>';
+    }).join('') + '</div>';
+
+    // 点最慢题 → 滚到对应错题（若有）
+    Array.prototype.forEach.call($('#timeTop').querySelectorAll('[data-goto-no]'), function (btn) {
+      btn.addEventListener('click', function () {
+        var no = btn.getAttribute('data-goto-no');
+        var target = $('#wrongList').querySelector('[data-wrong-no="' + no + '"]');
+        if (target) {
+          target.open = true;
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          toast('第 ' + no + ' 题答对了，没有错题详情');
+        }
+      });
+    });
   }
 
   /* ---------------- 每日任务（备考计划） ---------------- */
@@ -1620,6 +1785,7 @@
       // 下次恢复会从 0 重新计时，把之前做的时间丢掉。
       // 传 true 表示结算完继续计时，不能把表停掉。
       if (state.mode !== 'exam' && !state.paused) settleElapsed(true);
+      qSettle(true);                 // 每题的用时同样要结算并续计，否则一刷新就丢
       var d = loadDrafts();
       var key = state.ref || state.title;
       d[key] = { state: state, current: current, savedAt: Date.now() };
@@ -1673,6 +1839,7 @@
       try {
         r = grade(h.used || 0);
         r.ts = h.ts;
+        r.qtimes = h.qtimes || {};     // 历史记录里的逐题用时
       } finally {
         state = saved;
       }
@@ -1706,7 +1873,8 @@
         sub: state ? state.sub : '',
         score: r.maxScore ? r.got / r.maxScore * 100 : 0,
         rate: r.total ? Math.round(r.correct / r.total * 1000) / 10 : 0,
-        used: r.used
+        used: r.used,
+        qtimes: r.qtimes || {}          // 逐题用时（秒），老记录没有这个字段
       });
       localStorage.setItem(LS_HISTORY, JSON.stringify(list.slice(0, 30)));
     } catch (e) {}
@@ -2312,6 +2480,7 @@
 
     renderHome();
     bind();
+    bindVisibilityTime();
     if (window.ZJXCSync) window.ZJXCSync.snapshot("启动");
     setupPWA();
 

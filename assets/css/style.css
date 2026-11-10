@@ -336,6 +336,8 @@ a { color: inherit; text-decoration: none; }
 .tag-diff { background: #fff; border: 1px solid var(--line-2); }
 .tag-no { background: transparent; color: var(--ink-3); font-weight: 500; }
 .tag-no b { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+.tag-qt { background: #eef4ff; color: #3b6ea5; font-weight: 500; font-variant-numeric: tabular-nums; }
+.tag-qt b { font-family: var(--mono); font-size: 12.5px; color: #2b5680; }
 
 .btn-flag {
   border: 1px solid var(--line-2); background: #fff; color: var(--ink-3);
@@ -570,6 +572,90 @@ button.type-chip.is-on { border-color: var(--brand); background: var(--brand-sof
 .good { background: #ecfdf3; color: var(--ok); }
 .diag-item p { color: var(--ink-2); }
 .diag-item strong { color: var(--ink); }
+
+/* ---------------- 逐题用时 ---------------- */
+.time-sub {
+  font-size: 12px; font-weight: 700; color: var(--ink-2);
+  margin: 0 0 9px; letter-spacing: .02em;
+}
+#timeTop { margin-bottom: 18px; }
+.time-top-list { display: flex; flex-direction: column; gap: 6px; }
+
+.time-top-item {
+  display: flex; align-items: center; gap: 9px; width: 100%;
+  padding: 8px 11px; border-radius: 8px; cursor: pointer;
+  background: #fbfcfc; border: 1px solid var(--line);
+  text-align: left; font: inherit; color: var(--ink-2);
+  transition: background .14s, border-color .14s;
+}
+.time-top-item:hover { background: #f4f8f7; border-color: var(--brand-soft); }
+.time-top-item.is-wrong { background: #fef6f6; border-color: #f3d3d3; }
+.time-top-item.is-blank { background: #fbfaf5; border-color: #e8e0c8; }
+
+.time-top-item .tt-no {
+  font-family: var(--mono); font-size: 12.5px; font-weight: 700;
+  color: var(--ink); min-width: 30px;
+}
+.time-top-item .tt-mod {
+  font-size: 10.5px; font-weight: 700; color: #fff;
+  padding: 2px 7px; border-radius: 5px; flex: 0 0 auto;
+}
+.time-top-item .tt-sec {
+  font-family: var(--mono); font-size: 13.5px; font-weight: 700;
+  color: var(--danger); min-width: 56px;
+}
+.time-top-item .tt-pct { margin-left: auto; font-size: 11.5px; color: var(--ink-3); }
+
+.time-by-module { margin-bottom: 16px; }
+.tbm-list { display: flex; flex-direction: column; gap: 8px; }
+.tbm-row { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.tbm-name { flex: 0 0 72px; color: var(--ink-2); font-weight: 600; }
+.tbm-track {
+  flex: 1 1 auto; height: 7px; border-radius: 4px;
+  background: var(--bg-soft); overflow: hidden;
+}
+.tbm-track i { display: block; height: 100%; border-radius: 4px; }
+.tbm-val {
+  flex: 0 0 auto; font-family: var(--mono); font-size: 11.5px;
+  color: var(--ink-3); text-align: right;
+}
+
+.time-all { border-top: 1px dashed var(--line); padding-top: 12px; }
+.time-all summary {
+  cursor: pointer; font-size: 12.5px; font-weight: 600;
+  color: var(--brand); list-style: none;
+}
+.time-all summary::-webkit-details-marker { display: none; }
+.time-all summary::before { content: '▸ '; font-size: 11px; }
+.time-all[open] summary::before { content: '▾ '; }
+.time-all-body { margin-top: 12px; }
+
+.tall-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+  gap: 5px;
+}
+.tall-cell {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-end; height: 62px; border-radius: 5px;
+  background: var(--bg-soft); padding: 3px 2px; overflow: hidden;
+  position: relative;
+}
+.tall-cell b {
+  font-family: var(--mono); font-size: 9.5px; font-weight: 600;
+  color: var(--ink-3); line-height: 1; margin-bottom: 2px;
+}
+.tall-cell i {
+  display: block; width: 100%; border-radius: 3px 3px 0 0;
+  background: #a9c6bf; min-height: 2px;
+}
+.tall-cell span {
+  font-family: var(--mono); font-size: 9px; color: var(--ink-3);
+  line-height: 1; margin-top: 2px;
+}
+.tall-cell.is-wrong { background: #fdf0f0; }
+.tall-cell.is-wrong i { background: #e9a3a3; }
+.tall-cell.is-blank { background: #fbf8ee; }
+.tall-cell.is-blank i { background: #dcc98e; }
 
 .wrong-list { display: flex; flex-direction: column; gap: 8px; }
 .wrong-item { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
