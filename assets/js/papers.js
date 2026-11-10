@@ -144,9 +144,9 @@ var ZJ_2017 = { slug: 'A', code: 'A卷', name: '综合类',
   realTotal: 125, realCount: 125, realDetail: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
   quota: [0,20,30,20,40,15] };
 var ZJ_2018 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识20 · 言语20 · 数量35 · 判断23 · 资料40',
-  realTotal: 128, realCount: 128, realDetail: '常识20 · 言语20 · 数量35 · 判断23 · 资料40',
-  quota: [0,20,20,35,23,40] };
+  desc: '常识20 · 言语35 · 数量25 · 判断40 · 资料20',
+  realTotal: 140, realCount: 140, realDetail: '常识20 · 言语35 · 数量25 · 判断40 · 资料20',
+  quota: [0,20,35,25,40,20] };
 var ZJ_2019 = { slug: 'A', code: 'A卷', name: '综合类',
   desc: '常识20 · 言语35 · 数量25 · 判断35 · 资料15',
   realTotal: 130, realCount: 130, realDetail: '常识20 · 言语35 · 数量25 · 判断35 · 资料15',
@@ -156,9 +156,9 @@ var ZJ_2020 = { slug: 'A', code: 'A卷', name: '综合类',
   realTotal: 100, realCount: 100, realDetail: '常识15 · 言语25 · 数量20 · 判断25 · 资料15',
   quota: [0,15,25,20,25,15] };
 var ZJ_2021 = { slug: 'A', code: 'A卷', name: '综合类',
-  desc: '常识20 · 言语30 · 数量25 · 判断35 · 资料19',
-  realTotal: 129, realCount: 129, realDetail: '常识20 · 言语30 · 数量25 · 判断35 · 资料19',
-  quota: [0,20,30,25,35,19] };
+  desc: '常识20 · 言语30 · 数量25 · 判断40 · 资料15',
+  realTotal: 130, realCount: 130, realDetail: '常识20 · 言语30 · 数量25 · 判断40 · 资料15',
+  quota: [0,20,30,25,40,15] };
 var ZJ_2022 = { slug: 'A', code: 'A卷', name: '综合类',
   desc: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
   realTotal: 125, realCount: 125, realDetail: '常识20 · 言语30 · 数量20 · 判断40 · 资料15',
