@@ -1712,6 +1712,64 @@
     } catch (e) {}
   }
 
+  /* ---------------- 历史记录重新评分 ----------------
+     题库答案修正后（如国考 2025 q98/q111、2026 行政执法 q1），
+     旧记录里存的是「当时按错答案算的分数」，需要在本地按新答案重算一遍。
+     用记录级的 AGV 标记做幂等：云端同步回来的旧记录（没有 AGV）也会被重新评分。 */
+  var AGV = 'ans-2026-11-10';   // 答案代次：以后再有答案修正，改这一行即可触发全量重算
+
+  function regradeOne(h) {
+    if (!h || !h.ids || !h.ids.length) return -1;
+    var answers = h.answers || {};
+    var correct = 0, wrong = 0, blank = 0, got = 0, max = 0, total = 0;
+    for (var i = 0; i < h.ids.length; i++) {
+      var it = ALL[h.ids[i]];
+      if (!it) return -1;                        // 题目还没注册进来，跳过、不标记，下次再试
+      var w = (MODULES[it.module] && MODULES[it.module].weight) || 1;
+      total++; max += w;
+      var a = answers[h.ids[i]];
+      if (a == null) blank++;
+      else if (a === it.answer) { correct++; got += w; }
+      else wrong++;
+    }
+    if (!total || !max) return -1;
+    var rate = Math.round(correct / total * 1000) / 10;
+    var score = Math.round(got / max * 1000) / 10;
+    var changed = (Math.abs((h.rate || 0) - rate) > 0.05) || (Math.abs((h.score || 0) - score) > 0.05);
+    h.rate = rate; h.score = score; h.agv = AGV;
+    return changed ? 1 : 0;
+  }
+
+  function regradeHistory(force) {
+    var list = loadHistory();
+    if (!list.length) return;
+    var pending = list.filter(function (h) {
+      return h && h.ids && h.ids.length && (force || h.agv !== AGV);
+    });
+    if (!pending.length) return;
+    var refs = [];
+    pending.forEach(function (h) {
+      if (h.ref && h.ids.some(function (id) { return !ALL[id]; }) && refs.indexOf(h.ref) < 0) refs.push(h.ref);
+    });
+    var seq = Promise.resolve();
+    refs.forEach(function (ref) {
+      seq = seq.then(function () {
+        return loadRealPaper(ref).then(function (d) { registerReal(d); }).catch(function () {});
+      });
+    });
+    seq.then(function () {
+      var now = loadHistory();       // 重新读：期间可能被云端同步覆盖过
+      var touched = 0;
+      now.forEach(function (h) { if (regradeOne(h) === 1) touched++; });
+      try { localStorage.setItem(LS_HISTORY, JSON.stringify(now.slice(0, 30))); } catch (e) {}
+      if (touched) {
+        if (window.ZJXCSync) { window.ZJXCSync.markDirty(); window.ZJXCSync.schedule(1500); }
+        if (view === 'home') renderHome();
+        toast('已按修正后的答案重新评分 ' + touched + ' 条记录');
+      }
+    });
+  }
+
   /* ---------------- 对话框 ---------------- */
   function confirmDialog(title, html, okLabel, onOk) {
     openModal(title, html, [
@@ -1747,6 +1805,10 @@
   /* ---------------- 事件绑定 ---------------- */
   function bind() {
     // 首页
+    $('#btnRegrade') && $('#btnRegrade').addEventListener('click', function () {
+      toast('正在按最新答案重算…');
+      regradeHistory(true);
+    });
     $('#examTabs').addEventListener('click', function (e) {
       var b = e.target.closest('[data-exam]');
       if (!b) return;
@@ -2252,6 +2314,10 @@
     bind();
     if (window.ZJXCSync) window.ZJXCSync.snapshot("启动");
     setupPWA();
+
+    // 答案修正后，把历史记录按新答案重算一遍（幂等，只改分数不改作答）
+    setTimeout(function () { regradeHistory(); }, 1200);
+    document.addEventListener('zjxc:synced', function () { regradeHistory(); });
 
     var prog = loadProgress();
     if (prog) {
