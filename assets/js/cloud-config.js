@@ -26,7 +26,10 @@ window.MQTT_SYNC = {
     'wss://broker.hivemq.com:8884/mqtt'
   ],
   topicPrefix: 'zjxc/v2/',
-  maxPayload: 78000,     // 超过就裁剪历史/草稿再发（实测 200KB 会被 broker 丢弃）
+  /* 实测（2026-11-13，tools/probe_payload.js）：emqx 单条 1MB 可发布、1.5MB 超时；
+     hivemq 4MB 仍可。留足余量取 400KB——30 条带逐题用时的记录 gzip 后约 60KB，
+     以前卡在 78000 会导致超限时把历史裁到 8 条，用户旧记录凭空消失。 */
+  maxPayload: 400000,
   pullInterval: 240000   // 每 4 分钟拉一次
 };
 

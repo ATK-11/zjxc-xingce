@@ -1072,7 +1072,16 @@
     saveHistory(report);
     if (state.kind === 'day' && state.dayId) saveDayLog(state.dayId, report);
     if (window.SEQ_ORDER && window.SEQ_ORDER.some(function (pp) { return pp.id === state.ref; })) markSeqDone(state.ref);
-    if (window.ZJXCSync) { window.ZJXCSync.snapshot("交卷"); window.ZJXCSync.markDirty(); window.ZJXCSync.schedule(1200); }
+    if (window.ZJXCSync) {
+      window.ZJXCSync.snapshot("交卷");
+      window.ZJXCSync.markDirty();
+      // 刚交完卷是「本机独有新记录」的时刻，最该立刻上传；
+      // 原来只挂 1200ms 定时器，页面一关就丢，另一台设备永远看不到这份成绩。
+      setTimeout(function () {
+        try { window.ZJXCSync.syncNow({ forcePush: true, silent: true }); } catch (e) {}
+      }, 150);
+      window.ZJXCSync.schedule(1200);
+    }
     clearProgress();
     renderReport(report);
     setView('report');
@@ -1973,6 +1982,22 @@
   /* ---------------- 事件绑定 ---------------- */
   function bind() {
     // 首页
+    $('#btnSyncNow') && $('#btnSyncNow').addEventListener('click', function () {
+      if (!window.ZJXCSync) { toast('同步未启用'); return; }
+      var btn = $('#btnSyncNow');
+      var old = btn.textContent;
+      btn.disabled = true; btn.textContent = '拉取中…';
+      toast('正在从云端拉取最新记录…');
+      Promise.resolve(window.ZJXCSync.syncNow({ silent: true })).then(function (r) {
+        btn.disabled = false; btn.textContent = old;
+        // 拉取成功时 mergeIntoLocal 已派发 zjxc:synced、首页会自动重绘
+        if (r && r.ok) toast('已是最新：本机 ' + (loadHistory() || []).length + ' 条记录');
+        else toast('拉取失败：' + ((r && (r.message || r.reason)) || '网络问题') + '，稍后自动重试');
+      }).catch(function () {
+        btn.disabled = false; btn.textContent = old;
+        toast('拉取失败，稍后自动重试');
+      });
+    });
     $('#btnRegrade') && $('#btnRegrade').addEventListener('click', function () {
       toast('正在按最新答案重算…');
       regradeHistory(true);
@@ -2227,7 +2252,24 @@
 
   function setupPWA() {
     if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
-      navigator.serviceWorker.register('service-worker.js').catch(function () {});
+      /* iOS 上老毛病：SW 缓存优先，代码更新后要开开关关好几次才生效。
+         这里做两件事：① 回到前台主动查一次更新；② 新 SW 接管后（且不是首次安装）
+         自动刷新一次，拿护栏防止死循环。 */
+      var hadController = !!navigator.serviceWorker.controller;
+      var reloading = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (!hadController || reloading) return;
+        try { if (sessionStorage.getItem('zjxc.swreload') === '1') return; sessionStorage.setItem('zjxc.swreload', '1'); } catch (e) {}
+        reloading = true;
+        location.reload();
+      });
+      navigator.serviceWorker.register('service-worker.js').then(function (reg) {
+        document.addEventListener('visibilitychange', function () {
+          if (document.visibilityState !== 'visible') return;
+          try { sessionStorage.removeItem('zjxc.swreload'); } catch (e) {}
+          try { reg.update(); } catch (e) {}
+        });
+      }).catch(function () {});
     }
     if (isStandalone()) return;
 

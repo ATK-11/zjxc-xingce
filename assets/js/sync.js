@@ -323,15 +323,17 @@
     return mq.connecting;
   }
 
-  /* 拉取：订阅一次，broker 会把「保留消息」（最新一份）立刻推过来 */
-  function mqttPull() {
+  /* 拉取：订阅一次，broker 会把「保留消息」（最新一份）立刻推过来。
+     waitMs 默认 10 秒（原来 6 秒，弱网/冷启动常拉空，进而误判「云端没数据」）。 */
+  function mqttPull(opts) {
+    var waitMs = (opts && opts.waitMs) || 10000;
     return mqttConnect().then(function (client) {
       if (!client) return { ok: false, reason: 'offline' };
       var topic = mqttTopic();
       if (!topic) return { ok: false, reason: 'nocode' };
       return new Promise(function (resolve) {
         var settled = false;
-        var timer = setTimeout(function () { settle({ ok: true, got: false }); }, 6000);
+        var timer = setTimeout(function () { settle({ ok: true, got: false, timeout: true }); }, waitMs);
         function settle(v) {
           if (settled) return;
           settled = true; clearTimeout(timer);
@@ -368,16 +370,20 @@
       if (!hasData) return { ok: true, skipped: true };
 
       var max = window.MQTT_SYNC.maxPayload;
+      /* 分级瘦身：先丢草稿，再按 20→12→8 条逐步砍历史。
+         以前只有 0/1/2 三级，一超限就直砍到 8 条，旧记录凭空消失。 */
       function shrink(level) {
         var slim = JSON.parse(JSON.stringify(data));
         if (level >= 1) slim[DRAFTS_KEY] = {};
-        if (level >= 2) slim[HISTORY_KEY] = (slim[HISTORY_KEY] || []).slice(0, 8);
+        if (level >= 2) slim[HISTORY_KEY] = (slim[HISTORY_KEY] || []).slice(0, 20);
+        if (level >= 3) slim[HISTORY_KEY] = (slim[HISTORY_KEY] || []).slice(0, 12);
+        if (level >= 4) slim[HISTORY_KEY] = (slim[HISTORY_KEY] || []).slice(0, 8);
         return slim;
       }
       function attempt(level) {
         return packPayload(shrink(level)).then(function (env) {
           var text = JSON.stringify(env);
-          if (text.length <= max || level >= 2) return text;
+          if (text.length <= max || level >= 4) return text;
           return attempt(level + 1);
         });
       }
@@ -411,19 +417,23 @@
     var needPush = !!opts.forcePush || isDirty() || sigOf(canon(readLocal())) !== getSig();
 
     return mqttPull().then(function (r) {
-      if (!r.ok) throw new Error(r.reason === 'nocode' ? '没有同步码' : '连接失败');
-      var localSig = sigOf(canon(readLocal()));
-      var remoteSig = r.remote ? sigOf(canon(r.remote)) : '';
-      // 刚拉下来的内容与本机一致 → 不需要回推
-      if (!needPush || (r.got && localSig === remoteSig)) {
-        setSig(localSig);
-        return { ok: true, pushed: false };
+      /* 拉取超时：不知道云端现在是什么，绝不能拿本机数据回推覆盖
+         （以前就是这样把另一台设备刚交的记录顶掉的）。留 dirty 标记，稍后重试。 */
+      if (r && r.timeout) {
+        return mqttPull({ waitMs: 15000 }).then(function (r2) {
+          if (r2 && r2.timeout) {
+            busy = false;
+            setLast({ ts: Date.now(), ok: false, msg: '拉取超时，本次不上传（已排队重试）' });
+            renderBar();
+            if (mqttOn()) schedule(45000);
+            return { ok: false, reason: 'pull-timeout', pushed: false };
+          }
+          return afterPull(r2, needPush);
+        });
       }
-      return mqttPush().then(function (p) {
-        if (p.ok && !p.skipped) setSig(sigOf(canon(readLocal())));
-        return { ok: true, pushed: !!p.ok && !p.skipped };
-      });
+      return afterPull(r, needPush);
     }).then(function (res) {
+      if (!res || res.reason === 'pull-timeout') return res;
       clearDirty();
       setLast({ ts: Date.now(), ok: true });
       mq.state = 'online';
@@ -437,6 +447,22 @@
       setLast({ ts: Date.now(), ok: false, msg: (e && e.message) || '同步失败' });
       renderBar();
       return { ok: false, reason: 'error', message: (e && e.message) || '' };
+    });
+  }
+
+  /* 拉取成功后的推送判定（拆出来给「超时重试」复用） */
+  function afterPull(r, needPush) {
+    if (!r.ok) throw new Error(r.reason === 'nocode' ? '没有同步码' : '连接失败');
+    var localSig = sigOf(canon(readLocal()));
+    var remoteSig = r.remote ? sigOf(canon(r.remote)) : '';
+    // 刚拉下来的内容与本机一致 → 不需要回推
+    if (!needPush || (r.got && localSig === remoteSig)) {
+      setSig(localSig);
+      return { ok: true, pushed: false };
+    }
+    return mqttPush().then(function (p) {
+      if (p.ok && !p.skipped) setSig(sigOf(canon(readLocal())));
+      return { ok: true, pushed: !!p.ok && !p.skipped };
     });
   }
 
