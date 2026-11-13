@@ -68,7 +68,7 @@
   "zj-2017-A": {
    "questions": 125,
    "materials": 3,
-   "bytes": 156084
+   "bytes": 154720
   },
   "zj-2018-A": {
    "questions": 140,
@@ -78,38 +78,38 @@
   "zj-2019-A": {
    "questions": 130,
    "materials": 3,
-   "bytes": 164748
+   "bytes": 164154
   },
   "zj-2020-A": {
    "questions": 100,
    "materials": 3,
-   "bytes": 143637
+   "bytes": 143532
   },
   "zj-2021-A": {
    "questions": 130,
    "materials": 3,
-   "bytes": 183527
+   "bytes": 183345
   },
   "zj-2022-A": {
    "questions": 125,
    "materials": 3,
-   "bytes": 206587
+   "bytes": 206306
   },
   "zj-2023-A": {
    "questions": 125,
    "materials": 3,
-   "bytes": 194318
+   "bytes": 194035
   },
   "zj-2024-A": {
    "questions": 125,
    "materials": 3,
-   "bytes": 208982
+   "bytes": 208575
   },
   "zj-2025-A": {
    "questions": 125,
    "materials": 3,
-   "bytes": 190422
+   "bytes": 190303
   }
  },
- "generatedAt": "2026-11-13T02:15:26.526Z"
+ "generatedAt": "2026-11-13T03:03:39.596Z"
 }
