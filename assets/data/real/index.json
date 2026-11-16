@@ -1,115 +1,52 @@
-{
- "papers": {
-  "gk-2016-fu": {
-   "questions": 135,
-   "materials": 5,
-   "bytes": 199935
-  },
-  "gk-2017-fu": {
-   "questions": 135,
-   "materials": 6,
-   "bytes": 214574
-  },
-  "gk-2018-fu": {
-   "questions": 135,
-   "materials": 6,
-   "bytes": 227796
-  },
-  "gk-2019-fu": {
-   "questions": 135,
-   "materials": 6,
-   "bytes": 244265
-  },
-  "gk-2020-fu": {
-   "questions": 135,
-   "materials": 6,
-   "bytes": 257036
-  },
-  "gk-2021-fu": {
-   "questions": 135,
-   "materials": 7,
-   "bytes": 256144
-  },
-  "gk-2022-fu": {
-   "questions": 134,
-   "materials": 6,
-   "bytes": 236749
-  },
-  "gk-2023-fu": {
-   "questions": 135,
-   "materials": 6,
-   "bytes": 250049
-  },
-  "gk-2024-fu": {
-   "questions": 135,
-   "materials": 6,
-   "bytes": 240635
-  },
-  "gk-2025-fu": {
-   "questions": 135,
-   "materials": 6,
-   "bytes": 250336
-  },
-  "gk-2026-zf": {
-   "questions": 130,
-   "materials": 4,
-   "bytes": 246596
-  },
-  "zj-2015-A": {
-   "questions": 125,
-   "materials": 3,
-   "bytes": 164932
-  },
-  "zj-2016-A": {
-   "questions": 125,
-   "materials": 3,
-   "bytes": 176218
-  },
-  "zj-2017-A": {
-   "questions": 125,
-   "materials": 3,
-   "bytes": 155782
-  },
-  "zj-2018-A": {
-   "questions": 140,
-   "materials": 4,
-   "bytes": 171406
-  },
-  "zj-2019-A": {
-   "questions": 130,
-   "materials": 3,
-   "bytes": 164671
-  },
-  "zj-2020-A": {
-   "questions": 100,
-   "materials": 3,
-   "bytes": 143650
-  },
-  "zj-2021-A": {
-   "questions": 130,
-   "materials": 3,
-   "bytes": 184118
-  },
-  "zj-2022-A": {
-   "questions": 125,
-   "materials": 3,
-   "bytes": 207095
-  },
-  "zj-2023-A": {
-   "questions": 125,
-   "materials": 3,
-   "bytes": 194002
-  },
-  "zj-2024-A": {
-   "questions": 125,
-   "materials": 3,
-   "bytes": 209629
-  },
-  "zj-2025-A": {
-   "questions": 125,
-   "materials": 3,
-   "bytes": 191337
-  }
+[
+ {
+  "id": "gk-2016-fu",
+  "n": 135,
+  "kb": 195
  },
- "generatedAt": "2026-11-14T10:27:04.280Z"
-}
+ {
+  "id": "gk-2017-fu",
+  "n": 135,
+  "kb": 210
+ },
+ {
+  "id": "gk-2018-fu",
+  "n": 135,
+  "kb": 223
+ },
+ {
+  "id": "gk-2019-fu",
+  "n": 135,
+  "kb": 239
+ },
+ {
+  "id": "gk-2020-fu",
+  "n": 135,
+  "kb": 252
+ },
+ {
+  "id": "gk-2021-fu",
+  "n": 135,
+  "kb": 251
+ },
+ {
+  "id": "gk-2022-fu",
+  "n": 134,
+  "kb": 232
+ },
+ {
+  "id": "gk-2023-fu",
+  "n": 135,
+  "kb": 245
+ },
+ {
+  "id": "gk-2024-fu",
+  "n": 135,
+  "kb": 236
+ },
+ {
+  "id": "gk-2025-fu",
+  "n": 135,
+  "kb": 245
+ }
+]
