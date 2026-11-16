@@ -1209,7 +1209,7 @@
    "id": "gk-2026-zf-q76",
    "module": "judge",
    "qtype": "图形推理",
-   "stem": "（本题原卷为图形题，配图在源数据中缺失，可先跳过）",
+   "stem": "从所给的四个选项中，选择最合适的一个填入问号处，使之呈现一定的规律性：<br><img src=\"img/gk2026-q76.png\" />",
    "options": [
     "A",
     "B",
@@ -1241,7 +1241,7 @@
    "id": "gk-2026-zf-q78",
    "module": "judge",
    "qtype": "图形推理",
-   "stem": "（本题原卷为图形题，配图在源数据中缺失，可先跳过）",
+   "stem": "从所给的四个选项中，选择最合适的一个填入问号处，使之呈现一定的规律性：<br><img src=\"img/gk2026-q78.png\" />",
    "options": [
     "A",
     "B",
@@ -1257,7 +1257,7 @@
    "id": "gk-2026-zf-q79",
    "module": "judge",
    "qtype": "图形推理",
-   "stem": "（本题原卷为图形题，配图在源数据中缺失，可先跳过）",
+   "stem": "从所给的四个选项中，选择最合适的一个填入问号处，使之呈现一定的规律性：<br><img src=\"img/gk2026-q79.png\" />",
    "options": [
     "A",
     "B",
@@ -1289,7 +1289,7 @@
    "id": "gk-2026-zf-q81",
    "module": "judge",
    "qtype": "图形推理",
-   "stem": "（本题原卷为图形题，配图在源数据中缺失，可先跳过）",
+   "stem": "下图为由2个正方体组合而成的长方体，问这2个正方体的外表面展开图可能分别是：<br><img src=\"img/gk2026-q81-1.png\" /><br><img src=\"img/gk2026-q81-2.png\" />",
    "options": [
     "②和④",
     "②和③",
@@ -1337,7 +1337,7 @@
    "id": "gk-2026-zf-q84",
    "module": "judge",
    "qtype": "图形推理",
-   "stem": "（本题原卷为图形题，配图在源数据中缺失，可先跳过）",
+   "stem": "把下面的六个图形分为两类，使每一类图形都有各自的共同特征或规律，分类正确的一项是：<br><img src=\"img/gk2026-q84.png\" />",
    "options": [
     "①②⑥，③④⑤",
     "①②④，③⑤⑥",
@@ -1593,7 +1593,7 @@
    "id": "gk-2026-zf-q100",
    "module": "judge",
    "qtype": "逻辑判断",
-   "stem": "（本题原卷为图形题：三个集合关系的选项图在原卷截图中缺失，建议跳过）",
+   "stem": "下列选项中，符合图中三个集合关系的是：<br><img src=\"img/gk2026-q100.png\" />",
    "options": [
     "船舶按用途分为军用船舶（①）和民用船舶两大类，潜艇、航空母舰（③）、驱逐舰等都属于军用船舶；按推进动力分为机动船和非机动船（②）",
     "水杉（③）是我国的特有树种，属于落叶树（①），是一种高大的乔木（②），是世界上珍稀的“活化石”植物",
@@ -1993,7 +1993,7 @@
    "id": "gk-2026-zf-q125",
    "module": "data",
    "qtype": "资料分析",
-   "stem": "（本题原卷为图形题，配图在源数据中缺失，可先跳过）",
+   "stem": "以下柱状图反映了哪一时间段内，我国科幻产业营收额同比增量的变化情况（横轴位置表示增量为0）？<br><img src=\"img/gk2026-q125.png\" />",
    "options": [
     "2021~2024年",
     "2020~2023年",
@@ -2073,7 +2073,7 @@
    "id": "gk-2026-zf-q130",
    "module": "data",
    "qtype": "资料分析",
-   "stem": "以下柱状图反映了2025年清明假期、“五一”假期和端午假期，Y省接待游客哪一指标的变化情况（横轴位置表示数值为0）？",
+   "stem": "以下柱状图反映了2025年清明假期、“五一”假期和端午假期，Y省接待游客哪一指标的变化情况（横轴位置表示数值为0）？<br><img src=\"img/gk2026-q130.png\" />",
    "options": [
     "纳入监测的13家红色旅游经典景区日均接待游客数同比增量",
     "纳入监测的13家红色旅游经典景区日均接待游客数量",
@@ -2090,17 +2090,17 @@
   {
    "id": "gk-2026-zf-M1",
    "title": "材料 1",
-   "html": "<p>2024年上半年中国医药保健品进出口情况（单位：亿美元）</p><table border=\"1\" cellspacing=\"0\" cellpadding=\"4\"><tr><th>类别</th><th>进口额</th><th>进口同比</th><th>出口额</th><th>出口同比</th></tr><tr><td>中成药</td><td>—</td><td>＋</td><td>—</td><td>＋</td></tr><tr><td>保健品</td><td>—</td><td>＋</td><td>—</td><td>＋</td></tr><tr><td>中药材及饮片</td><td>—</td><td>－</td><td>—</td><td>－</td></tr><tr><td>医用敷料</td><td>2.60</td><td>-8.34%</td><td>—</td><td>－</td></tr><tr><td>中药提取物</td><td>3.58</td><td>+7.34%</td><td>14.92</td><td>-14.28%</td></tr><tr><td>西药原料</td><td>51.78</td><td>＋</td><td>213.43</td><td>＋</td></tr><tr><td>西成药</td><td>110.28</td><td>-17.51%</td><td>35.24</td><td>+14.61%</td></tr><tr><td>生化药</td><td>97.84</td><td>＋</td><td>20.71</td><td>＋</td></tr><tr><td>一次性耗材</td><td>19.55</td><td>-3.05%</td><td>48.81</td><td>+8.55%</td></tr><tr><td>保健康复用品</td><td>9.04</td><td>+9.62%</td><td>—</td><td>＋</td></tr><tr><td>口腔设备与材料</td><td>7.31</td><td>+14.27%</td><td>—</td><td>＋</td></tr><tr><td>医院诊断与治疗</td><td>138.23</td><td>-6.59%</td><td>103.95</td><td>+2.50%</td></tr><tr><td><strong>合计</strong></td><td><strong>451.76</strong></td><td><strong>-5.76%</strong></td><td><strong>525.79</strong></td><td><strong>+1.96%</strong></td></tr></table><p style=\"font-size:12px;color:#666\">注：本表依据官方解析中引用的数值还原；原卷表格为图片排版，部分单元格数值未在解析中出现（以—表示，增速正负号按解析结论标注）。</p>"
+   "html": "<p>2024年上半年中国医药保健品进出口额及同比增速（单位：亿美元，%）</p><table border=\"1\" cellspacing=\"0\" cellpadding=\"3\" style=\"border-collapse:collapse\"><tr><th rowspan=\"2\">项目</th><th colspan=\"2\">出口</th><th colspan=\"2\">进口</th></tr><tr><th>金额</th><th>增速</th><th>金额</th><th>增速</th></tr><tr style=\"font-weight:bold\"><td>医药保健品合计</td><td>525.79</td><td>1.96</td><td>451.76</td><td>-5.76</td></tr><tr><td>&nbsp;&nbsp;其中：中药类</td><td>26.66</td><td>-6.99</td><td>15.13</td><td>1.84</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;其中：提取物</td><td>14.92</td><td>-14.28</td><td>3.58</td><td>7.34</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;中成药</td><td>2.25</td><td>32.79</td><td>2.28</td><td>3.68</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;中药材及饮片</td><td>6.09</td><td>-12.20</td><td>3.26</td><td>-10.73</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;保健品</td><td>3.40</td><td>34.50</td><td>6.01</td><td>6.85</td></tr><tr><td>&nbsp;&nbsp;西药类</td><td>269.37</td><td>1.91</td><td>259.90</td><td>-6.82</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;其中：西药原料</td><td>213.43</td><td>0.13</td><td>51.78</td><td>2.82</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;西成药</td><td>35.24</td><td>14.61</td><td>110.28</td><td>-17.51</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;生化药</td><td>20.71</td><td>1.32</td><td>97.84</td><td>3.11</td></tr><tr><td>&nbsp;&nbsp;医疗器械类</td><td>229.76</td><td>3.12</td><td>176.73</td><td>-4.79</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;其中：医用敷料</td><td>19.13</td><td>-9.81</td><td>2.60</td><td>-8.34</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;一次性耗材</td><td>48.81</td><td>8.55</td><td>19.55</td><td>-3.05</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;医院诊断与治疗</td><td>103.95</td><td>2.50</td><td>138.23</td><td>-6.59</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;保健康复用品</td><td>47.63</td><td>4.40</td><td>9.04</td><td>9.62</td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;口腔设备与材料</td><td>10.24</td><td>6.80</td><td>7.31</td><td>14.27</td></tr></table>"
   },
   {
    "id": "gk-2026-zf-M2",
    "title": "材料 2",
-   "html": "<p>2024年，我国企业发明专利产业化平均收益（平均每件已产业化的有效专利产生的收益）为869.5万元/件，较上年增长4.8％。其中，战略性新兴产业和未来产业领域的企业发明专利产业化平均收益分别为939.1万元/件和1132.7万元/件。分企业规模看，中型企业发明专利产业化平均收益最高，为991.9万元/件，其次为大型企业和小型企业，分别为953.9万元/件和752.4万元/件，微型企业相对最低，为260.1万元/件。</p>"
+   "html": "<p>2024年，我国企业发明专利产业化平均收益（平均每件已产业化的有效专利产生的收益）为869.5万元/件，较上年增长4.8％。其中，战略性新兴产业和未来产业领域的企业发明专利产业化平均收益分别为939.1万元/件和1132.7万元/件。分企业规模看，中型企业发明专利产业化平均收益最高，为991.9万元/件，其次为大型企业和小型企业，分别为953.9万元/件和752.4万元/件，微型企业相对最低，为260.1万元/件。</p><p style=\"margin-top:10px\">2020~2024 年我国企业专利产业化率（单位：%）</p><table border=\"1\" cellspacing=\"0\" cellpadding=\"3\" style=\"border-collapse:collapse\"><tr><th>项目</th><th>2020年</th><th>2021年</th><th>2022年</th><th>2023年</th><th>2024年</th></tr><tr><td>发明专利</td><td>44.9</td><td>46.8</td><td>48.1</td><td>51.3</td><td>53.3</td></tr><tr><td>　其中：大型企业</td><td>45.9</td><td>47.1</td><td>50.9</td><td>51.0</td><td>49.5</td></tr><tr><td>　　　　中型企业</td><td>46.8</td><td>54.6</td><td>55.4</td><td>57.9</td><td>61.4</td></tr><tr><td>　　　　小型企业</td><td>46.1</td><td>47.7</td><td>45.3</td><td>53.9</td><td>57.8</td></tr><tr><td>　　　　微型企业</td><td>32.4</td><td>26.6</td><td>22.0</td><td>33.8</td><td>36.7</td></tr><tr><td>实用新型专利</td><td>42.0</td><td>46.2</td><td>44.9</td><td>57.1</td><td>54.9</td></tr><tr><td>外观设计专利</td><td>51.6</td><td>52.3</td><td>58.7</td><td>66.0</td><td>63.5</td></tr></table><p>2023~2024 年我国不同行业企业发明专利产业化率：<br><img src=\"img/gk2026-mat2-chart.png\" style=\"max-width:100%%\" /></p><p style=\"font-size:12px;color:#666\">注：专利产业化率＝已产业化的有效专利数量÷拥有的有效专利总量×100%。</p>"
   },
   {
    "id": "gk-2026-zf-M3",
    "title": "材料 3",
-   "html": "<p>科幻产业包括科幻阅读、科幻影视、科幻游戏、科幻衍生品、科幻文旅五大领域。2024年，我国科幻产业总营收1089.6亿元。</p>"
+   "html": "<p>科幻产业包括科幻阅读、科幻影视、科幻游戏、科幻衍生品、科幻文旅五大领域。2024年，我国科幻产业总营收1089.6亿元。</p><p style=\"margin-top:8px\"><img src=\"img/gk2026-mat3-fig1.png\" style=\"max-width:100%\" /></p><p style=\"font-size:12px;color:#666;text-align:center\">图1　2016~2024年我国科幻产业营收情况</p><p><img src=\"img/gk2026-mat3-fig2.png\" style=\"max-width:100%\" /></p><p style=\"font-size:12px;color:#666;text-align:center\">图2　2022~2024年我国科幻产业分领域营收情况</p>"
   },
   {
    "id": "gk-2026-zf-M4",
