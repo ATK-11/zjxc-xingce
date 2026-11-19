@@ -71,7 +71,8 @@ h1{font-size:22px;margin:8px 0 4px}
 .qimg{max-width:100%;height:auto;display:block;margin:8px 0;border:1px solid var(--line);border-radius:8px;padding:4px;background:#fff}
 
 .res .meta.neg{display:block;margin:6px 0 2px;padding:7px 10px;border-radius:8px;background:#fff1f2;color:#9f1239;font-size:13px;line-height:1.55;font-weight:600}
-body.markmap-dark .res .meta.neg,html[data-theme="dark"] .res .meta.neg{background:#3b0d16;color:#fda4af}</style></head><body>
+body.markmap-dark .res .meta.neg,html[data-theme="dark"] .res .meta.neg{background:#3b0d16;color:#fda4af}
+.opt img.qimg{max-width:100%;height:auto;display:block;margin:3px 0;background:#fff}</style></head><body>
 <div class="wrap">
 <div class="nav"><a href="index.html">← 学习资料</a><a href="11_学习模式_判断推理_判断推理.html" data-no="11">判断推理</a><a class="on" href="12_学习模式_言语理解_言语理解.html" data-no="12">言语理解</a><a href="13_学习模式_数量关系_数量关系.html" data-no="13">数量关系</a><a href="14_学习模式_常识判断_常识判断.html" data-no="14">常识判断</a><a href="15_学习模式_资料分析_资料分析.html" data-no="15">资料分析</a></div>
 <h1>学习模式 · 言语理解（先做后看）</h1>
@@ -119,7 +120,7 @@ function render(){
   var box=el('div','opts');
   q.options.forEach(function(o,i){
     var t=String(o).replace(/<[^>]+>/g,'').trim();
-    var dup=(t.length<=1)||t===L(i);   /* 图推：选项就是题干图里的 A/B/C/D 四个图 */
+    var hasimg=/<img/i.test(String(o)); var dup=(!hasimg)&&((t.length<=1)||t===L(i));   /* 图推：选项就是题干图里的 A/B/C/D 四个图 */
     var b=el('button','opt'+(dup?' letteronly':''),'<em>'+L(i)+'</em>'+(dup?'<span class="lp">题干图中的 '+L(i)+' 选项</span>':o));
     b.onclick=function(){ if(submitted)return; chosen=i;
       Array.prototype.forEach.call(box.children,function(x,j){x.classList.toggle('sel',j===i);});
