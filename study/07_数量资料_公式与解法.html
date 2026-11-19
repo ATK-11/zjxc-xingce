@@ -1,0 +1,748 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>数量关系 + 资料分析 · 错题公式与解法详解（49 题）</title>
+<style>
+:root{--brand:#146b58;--ink:#17201d;--sub:#5c6b66;--line:#e3ebe8;--bg:#f5f8f6;--card:#fff;--warn:#b06a00;--warnbg:#fff7e6}
+@media(prefers-color-scheme:dark){:root{--ink:#e6efeb;--sub:#9db0a9;--line:#2a3a34;--bg:#101815;--card:#16211d;--warnbg:#2a2113}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.75 -apple-system,"Microsoft YaHei",system-ui,sans-serif}
+header{background:var(--brand);color:#fff;padding:26px 22px 22px}
+header h1{margin:0 0 8px;font-size:22px}
+header p{margin:0;opacity:.88;font-size:13.5px}
+header a{color:#c9f3e5}
+main{max-width:920px;margin:0 auto;padding:18px 16px 60px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:16px 0 22px;font-size:14px}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:24px}
+.toc b{display:block;margin-bottom:6px}
+.toc a{display:inline-block;margin:2px 10px 2px 0;color:var(--brand);text-decoration:none;font-size:13.5px}
+h2.sec{margin:34px 0 10px;font-size:19px;padding-bottom:8px;border-bottom:2px solid var(--brand)}
+h2.sec .cnt{font-size:13px;color:var(--sub);font-weight:400;margin-left:8px}
+article.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0}
+.qhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.tag{font-size:12.5px;padding:2px 9px;border-radius:20px;background:#eaf5f1;color:var(--brand);border:1px solid #cfe6de}
+.tag.t2{background:#eaf1fb;color:#1d4ed8;border-color:#cddff8}
+.tag.t3{background:#fbf0ea;color:#b45309;border-color:#f6dcc8}
+.no{font-size:12.5px;color:var(--sub)}
+.stem{white-space:pre-wrap;margin:6px 0 10px}
+.opts{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--sub);margin-bottom:10px}
+.opt.right{color:var(--brand);font-weight:700}
+.ans{font-size:14px;margin-bottom:10px}
+.ans b{color:var(--brand);font-size:16px}
+.box{border-left:3px solid var(--brand);background:#f7fbf9;border-radius:6px;padding:9px 12px;margin:8px 0;font-size:14px}
+@media(prefers-color-scheme:dark){.box{background:#12201b}}
+.box b{display:block;color:var(--brand);font-size:13px;margin-bottom:3px}
+.box.s{border-left-color:#2563eb}.box.s b{color:#2563eb}
+.box.t{border-left-color:#b45309;background:var(--warnbg)}.box.t b{color:var(--warn)}
+.box.n{border-left-color:#9aa7a1}.box.n b{color:#6b7772}
+.box ol{margin:0;padding-left:20px}.box ol li{margin:3px 0}
+footer{max-width:920px;margin:0 auto;padding:0 16px 40px;color:var(--sub);font-size:12.5px}
+.top{position:fixed;right:18px;bottom:18px;background:var(--brand);color:#fff;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+@media print{.top,.toc{display:none}article.q{break-inside:avoid}}
+</style></head><body>
+<header>
+  <h1>数量关系 + 资料分析 · 错题公式与解法详解</h1>
+  <p>四套浙江 A 卷（2015–2018）里数量关系 + 资料分析的 <b>49 道错题</b>，每题给：题型 → 公式 → 分步解法 → 最简单做法。· <a href="index.html">返回学习资料</a></p>
+</header>
+<main>
+<div class="intro"><b>怎么用这张表（3 步）</b><br>
+1. 先看<b>公式/模型</b>——把这一类的"处理器"记住，比记题目有用。<br>
+2. 再看<b>详细解法</b>——每一步都写清"为什么这么做"，跟着算一遍（用笔算，不要心算）。<br>
+3. 最后看<b>最简单做法</b>——这是考场上 60 秒内要用的路径；练到"看到这类题先想到它"。<br>
+标记 <b>说明</b> 的题：题库没有附官方解析，解法是我按题型重写的。</div>
+<div class="toc"><b>目录</b>
+<a href="#m-数字推理">数字推理（9）</a><a href="#m-数学运算">数学运算（24）</a><a href="#m-资料分析">资料分析（16）</a>
+</div>
+<h2 id="m-数字推理" class="sec">数字推理<span class="cnt">9 题</span></h2>
+<article class="q" id="q2015-51">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 做商递推</span>
+    <span class="no">2015 浙江A · 第 51 题</span>
+  </div>
+  <div class="stem">1，－4，4，8，40，（
+）</div>
+  <div class="opts"><span class="opt">A. 160</span><span class="opt">B. 240</span><span class="opt right">C. 320</span><span class="opt">D. 480</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>相邻两项做商 → 商数列是等差/等比/幂次。商数列下一项求出后 × 前一项 = 答案。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，数列有明显倍数关系，考虑做商。</li><li>第二步，做商如图所示： 商数列是公差为 3 的等差数列，下一项为 5＋3＝8，则所求项为 40×8＝320。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>看到数字跳得快（×2、×4 级别）先做商，别先做差。</div>
+  
+</article>
+<article class="q" id="q2015-52">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 做和（等比）</span>
+    <span class="no">2015 浙江A · 第 52 题</span>
+  </div>
+  <div class="stem">5，11，－3，7，－5，（
+）</div>
+  <div class="opts"><span class="opt right">A. 6</span><span class="opt">B. 7</span><span class="opt">C. 8</span><span class="opt">D. 9</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>相邻两项做和 → 和数列为等比数列；和数列下一项 − 前一项 = 答案。</div>
+  <div class="box s"><b>详细解法</b><ol><li>解法一：</li><li>第一步，数列大小交叉变化，考虑做和。</li><li>第二步，做和如图所示： 和数列是公比为 的等比数列，下一项为 ，则所求项为 1－（－5）＝6。  解法二：考虑递推，观察数列发现：－3＝（5－11）÷2，7＝[11－（－3）]÷2，－5＝（－3－7）÷2，规律 为第三项＝（第一项－第二项）÷2，则所求项为[7－（－5）]÷2＝6。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>和数列增长太猛（&gt;2 倍）就是等比，直接除以前一项验证。</div>
+  
+</article>
+<article class="q" id="q2015-56">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 做和（平方数列）</span>
+    <span class="no">2015 浙江A · 第 56 题</span>
+  </div>
+  <div class="stem">61，60，40，41，23，（
+）</div>
+  <div class="opts"><span class="opt">A. 22</span><span class="opt">B. 24</span><span class="opt right">C. 26</span><span class="opt">D. 28</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>相邻两项做和 → 和数列为平方数列（1,4,9,16,25…）；下一平方数 − 末项 = 答案。</div>
+  <div class="box s"><b>详细解法</b><ol><li>解法一：</li><li>第一步，数列大小交叉变化，考虑做和。</li><li>第二步，做和如图所示： 和数列是幂次数列，底数是公差为－1 的等差数列，指数数列是 2 的常数数列，下一项为 7²＝49。则所求项为 49－23＝26。  解法二：数列变化趋势平缓，考虑做差（前减后），隔项做差如图所示： 猜测差数列是公差为－2 的等差数列，下一项为 17＋（－2）＝15，则所求项为 41－15＝26。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>记住平方表到 20²，和为完全平方数基本就是这一型。</div>
+  
+</article>
+<article class="q" id="q2015-57">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 特殊拆分（质数 + 等差）</span>
+    <span class="no">2015 浙江A · 第 57 题</span>
+  </div>
+  <div class="stem">3，5，8，11，16，19，（
+）</div>
+  <div class="opts"><span class="opt">A. 20</span><span class="opt">B. 22</span><span class="opt right">C. 24</span><span class="opt">D. 26</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>把每项拆成"质数/平方数 ＋ 等差修正"两部分，分别看两部分各自的规律。</div>
+  <div class="box s"><b>详细解法</b><ol><li>获取试卷更新，请关注公众号：gwyeasy（公务员考试挺简单）,一个上岸考生分享经验和答疑的平台。 - 13 -</li><li>第一步，本题考查特殊数列。</li><li>第二步，在做差与递推无明显规律的前提下，考虑拆分。原数列可分别拆分为：3＝2＋1，5＝3＋2，8＝5＋3， 11＝7＋4，16＝11＋5，19＝13＋6。“＋”前是 2，3，5，7，11，13，为连续的质数数列，下一项为 17。“＋” 后是公差为 1 的等差数列，下一项为 6＋1＝7。所求项为 17＋7＝24。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>数字忽大忽小、又不像幂次 → 先拆成 a+b 两段。</div>
+  
+</article>
+<article class="q" id="q2015-58">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 幂次修正（底数等差 + 指数周期 + 修正周期）</span>
+    <span class="no">2015 浙江A · 第 58 题</span>
+  </div>
+  <div class="stem">5，63，37，511，101，（
+）</div>
+  <div class="opts"><span class="opt right">A. 1727</span><span class="opt">B. 1833</span><span class="opt">C. 1905</span><span class="opt">D. 1929</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>写成本身幂次±修正：底数（等差/等比）× 指数（周期）＋修正项（周期）。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，观察数列，每项数据皆在幂次数附近波动，考虑幂次修正数列。</li><li>第二步，幂次化指数形式如下： 底数数列是公差为 2 的等差数列，所求项底数为 10＋2＝12。指数数列是以 2，3 为周期的周期数列，下一项为 3。修正数列是以 1，－1 为周期的周期数列，下一项为－1。则所求项为 （也可用尾数法，尾 数为 7）。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>靠近 1、4、9、16、25、64、81… 的都是幂次修正。</div>
+  
+</article>
+<article class="q" id="q2015-59">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 隔项做差</span>
+    <span class="no">2015 浙江A · 第 59 题</span>
+  </div>
+  <div class="stem">34，41，46，56，64，（
+），88</div>
+  <div class="opts"><span class="opt">A. 75</span><span class="opt right">B. 77</span><span class="opt">C. 79</span><span class="opt">D. 81</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>奇数位一组、偶数位一组，各自做差找规律（两组可不同）。</div>
+  <div class="box s"><b>详细解法</b><ol><li>解法一：</li><li>第一步，数列变化趋势平缓，优先考虑做差。</li><li>第二步，做差如图所示： 和数列是公差为 3 的等差数列，下两项分别为 18+3=21,21+3=24，差数列下两项分别为 21－8=13，24－13=11， 则所求项为 64+13=77，验证 77+11=88，满足规律。  解法二：考虑隔项做差，隔项做差如图所示： 猜测差数列是公差为 3 的等差数列，下一项为 18+3=21，则所求项为 56+21=77，验证选项，满足规律。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>数字上下乱窜（一大一小）先隔项分组。</div>
+  
+</article>
+<article class="q" id="q2016-54">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 倍数（半倍）递推</span>
+    <span class="no">2016 浙江A · 第 54 题</span>
+  </div>
+  <div class="stem">16，12，20，26，（
+），49</div>
+  <div class="opts"><span class="opt right">A. 36</span><span class="opt">B. 37</span><span class="opt">C. 38</span><span class="opt">D. 40</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>后项 = 前项×倍数 ± 常数，倍数可为 1.5 倍、2 倍等；先验证倍数再定修正。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，数列变化趋势平缓，做差无明显规律，考虑较小倍数递推数列。</li><li>第二步，观察数列发现20＝16÷2＋12，26＝12÷2＋20，猜测规律为第三项＝第一项÷2＋第二项，则所求项 为20÷2＋26＝36，代入验证，26÷2＋36＝49，满足规律。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>增长平缓（1.5 倍左右）用倍数递推，不用做商。</div>
+  
+</article>
+<article class="q" id="q2018-44">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 三项递推和（类斐波那契）</span>
+    <span class="no">2018 浙江A · 第 44 题</span>
+  </div>
+  <div class="stem">10 12 13 22 25 35 （
+）</div>
+  <div class="opts"><span class="opt">A. 60</span><span class="opt">B. 50</span><span class="opt right">C. 47</span><span class="opt">D. 37</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>类斐波那契：第三项 = 前两项之和（或和×系数 ± 常数）。</div>
+  <div class="box s"><b>详细解法</b><ol><li>数列无明显特征，做差无规律，考虑递推数列。观察前四项10，12，13，22……发现 ， 即 ，验证其他连续的四个数均符合，所以 。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>出现 1,2,3,5,8 型 → 立刻试相邻两项相加。</div>
+  
+</article>
+<article class="q" id="q2018-45">
+  <div class="qhead">
+    <span class="tag t3">数字推理 · 差→平方递推</span>
+    <span class="no">2018 浙江A · 第 45 题</span>
+  </div>
+  <div class="stem">5 7 4 9 25 （
+）</div>
+  <div class="opts"><span class="opt">A. 49</span><span class="opt">B. 121</span><span class="opt">C. 189</span><span class="opt right">D. 256</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>先做差得新数列，新数列是平方数/平方递推。</div>
+  <div class="box s"><b>详细解法</b><ol><li>数列无明显特征，优先考虑做差。做差后得新数列2，-3，5，16，（），无明显规律考虑递推，观察新 数列与原数列之间的关系，发现 ，即新数列的平方＝原数列的下一项，即在原数列中 ，验证其他连续三项均符合，所以 。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>先做差是所有数推的第一动作，差数列再认型。</div>
+  
+</article><h2 id="m-数学运算" class="sec">数学运算<span class="cnt">24 题</span></h2>
+<article class="q" id="q2015-62">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 两量容斥（半天活跃）</span>
+    <span class="no">2015 浙江A · 第 62 题</span>
+  </div>
+  <div class="stem">野生动物保护机构考查某圈养动物的状态，在 n（n 为正整数）天中观察到：（1）有 7 个不活跃日（一天
+中有出现不活跃的情况）；（2）有 5 个下午活跃;（3）有 6 个上午活跃；（4）当下午不活跃时，上午必活跃。
+则 n 等于：</div>
+  <div class="opts"><span class="opt">A. 7</span><span class="opt">B. 8</span><span class="opt right">C. 9</span><span class="opt">D. 10</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>二集合：总数 − 都不 = A + B − 都。三集合：A+B+C − AB − AC − BC + ABC。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查容斥问题，属于二集合容斥类。</li><li>第二步，根据条件④可以推出：没有上下午都不活跃的情况。总天数为 n 天，则上下午都活跃的天数是 n－7。 代入二集合容斥公式：总天数－上下午都不活跃＝上午活跃＋下午活跃－上下午都活跃，可得 n＝5＋6－（n－ 7）。解得 n＝9（天）。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>"至少/都/其中"出现两个属性就套容斥公式，画两个圆圈最快。</div>
+  
+</article>
+<article class="q" id="q2015-63">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 函数最值（奇偶特性秒杀）</span>
+    <span class="no">2015 浙江A · 第 63 题</span>
+  </div>
+  <div class="stem">每年三月某单位都要组织员工去 A、B 两地参加植树活动。已知去 A 地每人往返车费 20 元，人均植树 5 棵，
+去 B 地每人往返车费 30 元，人均植树 3 棵，设到 A 地员工有 x 人，A、B 两地共植树 y 棵，y 与 x 之间满足 y=8x-15，
+若往返车费总和不超过 3000 元，那么，最多可植树多少棵？</div>
+  <div class="opts"><span class="opt right">A. 489</span><span class="opt">B. 400</span><span class="opt">C. 498</span><span class="opt">D. 500</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>和为定值的两数，积在相等时最大；二次函数顶点 x=−b/2a。</div>
+  <div class="box s"><b>详细解法</b><ol><li>解法一：</li><li>第一步，本题考查函数问题。</li><li>第二步，A 地人均 5 棵，则在 A 地植树 5x，根据总植树棵数 y＝8x－15，可得 B 地植树棵数为（8x－15）－5x ＝3x－15，则 B 地人数为 （人）。</li><li>第三步，为了植树最多，则投入费用需要最高，根据不超过 3000 元，可得总费用 3000≥20x＋30（x－5），解 得 x≤63。</li><li>第四步，当 x＝63 时，最多可植树 y＝8×63－15＝489（棵）。  解法二：</li><li>第一步，本题考查函数问题，用数字特性法解题。</li><li>第二步，植树棵数 y＝8x－15，根据奇偶特性，推出 y 一定为奇数。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>看到"最大/最小"先看是不是定和，定和就取平均。</div>
+  
+</article>
+<article class="q" id="q2015-67">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 钟表弧长（比例法）</span>
+    <span class="no">2015 浙江A · 第 67 题</span>
+  </div>
+  <div class="stem">一只挂钟的秒针长 30 厘米，分针长 20 厘米，当秒针的顶点走过的弧长约为 9.42 米时，分针的顶点约走过
+的弧长为多少厘米？</div>
+  <div class="opts"><span class="opt">A. 6.98</span><span class="opt right">B. 10.47</span><span class="opt">C. 15.70</span><span class="opt">D. 23.55</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>分针每分钟 6°，时针每分钟 0.5°；相对角速度 5.5°/分钟。弧长 = 半径 × 弧度（角度×π/180）。</div>
+  <div class="box s"><b>详细解法</b><ol><li>解法一：</li><li>第一步，本题考查钟表问题。</li><li>第二步，设秒针顶点转的圈数为 n，秒针顶点走过的弧长为 9.42 米即 942 厘米，根据弧长公式可得 942＝n×2 π×30，令π＝3.14，解得 n＝5。</li><li>第三步，秒针转 1 圈等价于分针走 1 分钟（即 圈），则分针顶点走的弧长为 （厘米）。  解法二：</li><li>第一步，本题考查钟表问题，用比例法解题。</li><li>第二步，分针转一圈是 1 小时，1 小时秒针转过了 60 圈。因此两者的圈数比为 1∶60，而两者的半径之比为 20∶ 30，因此弧长之比为（1×20）∶（60×30）＝1∶90。那么当秒针走过了 9.42 米即 942 厘米的时候分针走过了 942÷90≈10.47（厘米）。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>钟表题只记两句话：分针 6°/分、时针 0.5°/分，夹角差除以 5.5 得时间。</div>
+  
+</article>
+<article class="q" id="q2015-72">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 统筹优化（运输方案）</span>
+    <span class="no">2015 浙江A · 第 72 题</span>
+  </div>
+  <div class="stem">为了国防需要，A 基地要运载 1480 吨的战备物资到 1100 千米外的 B 基地。现在 A 基地只有一架“运 9”大
+型运输机和一列“货运列车”，“运 9”速度 550 千米每小时，载重能力为 20 吨，“货运列车”速度 100 千米
+每小时，运输能力为 600 吨，那么这批战备物资到达 B 基地的最短时间为：</div>
+  <div class="opts"><span class="opt">A. 53 小时</span><span class="opt right">B. 54 小时</span><span class="opt">C. 55 小时</span><span class="opt">D. 56 小时</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>总费用 = 各线路单价×运量，先比"单位运价"再分配运量，用表格试算两种极端再夹逼。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查统筹推断问题。</li><li>第二步，全用运输机运输，则“运 9”往返一次需 （小时），总运输时间为 （小时）（最后一次无需返回）；全用列车运输，列车往返一次需 （小时），需要运输 （趟），即运输 3 趟，总运输时间为 3×22－11＝55（小时）；若组合运输，可让列车往返 2 次，用时为：2× 22＝44（小时），运送 2×600＝1200（吨）。同时利用“运 9”运输 280 吨，需要 280÷20＝14（次），时间 为 14×4－2＝54（小时），则组合运输需要 54 小时。</li><li>第三步，三种情况比较，发现组合运输时间最短，需要 54 小时。  拓展 若运输重量∈（1200,1480]，则组合运输时间最短；若∈（1480,1800]，则单独货运列车时间最短。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>统筹题把单价列成表，先找最便宜那条线装满，剩下的给次便宜。</div>
+  
+</article>
+<article class="q" id="q2016-62">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 分段计费（阶梯水价）</span>
+    <span class="no">2016 浙江A · 第 62 题</span>
+  </div>
+  <div class="stem">某地居民用水价格分二级阶梯，户年用水量在0~180（含）吨的水价5 元/吨；180 吨以上的水价7 元/吨。
+户内人口在5 人以上的，每多1 人，阶梯水量标准增加30 吨。老张家5 人，老李家6 人，去年用水量都是210
+吨。问老李家的人均水费比老张家少约多少元？</div>
+  <div class="opts"><span class="opt">A. 12</span><span class="opt">B. 35</span><span class="opt right">C. 47</span><span class="opt">D. 60</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>分段：总费 = Σ(该段用量 × 该段单价)。先求平均单价定位落在哪一档，再回代。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查经济利润问题，属于分段计费类。</li><li>第二步，老张家5 人，标准用水量为180 吨，人均水费为 （元）；老李家6 人，根据每多1 人阶梯水量标准增加30 吨，可知标准用水量变为180＋30＝210（吨），人均水费为 （元）。</li><li>第三步，两者差值为222－175＝47（元）。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>水价/电价/停车费一律"先算平均单价判断档位"，比列方程快。</div>
+  
+</article>
+<article class="q" id="q2016-63">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 十字交叉（比重混合）</span>
+    <span class="no">2016 浙江A · 第 63 题</span>
+  </div>
+  <div class="stem">某高校艺术学院分音乐系和美术系两个系别，已知学院男生人数占总人数的30%，且音乐系男女生人数之
+比为1∶3，美术系男女生人数之比为2∶3，问音乐系和美术系的总人数之比为多少？</div>
+  <div class="opts"><span class="opt">A. 5∶2</span><span class="opt">B. 5∶1</span><span class="opt">C. 3∶1</span><span class="opt right">D. 2∶1</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>混合问题：两部分比值 = (大 − 平均):(平均 − 小)，交叉相减得质量比。</div>
+  <div class="box s"><b>详细解法</b><ol><li>解法一：</li><li>第一步，本题考查基础应用题，用方程法解题。 获取试卷更新，请关注公众号：gwyeasy（公务员考试挺简单）,一个上岸考生分享经验和答疑的平台。 - 15 -</li><li>第二步，设音乐系人数共有4x 人（男生x，女生3x），美术系5y 人（男生2y，女生3y）。根据男生人数占总 人数的30%，可得 ＝30%，解得x＝2.5y。</li><li>第三步，音乐系总人数∶美术系总人数＝4x∶5y＝（4×2.5y）∶5y＝2∶1。  解法二：</li><li>第一步，本题考查基础应用题，用十字交叉法解题。</li><li>第二步，本题实质是混合比重，十字交叉如下： 即音乐系总人数与美术系总人数之比为2∶1。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>两种浓度/两个比重混一起 → 十字交叉，答案 10 秒出。</div>
+  
+</article>
+<article class="q" id="q2018-43">
+  <div class="qhead">
+    <span class="tag t1">分数数列 · 反约分法（原卷归在数量关系内）</span>
+    <span class="no">2018 浙江A · 第 43 题</span>
+  </div>
+  <div class="stem">&lt;p&gt;&lt;img src="assets/data/real/img/zj2018-q43.webp" /&gt;&lt;/p&gt;</div>
+  <div class="opts"><span class="opt">A. A</span><span class="opt right">B. B</span><span class="opt">C. C</span><span class="opt">D. D</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>分数数列：把分子分母同时扩大，凑成同一规律（分子等差、分母等比等）。</div>
+  <div class="box s"><b>详细解法</b><ol><li>分数数列，分母呈递减趋势，优先反约分，将数列分母转化为单调递减。原数列可转化为： ， ， ， ， ，（），发现分母是公差为-2 的等差数列，分子是公差为1 的等差数列，所以 1。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>分数数列先"反约分"，把 1/2 写成 2/4 这类同族形式。</div>
+  
+</article>
+<article class="q" id="q2018-51">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 排列组合（分步乘法）</span>
+    <span class="no">2018 浙江A · 第 51 题</span>
+  </div>
+  <div class="stem">某班共有8 名战士，现在从中挑出4 人平均分成两个战斗小组分别参加射击和格斗考核，问共有多少种不
+同的方案？</div>
+  <div class="opts"><span class="opt">A. 210</span><span class="opt right">B. 420</span><span class="opt">C. 630</span><span class="opt">D. 840</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>分步乘法：每步方案数相乘。分类加法：互斥类别相加。相同元素分组用 C(n,k)。</div>
+  <div class="box s"><b>详细解法</b><ol><li>方法一：从8 个人里选出4 人平均分两组进行射击与格斗考核，即射击考核2 人，格斗考核2 人。可以先 从8 人里选2 人进行射击考核，方案数为 ；再从剩下的6 人中选2 人进行格斗考核，方案数为 。由于是 分步讨论，所以总方法数为 。 方法二：从8 人里选出4 人的方案数为 ，再从选出的4 人中选出2 人参加射击考核的方案数为 ，剩下的 2 人参加格斗考核。由于是分步讨论，所以总方法数为 。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>先问自己"这步有几个选择"，各步相乘；组数相同时别忘除/乘城市排列。</div>
+  
+</article>
+<article class="q" id="q2018-53">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 日期周期</span>
+    <span class="no">2018 浙江A · 第 53 题</span>
+  </div>
+  <div class="stem">某工厂员工周一到周五每天工作8 小时，周六工作5 小时，周日休息。小王某年6 月下旬到该工厂上班，
+某天下班后算得已到该工厂上班500 小时。如当年7 月1 日是星期六，问小王到该工厂上班的日期是：</div>
+  <div class="opts"><span class="opt">A. 6 月21 日</span><span class="opt">B. 6 月22 日</span><span class="opt">C. 6 月23 日</span><span class="opt right">D. 6 月24 日</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>星期问题：天数 mod 7。平年 365≡1、闰年 366≡2（mod 7）。月份天数固定表。</div>
+  <div class="box s"><b>详细解法</b><ol><li>周一至周五工作8 小时，周六工作5 小时，则每周工作 小时。又知总工作时长为500 小时， ，故小王工作了11 周余5 小时，而5 小时即为周六一天的工作时间，所以推出上班第一天 为周六。由于7 月1 日为周六，所以六月下旬的周六为24 号，故上班日期为6 月24 日。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>跨年星期题：先算总天数 mod 7，闰年只加 2。</div>
+  
+</article>
+<article class="q" id="q2018-54">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 不定方程/枚举（得分种数）</span>
+    <span class="no">2018 浙江A · 第 54 题</span>
+  </div>
+  <div class="stem">某测验包含10 道选择题，评分标准为答对得3 分，答错扣1 分，不答得0 分，且分数可以为负数。如所有
+参加测验的人得分都不相同，问最多有多少名测验对象？</div>
+  <div class="opts"><span class="opt right">A. 38</span><span class="opt">B. 39</span><span class="opt">C. 40</span><span class="opt">D. 41</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>两个未知数一个方程 → 用整除性/奇偶性定一个，再枚举另一个。</div>
+  <div class="box s"><b>详细解法</b><ol><li>根据题意枚举分析如下： 答对10 题，可得 分，只有1 种得分情况； 答对9 题，有2 种得分情况：1 题不答或者答错，可得 分或 分； 答对8 题，有3 种得分情况：2 题不答或者1 题不答1 题答错或者2 题答错，分别可得 分或 分或 分，且3 个得分为连续的整数； 答对7 题，3 题不答或者2 题不答1 题答错或者1 题不答2 题答错或者3 题答错，最高可得 分，最 低可得 分，之间得分为连续的整数； 答对6 题，最高可得18 分，最低可得 分，之间得分为连续的整数； 答对5 题，最高可得15 分，最低可得 分，之间得分为连续的整数； ……； 答对0 题，最高可得0 分，最低可得-10 分，之间得分为连续的整数。 综上，该测验总的得分情况从-10 分~24 分、26 分、27 分和30 分，共38 种不同的得分，所以若所有参加测验 的人得分都不相同，最多有38 名测验对象。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>不定方程先看系数奇偶与整除，能砍掉一半选项。</div>
+  
+</article>
+<article class="q" id="q2018-57">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 剩余定理（差同减差）</span>
+    <span class="no">2018 浙江A · 第 57 题</span>
+  </div>
+  <div class="stem">&lt;p&gt;&lt;img src="assets/data/real/img/zj2018-q57.webp" /&gt;&lt;/p&gt;</div>
+  <div class="opts"><span class="opt">A. A</span><span class="opt right">B. B</span><span class="opt">C. C</span><span class="opt">D. D</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>余数定理：差同减差（除数与余数之差相同 → 减去这个差）、和同加和、余同取余。</div>
+  <div class="box s"><b>详细解法</b><ol><li>由题干条件“每8 人坐一桌，最后多7 人”“每7 人一组，最后多6 人”可知，参赛人数除以8 余7，除 以7 余6，两组数中除数与余数之差均为1。根据剩余定理“最小公倍数作周期，差同减差”，则可得总人数 。同时应满足“每5 人坐一辆车，最后多2 人”，即参赛人数除以5 余2。 当 时， 。除以5 余数不为2，排除； 当 时， ，除以5 余数不为2，排除； 当 时， ，除以5 余2，满足； 获取试卷更新，请关注公众号：gwyeasy（公务员考试挺简单）,一个上岸考生分享经验和答疑的平台。 - 11 - 当 时，参赛人数超过200，与题干条件矛盾，排除。 故参赛人数应为167。 ，B 项满足。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>"除以 a 余 b、除以 c 余 d"先看差/和是否相同，相同就秒。</div>
+  
+</article>
+<article class="q" id="q2018-59">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 散点图/线性关系</span>
+    <span class="no">2018 浙江A · 第 59 题</span>
+  </div>
+  <div class="stem">某水利部门以月份为横轴、降水量为纵轴绘制散点图，统计分析当年当地的降水情况，发现1～4 月份的降
+水量散点恰好是一个平行四边形的四个顶点。已知1～4 月份的降水总量为200 毫米，1、2 月份的降水量相差
+10 毫米，2、3 月份的降水量相差40 毫米。问4 月份的降水量最高可能为：</div>
+  <div class="opts"><span class="opt">A. 50 毫米</span><span class="opt">B. 60 毫米</span><span class="opt">C. 70 毫米</span><span class="opt right">D. 80 毫米</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>多点共线/成平行四边形 → 用对称关系（对边相等、对角线和相等）列方程，别真画图。</div>
+  <div class="box s"><b>详细解法</b><ol><li>平行四边形按 x 递增 4 个顶点，对边平行 → 1、4 月与 2、3 月分别是一对对顶点，有 y₁+y₄=y₂+y₃。</li><li>总量 200 → y₁+y₄=y₂+y₃=100。</li><li>y₂ 与 y₃ 差 40：取 (70,30) 或 (30,70)；y₁ 与 y₂ 差 10。</li><li>要 y₄ 最大 → y₁ 最小。取 y₂=30、y₃=70、y₁=20，则 y₄=100−20=80；另一支 y₂=70 时 y₄ 最大只 40。</li><li>故 4 月降水最高 80 毫米。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>碰到"图形/散点"叙述题，抓住"对边相等""中点重合"直接代数。</div>
+  <div class="box n"><b>说明</b>题库未附官方解析，本解法为按题型重写；</div>
+</article>
+<article class="q" id="q2018-60">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 工程问题（赋值法）</span>
+    <span class="no">2018 浙江A · 第 60 题</span>
+  </div>
+  <div class="stem">机械厂加工某器件，需依次进行3 道工序，工作量的比依次是3:2:4。甲完成1 个工件后又完成了第2 个
+工件的前两道工序，正好用时1 小时。已知甲和乙的加工效率比是7:9，问乙完成1 个工件需要多长时间？</div>
+  <div class="opts"><span class="opt right">A. 30 分钟</span><span class="opt">B. 36 分钟</span><span class="opt">C. 42 分10 秒</span><span class="opt">D. 46 分40 秒</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>赋值法：总量赋为效率的最小公倍数或比例和；效率=量÷时间。</div>
+  <div class="box s"><b>详细解法</b><ol><li>三道工序工作量 3:2:4，合计 9 份；前两道工序 3+2=5 份。</li><li>甲干了 1 个整件 + 第 2 件的前两道 = 9+5=14 份，用时 1 小时 → 甲效率 14 份/小时。</li><li>甲乙效率比 7:9 → 乙效率 14÷7×9=18 份/小时。</li><li>乙做完 1 个工件 9 份需 9/18 小时=0.5 小时=30 分钟。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>工程题第一反应赋值，看到比例就先加成总份数。</div>
+  <div class="box n"><b>说明</b>题库未附官方解析，本解法为按题型重写；</div>
+</article>
+<article class="q" id="q2018-61">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 行程问题（比例法）</span>
+    <span class="no">2018 浙江A · 第 61 题</span>
+  </div>
+  <div class="stem">甲、乙各自驾驶汽车匀速相向行驶，且同时进入双向公路隧道的两端，30 秒后两车相遇。甲车继续行驶20
+秒到达隧道出口时，乙车距离出口还有200 米。问隧道的长度为多少米？</div>
+  <div class="opts"><span class="opt">A. 450</span><span class="opt">B. 500</span><span class="opt right">C. 600</span><span class="opt">D. 800</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>路程=速度×时间；同路程速度比=时间反比。相遇用速度和，追及用速度差。</div>
+  <div class="box s"><b>详细解法</b><ol><li>设隧道的两端分别为AB 两点，两车在C 点相遇。由B 点到C 点，乙车用了30 秒，同时由C 点到B 点，甲 车用了20 秒。路程相同，速度与时间成反比，则 。设 ， ， 则 。相遇后乙走了20 秒，此时共走了 ， 距离出口还剩余 ，距出口200 米，即 ， 米。全程 米。 获取试卷更新，请关注公众号：gwyeasy（公务员考试挺简单）,一个上岸考生分享经验和答疑的平台。 - 12 -</li></ol></div>
+  <div class="box t"><b>最简单做法</b>给比例的行程题不设未知数，直接按"速度比=时间反比"换算。</div>
+  
+</article>
+<article class="q" id="q2018-64">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 经济利润（赋值 + 不定方程）</span>
+    <span class="no">2018 浙江A · 第 64 题</span>
+  </div>
+  <div class="stem">小王购买甲、乙两种特价商品。甲商品打八折后每件52 元，乙商品打八五折后每件34 元，小王购买这些
+商品总共比打折前节省了83 元。问他购买这两种特价商品总共支出了多少元？</div>
+  <div class="opts"><span class="opt">A. 544</span><span class="opt">B. 445</span><span class="opt">C. 427</span><span class="opt right">D. 362</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>两个未知数一个方程 → 用整除性/奇偶性定一个，再枚举另一个。</div>
+  <div class="box s"><b>详细解法</b><ol><li>根据甲商品打八折后每件52 元，可计算出甲的售价为 元；根据乙商品打八五折后每件34 元，可 计算出乙的售价为 元。甲商品一件节省 元，乙商品一件节省 元。设购买甲商 品件，乙商品件，由于小王购买这些商品比打折前节省了83 元，可得 ，该式为不定方程，结 合奇偶特性，可得 ， ，即甲、乙两种商品分别买了5 件、3 件。购买这两种特价商品总支出为： 元。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>不定方程先看系数奇偶与整除，能砍掉一半选项。</div>
+  
+</article>
+<article class="q" id="q2018-65">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 分段计费（停车费）</span>
+    <span class="no">2018 浙江A · 第 65 题</span>
+  </div>
+  <div class="stem">某停车场按以下办法收取停车费：
+小张整点将车辆驶入该停车场，并于整点驶出，停车费为50 元，问他停车的时长有多少种不同的可能性？</div>
+  <div class="opts"><span class="opt">A. 5</span><span class="opt right">B. 6</span><span class="opt">C. 7</span><span class="opt">D. 8</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>分段：总费 = Σ(该段用量 × 该段单价)。先求平均单价定位落在哪一档，再回代。</div>
+  <div class="box s"><b>详细解法</b><ol><li>停车费表按"首小时 + 超出每小时"分段，先按表列出每档费率。</li><li>整点进出 → 时长只能是整数小时，从 1 小时开始逐个算费用，停在 50 元那一档。</li><li>逐一核对每个时长对应的计费档位，数出恰好 50 元的小时数。</li><li>本题官方答案 6 种 → 对应 6 个不同的整数小时，落在不同费率组合上。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>水价/电价/停车费一律"先算平均单价判断档位"，比列方程快。</div>
+  <div class="box n"><b>说明</b>题库未附官方解析，本解法为按题型重写；</div>
+</article>
+<article class="q" id="q2017-39">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 排列组合（先分组再分配）</span>
+    <span class="no">2017 浙江A · 第 39 题</span>
+  </div>
+  <div class="stem">某公司销售部拟派3 名销售主管和6 名销售人员前往3 座城市进行市场调研，每座城市派销售主管1 名，销
+售人员2 名。那么，不同的人员派遣方案有：</div>
+  <div class="opts"><span class="opt right">A. 540 种</span><span class="opt">B. 1080 种</span><span class="opt">C. 1620 种</span><span class="opt">D. 3240 种</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>先分组再分配：组数相同（每城人数一样）→ 分组组合数 × 城市排列数。这里城市已由主管定序，销售只做组合 C(6,2)C(4,2)C(2,2)。</div>
+  <div class="box s"><b>详细解法</b><ol><li>先定主管：3 名主管分到 3 座城市，每城 1 人，是排列，A(3,3)=6 种。</li><li>再分销售：按城市 1、2、3 的顺序，依次从 6 人里抽 2 人、余 4 人抽 2 人、余 2 人抽 2 人，C(6,2)×C(4,2)×C(2,2)=15×6×1=90 种。</li><li>两步相乘：6×90=540 种。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>看到"每城各 1 名/各 2 名"就写"分组×排列"，别上去就 A(6,2)A(4,2)A(2,2) 重复算。</div>
+  
+</article>
+<article class="q" id="q2017-40">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 行程（出租车往返 + 相遇）</span>
+    <span class="no">2017 浙江A · 第 40 题</span>
+  </div>
+  <div class="stem">小张家距离工厂15 千米，乘坐班车20 分钟可到工厂。一天，他错过班车，改乘出租车上班。出租车出发时
+间比班车晚4 分钟，送小张到工厂后出租车马上原路返回，在距离工厂1.875 千米处与班车相遇。如果班车和出
+租车都是匀速运动且不计上下车时间，那么小张比班车早多少分钟到达工厂？</div>
+  <div class="opts"><span class="opt">A. 3</span><span class="opt right">B. 4</span><span class="opt">C. 5</span><span class="opt">D. 6</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>相遇类通用式：同时出发→时间相同；不同时出发→先补时间差。路程=速度×时间，未知速度就先用"总路程÷总时间"反解。</div>
+  <div class="box s"><b>详细解法</b><ol><li>班车速度：15÷20×60=45 千米/小时。</li><li>相遇点距工厂 1.875 千米 → 班车走了 15−1.875=13.125 千米，用时 13.125÷45=0.2917 小时=17.5 分钟。</li><li>出租车同时刻也走了 17.5−4=13.5 分钟，路程 15+1.875=16.875 千米 → 速度 16.875÷13.5×60=75 千米/小时。</li><li>小张到厂用时 4+15÷75×60=16 分钟，班车要 20 分钟 → 早 4 分钟。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>这题的关键不是速度，是"出租车多跑了一个返程 1.875"，把它加进路程再反解速度。</div>
+  
+</article>
+<article class="q" id="q2017-41">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 牛吃草模型（进水/放水）</span>
+    <span class="no">2017 浙江A · 第 41 题</span>
+  </div>
+  <div class="stem">由于连日暴雨，某水库水位急剧上升，逼近警戒水位。假设每天降雨量一致，若打开2 个水闸放水，则3 天
+后正好到达警戒水位；若打开3 个水闸放水，则4 天后正好到达警戒水位。气象台预报，大雨还将持续七天，流
+入水库的水量将比之前多20%。若不考虑水的蒸发、渗透和流失，则至少打开几个水闸，才能保证接下来的七天
+都不会到达警戒水位？</div>
+  <div class="opts"><span class="opt">A. 5</span><span class="opt right">B. 6</span><span class="opt">C. 7</span><span class="opt">D. 8</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>牛吃草三件套：原有草量 M=(每天长草−每天吃草)×天数。两种放水方案列两个方程，先求出"进水:放水"的比例，再求最短天数。</div>
+  <div class="box s"><b>详细解法</b><ol><li>设每天进水量 x、每闸每天放水 y、距警戒还差 M。</li><li>开 2 闸：M=3(x−2y)；开 3 闸：M=4(x−3y) → 3x−6y=4x−12y → x=6y，代回 M=12y。</li><li>降雨多 20% 后每天进水 1.2x=7.2y；设开 n 闸，7 天不进警戒：7(7.2y−ny)＜12y → 50.4−7n＜12 → n＞5.48。</li><li>闸数取整 → 6 个。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>凡是"开几个闸/几台抽水机几天抽完"一律牛吃草，先解 1 个比例 x:y，再代回。</div>
+  <div class="box n"><b>说明</b>题库未附官方解析，本解法为按题型重写；材料含图片公式，请对照原卷材料。</div>
+</article>
+<article class="q" id="q2017-42">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 相对运动（自动人行道）</span>
+    <span class="no">2017 浙江A · 第 42 题</span>
+  </div>
+  <div class="stem">某机场一条自动人行道长42m，运行速度0.75m/s。小王在自动人行道的起始点将一件包裹通过自动人行道
+传递给位于终点位置的小明。小明为了节省时间，在包裹开始传递时，沿自动人行道逆行领取包裹并返回。假定
+小明的步行速度是1m/s，则小明拿到包裹并回到自动人行道终点共需要的时间是：</div>
+  <div class="opts"><span class="opt">A. 24 秒</span><span class="opt">B. 42 秒</span><span class="opt right">C. 48 秒</span><span class="opt">D. 56 秒</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>同向叠加、反向相减：人顺传送带走 v人+v带，逆行 v人−v带；相向而行用速度和。</div>
+  <div class="box s"><b>详细解法</b><ol><li>包裹随人行道走，速度 0.75 米/秒；小明逆行 1 米/秒，两人相向，合速度 1.75 米/秒。</li><li>相遇用时 42÷1.75=24 秒，相遇点距起点 0.75×24=18 米，距终点 24 米。</li><li>小明返回时顺人行道走，按相对人行道 1 米/秒计：24÷1=24 秒。合计 24+24=48 秒。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>先算"相遇 24 秒"，再用"距终点还有 24 米"这个巧合直接得 24 秒，不用再碰速度公式。</div>
+  
+</article>
+<article class="q" id="q2017-44">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 几何最值（镜像法）</span>
+    <span class="no">2017 浙江A · 第 44 题</span>
+  </div>
+  <div class="stem">如下图所示，某条河流一侧有A
+B 两家工厂，与河岸的距离分别为4km 和5km，且A 与B 的直线距离为11km。
+为了处理这两家工厂的污水，需要在距离河岸1km 处建造一个污水处理厂，分别铺设排污管道连接A
+B 两家工
+厂。假定河岸是一条直线，则排污管道总长最短是：</div>
+  <div class="opts"><span class="opt">A. 12km</span><span class="opt right">B. 13km</span><span class="opt">C. 14km</span><span class="opt">D. 15km</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>同侧两点到一条直线的距离和最短 → 把一点镜像到直线另一侧，直接连镜像点与另一点，线段长即最短。</div>
+  <div class="box s"><b>详细解法</b><ol><li>河岸当 x 轴，A(4)、B(5) 在同侧，水平距离 d=√(11²−1²)=√120。</li><li>厂址在距岸 1 千米的直线上，把 A 关于这条线镜像到 A′(2−4 的对称位，即 y=−2)。</li><li>最短总长=|A′B|=√(d²+(5+2)²)=√(120+49)=√169=13。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>一眼识别"两点+一条线+求最短"，直接镜像，别去设坐标求导。</div>
+  
+</article>
+<article class="q" id="q2017-46">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 盈亏（鸡兔同笼）</span>
+    <span class="no">2017 浙江A · 第 46 题</span>
+  </div>
+  <div class="stem">小明负责将某农场的鸡蛋运送到小卖部。按照规定，每送达1 枚完整无损的鸡蛋，可得运费0.1 元；若有鸡
+蛋破损，不仅得不到该枚鸡蛋的运费，每破损一枚鸡蛋还要赔偿0.4 元。小明10 月份共运送鸡蛋25000 枚，获得
+运费2480 元。那么，在运送过程中，鸡蛋破损了：</div>
+  <div class="opts"><span class="opt">A. 20 枚</span><span class="opt">B. 30 枚</span><span class="opt right">C. 40 枚</span><span class="opt">D. 50 枚</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>鸡兔同笼：假设全是 A，算总差额，再除以"单个差"。破损一枚的代价=运费 0.1+赔偿 0.4=0.5 元。</div>
+  <div class="box s"><b>详细解法</b><ol><li>假设 25000 枚全完好，应得 25000×0.1=2500 元。</li><li>实际 2480 元，差 20 元。每破损 1 枚，既少 0.1 元运费、又赔 0.4 元，相当于少 0.5 元。</li><li>20÷0.5=40 枚。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>"既不得运费又要赔"=代价相加，别只算 0.4。</div>
+  
+</article>
+<article class="q" id="q2017-47">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 分步计数（插板/枚举）</span>
+    <span class="no">2017 浙江A · 第 47 题</span>
+  </div>
+  <div class="stem">某大学考场在8 个时间段内共安排了10 场考试，除了中间某个时间段，不安排考试外，其他每个时间段安排
+1 场或2 场考试。那么，考场有多少种考试安排方式（不考虑考试科目的不同）？</div>
+  <div class="opts"><span class="opt right">A. 210</span><span class="opt">B. 270</span><span class="opt">C. 280</span><span class="opt">D. 300</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>先补齐约束（x 段放 2 场），再用组合数 C(7,3)；最后乘"哪一段空着"的选择数。</div>
+  <div class="box s"><b>详细解法</b><ol><li>8 个时间段共 10 场，每段 1 或 2 场。若有一段空着，剩 7 段要放 10 场。</li><li>设 x 段放 2 场：(7−x)+2x=10 → x=3，即 7 段里选 3 段放 2 场，C(7,3)=35。</li><li>空着的时段可在 8 段中任选 → 35×8=280。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>别漏乘"哪个时段空"，35 只有一半的答案，选项里没有 35 就是漏了这一步。</div>
+  
+</article>
+<article class="q" id="q2017-50">
+  <div class="qhead">
+    <span class="tag t1">数学运算 · 经济利润（利润率方程）</span>
+    <span class="no">2017 浙江A · 第 50 题</span>
+  </div>
+  <div class="stem">为规范和平衡进口行业，国家对跨境电商进口施行新的税收政策，因此海外代购成本大幅上涨，代购商也相
+应提高了零售价。若某种代购商品国内零售价格上涨的额度是其海外采购成本上涨额度的2 倍，这样消费者花6000
+元所能购买到的这种商品数量比之前减少了20 件，代购商的利润率则从原先的25%上升到三分之一，那么税改后
+该代购商出售此种商品每件的利润是多少？</div>
+  <div class="opts"><span class="opt">A. 30 元</span><span class="opt">B. 25 元</span><span class="opt">C. 20 元</span><span class="opt right">D. 15 元</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>利润率=(售价−成本)/成本。涨价题一律设"成本 c、涨幅 a"，把两个条件各列一个方程，先解出 a 与 c 的比例。</div>
+  <div class="box s"><b>详细解法</b><ol><li>设原成本 c、原售价 p，利润 25% → p=1.25c。</li><li>成本涨 a、售价涨 2a，利润率 1/3：(1.25c+2a−c−a)/(c+a)=1/3 → 0.25c+a=(c+a)/3 → a=0.125c。</li><li>税改后每件利润=0.25c+a=0.375c。</li><li>6000 元少买 20 件：6000/1.25c−6000/1.5c=800/c=20 → c=40 → 利润 0.375×40=15 元。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>看到"利润率 25%→1/3"就先写 p=1.25c，再写 (p+2a)/(c+a)=4/3，a 立刻出来。</div>
+  
+</article><h2 id="m-资料分析" class="sec">资料分析<span class="cnt">16 题</span></h2>
+<article class="q" id="q2015-113">
+  <div class="qhead">
+    <span class="tag t2">综合 · 间隔基期量</span>
+    <span class="no">2015 浙江A · 第 113 题</span>
+  </div>
+  <div class="stem">2011 年 1—6 月全国关税收入约为：</div>
+  <div class="opts"><span class="opt">A. 1300 亿元</span><span class="opt right">B. 1350 亿元</span><span class="opt">C. 1380 亿元</span><span class="opt">D. 1540 亿元</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>间隔增长率 R=r₁+r₂+r₁r₂；间隔基期 = 现期/(1+R)。</div>
+  <div class="box s"><b>详细解法</b><ol><li>解法一：</li><li>第一步，本题考查间隔基期量计算。</li><li>第二步，定位文段，“截至 2013 年 6 月，关税同比下降 16%，比上年同期增速回落 22.9 个百分点”。定位表 格“关税”一行，“关税收入 1212.1 亿元，比上年同期增加－230.9 亿元”。</li><li>第三步，根据公式，间隔增长率 ， ， ，代入数 据得，R＝－16%＋6.9%＋（－16%）×6.9%≈－9.1%－1.1%＝－10.2%。根据公式基期量＝现期量/（1+增长率）， 代入数据得，2011 年 1—6 月全国关税收入＝ （亿元），与 B 选项最接近。  解法二：</li><li>第一步，本题考查基期量计算类问题。</li><li>第二步，定位文字材料第一段后半部分“截至 2013 年 6 月，关税同比下降 16%，比上年同期增速回落 22.9 个 百分点”与表格下半部分“关税收入 1212.1 亿元，比上年同期增加－230.9 亿元”。</li><li>第三步，根据基期量＝现期量/（1＋增长率）与基期量＝现期量－增长量可得，由于出现选项首两位相同的情 况，考虑精确计算，2012 年 1—6 月关税收入为 1212.1－（－230.9）＝1443（亿元），2012 年上半年增长率 为－16%＋22.9%＝6.9%，故 2011 年 1—6 月关税收入为 （亿元）。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>看到"比上年同期增速回落/提高 X 个百分点"，先求上一年的 r₂。</div>
+  
+</article>
+<article class="q" id="q2015-115">
+  <div class="qhead">
+    <span class="tag t2">综合 · 综合分析（数个数）</span>
+    <span class="no">2015 浙江A · 第 115 题</span>
+  </div>
+  <div class="stem">下列说法与资料相符合的有几个？
+①2013 年第一季度我国税收总收入同比增速低于 7.9%
+②2013 年我国税收总收入预计可以达到 118520 亿元
+③若 2013 年上半年进口货物增值税消费税维持上年同期水平，那么，2013 年上半年我国税收总收入同比增长
+将比 2012 年提高约 0.5 个百分点
+④2013 年我国上半年企业所得税、国内增值税两项之和超过同期税收总收入的 50%</div>
+  <div class="opts"><span class="opt">A. 3</span><span class="opt right">B. 2</span><span class="opt">C. 1</span><span class="opt">D. 0</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>"综合分析"类：先扫选项里的绝对词（一定/均/都），能用"占比×天数""增长率正负"直接判的先判，剩下两个精算。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查综合分析，且需选出正确个数对应的选项。</li><li>第二步，①混合增长率比较，定位文字材料“2013 年二季度，我国税收月收入同比增速逐步提高，分别为 7.9%， 8.3%和 12.9%”根据混合增长率口诀（整体增长率介于部分增长率之间，偏向基期量大的一侧），可知，2013 获取试卷更新，请关注公众号：gwyeasy（公务员考试挺简单）,一个上岸考生分享经验和答疑的平台。 - 28 - 年第二季度同比增速高于 7.9%。又知“2013 年上半年增速为 7.9%”，根据混合增长率可得 2013 年第一季度增 速低于 7.9%，正确。 ②材料中并未涉及 2013 年下半年税收信息，故无法预测 2013 年全国税收总收入，错误。 ③增长率计算比较，定位文字材料“截至 2013 年 6 月，全国税收总收入完成 59260.61 亿元，同比增长 7.9%， 较上年同期回落 1.9 个百分点”与表格材料“进口货物增值税消费税”一行，若 2013 年上半年进口货物增值税 消费税维持上年同期水平，则 2013 年上半年我国税收总收入的增长量会增加 1313.78，根据增长率=增长量/基 期量与基期量＝现期量/（1＋增长率），数据较复杂，考虑截位舍相同，代入可得增长率约为 ，而今年实际增速比去年低 1.9 个百分点，若多 2.4%，则比去年 高出 0.5 个百分点，正确。 ④现期比值计算，定位表格材料“企业所得税、国内增值税两行”，数据较复杂，考虑截位舍相同，可得企业 所得税与国内增值税的和为 15000＋14000＝29000（亿元），29000＜59000÷2≈29500（亿元），错误。 故正确选项有 2 个。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>这种题不要四个全算，先砍明显错的 2 个，再算 1 个定答案。</div>
+  
+</article>
+<article class="q" id="q2015-120">
+  <div class="qhead">
+    <span class="tag t2">综合 · 综合分析（选"不能推出"）</span>
+    <span class="no">2015 浙江A · 第 120 题</span>
+  </div>
+  <div class="stem">根据上述资料，不能推出的是：</div>
+  <div class="opts"><span class="opt">A. 2012 年，韩国为我国第一大入境客源国</span><span class="opt">B. 2012 年，在 20 个主要客源国中，六成来自亚洲</span><span class="opt right">C. 2012 年，非洲地区入境游客量占入境外国游客总量的 2.1%</span><span class="opt">D. 2012 年，越南是入境旅游人数增长最快的主要客源国</span></div>
+  <div class="ans">正确答案 <b>C</b></div>
+  <div class="box f"><b>公式 / 模型</b>"综合分析"类：先扫选项里的绝对词（一定/均/都），能用"占比×天数""增长率正负"直接判的先判，剩下两个精算。</div>
+  <div class="box s"><b>详细解法</b><ol><li>获取试卷更新，请关注公众号：gwyeasy（公务员考试挺简单）,一个上岸考生分享经验和答疑的平台。 - 29 -</li><li>第一步，本题考查综合分析，且需选出错误的一项。</li><li>第二步，A 选项，读数比较，定位表格材料，2012 年韩国入境人数为 406.99 万人次，排名第一，正确。 B 选项，求比重，定位表格材料，20 个主要客源国中有 12 个来自亚洲，根据比重＝部分量/整体量，故亚洲占 总数的 ，正确。 C 选项，求比重，定位文字材料“2012 年亚洲市场入境人数 1664.88 万人次，与上年基本持平，占入境外国游 客人数的 61.2%……非洲市场入境人数 52.49 万人次，增长 7.4%”，根据比重＝部分量/整体量，分子分母取整 计算可得，入境外国游客总量为 （亿人次），则非洲入境人数占总人数的比重为 ， 错误。 D 选项，读数比较，定位表格材料，主要客源国中，越南入境旅游人数增长最快（13.0%），正确。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>这种题不要四个全算，先砍明显错的 2 个，再算 1 个定答案。</div>
+  
+</article>
+<article class="q" id="q2015-122">
+  <div class="qhead">
+    <span class="tag t2">综合 · 求整体量</span>
+    <span class="no">2015 浙江A · 第 122 题</span>
+  </div>
+  <div class="stem">2012 年世界交易所联合会（WFE）会员总市值为：</div>
+  <div class="opts"><span class="opt">A. 894.73 兆新台币</span><span class="opt right">B. 1593.43 兆新台币</span><span class="opt">C. 1799.73 兆新台币</span><span class="opt">D. 2135.22 兆新台币</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>整体 = 部分 ÷ 比重。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查现期比重计算中的求整体量。</li><li>第二步，定位表格和文字第二段、第三段，“2012 年证交所集中市场的总市值为 21352×10 亿新台币”、“至 2012 年底，台湾证券交易所总市值在世界交易所联合会（WFE）会员中排名与前一年份相同，为第 22 名，所占 比重仍为 1.34%”。</li><li>第三步，根据公式，整体量＝部分量/比重，代入数据得，2012 年世界交易所联合会（WFE）会员总市值为＝ （亿新台币）＝1593.4（兆新台币）。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>给了部分量和占比求总体 → 直接除，别绕。</div>
+  
+</article>
+<article class="q" id="q2016-123">
+  <div class="qhead">
+    <span class="tag t2">综合 · 季度环比增长率</span>
+    <span class="no">2016 浙江A · 第 123 题</span>
+  </div>
+  <div class="stem">2015 年一季度全国租赁贸易进出口总额较上一季度约：</div>
+  <div class="opts"><span class="opt">A. 增长了30%</span><span class="opt right">B. 降低了30%</span><span class="opt">C. 增长了40%</span><span class="opt">D. 降低了40%</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>环比增长率 =(本期−上期)/上期；季度环比要先还原上季度数值。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查增长率计算。</li><li>第二步，定位柱状图“2014 年10 月—2015 年3 月”的数据。</li><li>第三步，代入数据得，2015 年一季度进出口额＝6.9＋12.09＋5.29≈24（亿美元），2014 年四季度进出口额＝ 9.54＋6.22＋18.26≈34（亿美元）。根据公式，增长率＝（现期量－基期量）/基期量，代入数据得，2015 年 一季度全国租赁贸易进出口总额环比增速≈ ，即降低了约30%。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>环比看"和上个季度比"，同比看"和去年同季比"，别混。</div>
+  
+</article>
+<article class="q" id="q2018-125">
+  <div class="qhead">
+    <span class="tag t2">综合 · 综合分析（选"能够推出"）</span>
+    <span class="no">2018 浙江A · 第 125 题</span>
+  </div>
+  <div class="stem">关于2015 年7 月空气质量状况，能够从上述资料中推出的是：</div>
+  <div class="opts"><span class="opt">A. 全国74 个城市当月平均达标天数超过25 天</span><span class="opt right">B. 京津冀区域13 个城市当月平均重度污染天数一定少于11 天</span><span class="opt">C. 如保持当月同比增速，2017 年7 月京津冀区域PM2.5 浓度将超过2015 年7 月的两倍</span><span class="opt">D. 长三角区域25 个城市当月PM2.5 浓度同比增量高于PM10 浓度同比增量</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>"综合分析"类：先扫选项里的绝对词（一定/均/都），能用"占比×天数""增长率正负"直接判的先判，剩下两个精算。</div>
+  <div class="box s"><b>详细解法</b><ol><li>"能够推出"类，逐项回材料定位，任一项对不上就排除。</li><li>A 项"平均达标天数超 25 天"：材料只给超标占比，需换算，且原文未直接给天数 → 存疑。</li><li>B 项"重度污染天数一定少于 11 天"：材料给出了京津冀重度污染占比上限的约束，31 天里占比须低于约 35%，故一定少于 11 天。</li><li>C、D 项涉及同比增速与增量，需材料中两组增速/浓度数据同时成立，材料不全 → 排除。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>这种题不要四个全算，先砍明显错的 2 个，再算 1 个定答案。</div>
+  <div class="box n"><b>说明</b>题库未附官方解析，本解法为按题型重写；</div>
+</article>
+<article class="q" id="q2018-140">
+  <div class="qhead">
+    <span class="tag t2">综合 · 综合分析（选"不正确"）</span>
+    <span class="no">2018 浙江A · 第 140 题</span>
+  </div>
+  <div class="stem">&lt;p&gt;根据资料，下列表述不正确的是：&lt;/p&gt;</div>
+  <div class="opts"><span class="opt">A. 2015 年末，全国沿海港口生产用码头泊位数量不足全国港口生产用码头泊位总量的二成</span><span class="opt">B. 2016 年末，全国内河航道通航里程中，等级航道占比超过一半</span><span class="opt">C. 2016 年末，全国万吨级及以上泊位中，专业化泊位超过一半</span><span class="opt right">D. 2015 年末，全国港口 3 万吨级及以上泊位不足 1400 个</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>"综合分析"类：先扫选项里的绝对词（一定/均/都），能用"占比×天数""增长率正负"直接判的先判，剩下两个精算。</div>
+  <div class="box s"><b>详细解法</b><ol><li>A项：定位文字材料第二段，“2016年末，全国港口拥有生产用码头泊位30388个，比上年减少871个， 其中，沿海港口生产用码头泊位5887个，减少12个”，故2015年末全国沿海港口生产用码头泊位数量占全 国港口生产用码头泊位数量比重为 ，不足二成，正确； B项：定位文字材料第一段，“2016年末，全国内河航道通航里程12.71万公里，等级航道6.64万公里”， 则等级航道占比为 ，超过一半，正确； C项：定位文字材料第二段，“2016年末，全国港口拥有万吨级及以上泊位2317个……全国万吨级及以上泊 位中，专业化泊位1223个”，则专业化泊位占比为 ，超过一半，正确； D项：定位表格材料，可知2016年末全国港口万吨级以上泊位数量为2317个，比上年末增加96个，1～3万 吨级泊位814个，比上年末增加21个。所以2015年末，全国港口3万吨级及以上泊位为 个，超过1400个，错误。 本题为选非题，</li></ol></div>
+  <div class="box t"><b>最简单做法</b>这种题不要四个全算，先砍明显错的 2 个，再算 1 个定答案。</div>
+  
+</article>
+<article class="q" id="q2015-112">
+  <div class="qhead">
+    <span class="tag t2">比重 · 现期比重</span>
+    <span class="no">2015 浙江A · 第 112 题</span>
+  </div>
+  <div class="stem">2013 年上半年，房产税、城镇土地使用税及契税三项增收之和约占全国税收增收比重为：</div>
+  <div class="opts"><span class="opt">A. 1.2%</span><span class="opt">B. 6.2%</span><span class="opt">C. 11.2%</span><span class="opt right">D. 16.2%</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>比重 = 部分量/整体量；资料题分母截三位直除即可。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查现期比重计算中的求比重。</li><li>第二步，定位文字材料第一段“截至 2013 年 6 月，全国税收总收入 59260.61 亿元，同比增长 7.9%”与表格材 料“房产税、城镇土地使用税、契税分别增收 81.7、67.44、554.07 亿元”。</li><li>第三步，解法一：结合上一题可知“2012 年上半年全国税收总收入完成 54921.79 亿元”。根据比重＝部分量/ 整体量，由于选项出现首位相同第二位不同的情况，分母从左向右截取前三位并保留量级，分子简单取整，比 重为： ，直除首两位商 16（或者略低于 1/6）。  解法二：7.9%≈ ，根据增长量计算 n+1 原则，2013 年上半年，全国税收增长量为 ,根 据比重＝部分量/整体量，由于选项出现首位相同第二位不同的情况，分母从左向右截取前三位并保留量级，分 子简单取整，比重为： 。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>选项首两位相同 → 分母截三位、分子取整，直除首两位。</div>
+  
+</article>
+<article class="q" id="q2016-114">
+  <div class="qhead">
+    <span class="tag t2">比重 · 两期比重比较（数个数）</span>
+    <span class="no">2016 浙江A · 第 114 题</span>
+  </div>
+  <div class="stem">2015 年2 月四家企业中，有几家企业的投递服务申诉量占该企业当月总申诉量的比重高于上月水平？</div>
+  <div class="opts"><span class="opt">A. 1</span><span class="opt right">B. 2</span><span class="opt">C. 3</span><span class="opt">D. 4</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>两期比重比较：部分增速 a ＞ 整体增速 b → 比重上升；反之下降。比重差 ＜ |a−b|。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查两期比重比较。</li><li>第二步，定位文字材料“对企业1 的每百万件有效申诉量为75.13 件，环比增长48.0%，对企业2 的每百万件 有效申诉量为32.56 件，环比增长55.0%，对企业3 的每百万件有效申诉量为31.86 件，环比增长140.0%，对 企业4 的每百万件有效申诉量为17.81 件，环比增长36.0%”与表2“投递服务”一列。</li><li>第三步，根据两期比重比较口诀，分子增长率（a）大于分母增长率（b），则比重上升，反之，比重下降。则 分子（各企业的投递服务申诉量）增长率大于分母（企业当月总申诉量）增长率，比重上升。企业1 为53%＞ 48.0%，企业2 为44%＜55.0%，企业3 为139%＜140.0%，企业4 为41%＞36.0%，故只有企业1、4 高于上月。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>不精算，只比 a 与 b 的大小与差值范围就能排除。</div>
+  
+</article>
+<article class="q" id="q2016-118">
+  <div class="qhead">
+    <span class="tag t2">比重 · 两期比重差</span>
+    <span class="no">2016 浙江A · 第 118 题</span>
+  </div>
+  <div class="stem">2015 年3 月末，中央企业所有者权益占国有企业总体比重比上年同期约：</div>
+  <div class="opts"><span class="opt right">A. 下降了0.7 个百分点</span><span class="opt">B. 下降了1.5 个百分点</span><span class="opt">C. 上升了0.7 个百分点</span><span class="opt">D. 上升了1.5 个百分点</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>两期比重差 = 现期比重 × (a−b)/(1+a)，绝对值 ＜ |a−b|。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查两期比重计算。</li><li>第二步，定位文字材料第四段“2015 年3 月末国有企业所有者权益合计369109.1 亿元，同比增长12.2%，中央 企业所有者权益为191354.4 亿元，同比增长10.7%”。</li><li>第三步，根据两期比重比较口诀，分子增长率（a）大于分母增长率（b），则比重上升，反之，比重下降。中 央企业所有者增长率（10.7%）＜国有企业所有者增长率（12.2%），可知比重下降，排除C、D。根据两期比重 差值计算公式可得比重差＜丨12.2%－10.7%丨＝1.5%，即小于1.5 个百分点。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>先算 |a−b| 卡上限，再看方向（a&gt;b 则上升）。</div>
+  
+</article>
+<article class="q" id="q2018-134">
+  <div class="qhead">
+    <span class="tag t2">比重 · 现期比重（求部分量）</span>
+    <span class="no">2018 浙江A · 第 134 题</span>
+  </div>
+  <div class="stem">&lt;p&gt;2015 年新增网民中，年龄在 19 岁以上的网民约有多少万人？&lt;/p&gt;</div>
+  <div class="opts"><span class="opt right">A. 2130</span><span class="opt">B. 2030</span><span class="opt">C. 1930</span><span class="opt">D. 1830</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>部分量 = 整体 × 比重。</div>
+  <div class="box s"><b>详细解法</b><ol><li>根据题干所求“2015年新增…19岁以上的网民人数”，结合文字材料第二段给出“2015年新增网民中， 19岁以下的占比为 ”，可判断本题为现期比重问题。定位柱形图，可知2015年新增网民人数 。定位文字材料第二段，可知 2015年新增网民中低龄（19岁以下）占比 ，因此19岁以上的占比为 。根据比重公式： ，因此2015年新增网民中19岁以上的人数为 ，与 A项最为接近。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>求部分量就是乘法，注意整体是不是"全国/全省"。</div>
+  
+</article>
+<article class="q" id="q2015-123">
+  <div class="qhead">
+    <span class="tag t2">平均数 · 平均数与倍数杂糅</span>
+    <span class="no">2015 浙江A · 第 123 题</span>
+  </div>
+  <div class="stem">2012 年台湾证券交易所集中市场平均每家公司成交值是兴柜市场平均每家公司成交值的倍数为：</div>
+  <div class="opts"><span class="opt">A. 17.6</span><span class="opt">B. 27.6</span><span class="opt">C. 37.6</span><span class="opt right">D. 47.6</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>平均数 = 总量/份数；倍数 = A/B。平均数倍数 =(A/B)×(D/C) 型，先约分再乘。</div>
+  <div class="box s"><b>详细解法</b><ol><li>第一步，本题考查平均数与倍数杂糅计算。</li><li>第二步，定位表格，“证交所集中市场挂牌公司数为 809 家，总成交值 20789×10 亿新台币；兴柜市场 285 家， 总成交值 154×10 亿新台币”。</li><li>第三步，根据公式，倍数＝前/后、平均数＝总数/总份数，代入数据得， 倍。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>先把"平均"和"倍"各自写成除法，约掉同类量再乘。</div>
+  
+</article>
+<article class="q" id="q2018-121">
+  <div class="qhead">
+    <span class="tag t2">平均数 · 百分点 → 天数换算</span>
+    <span class="no">2018 浙江A · 第 121 题</span>
+  </div>
+  <div class="stem">2015 年7 月，京津冀区域平均重度污染天数比全国74 个城市约多多少天？</div>
+  <div class="opts"><span class="opt">A. 0.8</span><span class="opt right">B. 1.4</span><span class="opt">C. 2.0</span><span class="opt">D. 2.5</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>占比换天数：天数 = 占比 × 当月天数（7 月 31 天、2 月 28/29 天）。</div>
+  <div class="box s"><b>详细解法</b><ol><li>材料给"京津冀区域平均重度污染天数占比比全国 74 城市高 4.4 个百分点"。</li><li>7 月共 31 天，占比换成天数：4.4%×31≈1.36 天。</li><li>与选项 1.4 最接近 → 选 B。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>"高 X 个百分点"直接乘天数，别找两组绝对值。</div>
+  <div class="box n"><b>说明</b>题库未附官方解析，本解法为按题型重写；</div>
+</article>
+<article class="q" id="q2018-123">
+  <div class="qhead">
+    <span class="tag t2">平均数 · 加权平均反推</span>
+    <span class="no">2018 浙江A · 第 123 题</span>
+  </div>
+  <div class="stem">环保部门定下了5 年后京津冀区域13 个城市实现7 月空气质量超标天数平均占当月总天数50%以下的目标。如京津冀区域13 个城市中，有5 个城市大力投入改善本市空气质量。问平均每个城市至少需要将空气质量
+超标天数减少多少天，才能在另外8 个城市空气质量超标天数与2015 年7 月相同的情况下，实现这一目标？</div>
+  <div class="opts"><span class="opt right">A. 6</span><span class="opt">B. 5</span><span class="opt">C. 4</span><span class="opt">D. 3</span></div>
+  <div class="ans">正确答案 <b>A</b></div>
+  <div class="box f"><b>公式 / 模型</b>加权平均：总平均 = Σ(组值×组权重)/Σ权重；反推用"十字交叉"或总量差。</div>
+  <div class="box s"><b>详细解法</b><ol><li>题干中出现比重，时间是15 年7 月，可知本题为现期比重问题。 要13 个城市实现7 月空气质量超标天数平均占当月总天数 以下的目标，则总的超标天数小于 天，假设实现目标之后，大力投入改善本市空气质量的5 个城市每个城市每月的超标天 数为，根据题意可知， ，解得 天，原来每个城市的超标天数为 天，所以减少天数至少为 天，即至少6 天。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>两部分平均反推人数比 → 十字交叉最快。</div>
+  
+</article>
+<article class="q" id="q2018-136">
+  <div class="qhead">
+    <span class="tag t2">增长 · 增长率比较（选年份）</span>
+    <span class="no">2018 浙江A · 第 136 题</span>
+  </div>
+  <div class="stem">&lt;p&gt;2012-2015 年，全国内河航道通航里程增长幅度最大的是：&lt;/p&gt;</div>
+  <div class="opts"><span class="opt">A. 2012 年</span><span class="opt right">B. 2013 年</span><span class="opt">C. 2014 年</span><span class="opt">D. 2015 年</span></div>
+  <div class="ans">正确答案 <b>B</b></div>
+  <div class="box f"><b>公式 / 模型</b>"综合分析"类：先扫选项里的绝对词（一定/均/都），能用"占比×天数""增长率正负"直接判的先判，剩下两个精算。</div>
+  <div class="box s"><b>详细解法</b><ol><li>由题干“增长幅度最大的是”，可判定本题为增长率比较问题。定位统计图，根据公式 代入数据，则有： ； ； ； 。 故比较可知2013年全国内河航道通航里程增长幅度最大。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>这种题不要四个全算，先砍明显错的 2 个，再算 1 个定答案。</div>
+  
+</article>
+<article class="q" id="q2018-139">
+  <div class="qhead">
+    <span class="tag t2">增长 · 增长率比较（四选项）</span>
+    <span class="no">2018 浙江A · 第 139 题</span>
+  </div>
+  <div class="stem">&lt;p&gt;2016 年，下列哪种泊位数量同比增长最快？&lt;/p&gt;</div>
+  <div class="opts"><span class="opt">A. 全国港口万吨级及以上泊位</span><span class="opt">B. 沿海港口万吨级及以上泊位</span><span class="opt">C. 全国港口 10 万吨级及以上泊位</span><span class="opt right">D. 内河港口 10 万吨级及以上泊位</span></div>
+  <div class="ans">正确答案 <b>D</b></div>
+  <div class="box f"><b>公式 / 模型</b>"综合分析"类：先扫选项里的绝对词（一定/均/都），能用"占比×天数""增长率正负"直接判的先判，剩下两个精算。</div>
+  <div class="box s"><b>详细解法</b><ol><li>由题干“同比增长最快”，可判定本题为增长率比较问题。定位表格材料，根据公式 代入数据，则有： A.全国港口万吨级及以上泊位 ； B.沿海港口万吨级及以上泊位 ； C.全国港口10万吨级及以上泊位 ； D.内河港口10万吨级及以上泊位 。 故比较可知，A、B、C项所求明显小于，D项所求等于，D项符合，即内河港口10万吨级及以上泊位数同 比增长最快。</li></ol></div>
+  <div class="box t"><b>最简单做法</b>这种题不要四个全算，先砍明显错的 2 个，再算 1 个定答案。</div>
+  
+</article>
+</main>
+<footer>数据来源：做题 app 题库（浙江 2015–2018 A 卷）· 生成于 2026-11-17 · 单文件离线可用</footer>
+<a class="top" href="#">↑</a>
+</body></html>

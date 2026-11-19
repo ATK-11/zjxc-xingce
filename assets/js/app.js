@@ -1277,6 +1277,30 @@
     return { cls: 'bad', label: '薄弱' };
   }
 
+  var STUDY_MAP = {
+    politics: '04_常识判断', common: '04_常识判断', verbal: '02_言语理解',
+    quant: '03_数量关系', judge: '01_判断推理', data: '05_资料分析'
+  };
+  function studyLink(module) {
+    var f = STUDY_MAP[module];
+    if (!f) return '';
+    return "<a class=\"btn btn-ghost btn-sm\" href=\"study/" + f + ".html\">看导图</a>";
+  }
+
+  /* 讲义速查页：数量/资料 → 08（公式）；判断 → 09（判定套路）；言语 → 10（结构套路） */
+  var FORMULA_MAP = {
+    common: ["14_学习模式_常识判断", "", "练常识"],
+    verbal: ["12_学习模式_言语理解", "", "练言语"],
+    quant: ["13_学习模式_数量关系", "", "练数量"],
+    judge: ["11_学习模式_判断推理", "", "练判断"],
+    data: ["15_学习模式_资料分析", "", "练资料"]
+  };
+  function formulaLink(module) {
+    var m = FORMULA_MAP[module];
+    if (!m) return "";
+    return "<a class=\"btn btn-ghost btn-sm\" href=\"study/" + m[0] + ".html" + m[1] + "\">" + m[2] + "</a>";
+  }
+
   function renderLessons(r) {
     var card = $("#lessonCard"), box = $("#lessonList");
     if (!card || !box) return;
@@ -1312,6 +1336,8 @@
         "<div class=\"lesson-main\"><b>" + esc(g.sub || "综合") + "</b>" +
         "<span>错 " + g.n + " 题 · " + esc(MODULES[g.module].name) + "</span></div>" +
         "<a class=\"btn btn-outline btn-sm\" href=\"" + url + "\" target=\"_blank\" rel=\"noopener\">" + esc(label) + "</a>" +
+        studyLink(g.module) +
+        formulaLink(g.module) +
       "</div>";
     }).join("");
 
@@ -2301,7 +2327,9 @@
   /* ---------------- 跨设备同步 ---------------- */
   function syncSnapshot() {
     var data = {};
-    ['zjxc.history.v1', 'zjxc.daylog', 'zjxc.seqdone', 'zjxc.drafts'].forEach(function (k) {
+    ['zjxc.history.v1', 'zjxc.daylog', 'zjxc.seqdone', 'zjxc.drafts',
+     'zjxc-learn-11-v1', 'zjxc-learn-12-v1', 'zjxc-learn-13-v1', 'zjxc-learn-14-v1', 'zjxc-learn-15-v1']
+      .forEach(function (k) {
       var raw = null;
       try { raw = localStorage.getItem(k); } catch (e) {}
       if (raw) { try { data[k] = JSON.parse(raw); } catch (e) {} }
@@ -2320,6 +2348,28 @@
     var bin = atob(String(b64).replace(/\s/g, '')), bytes = new Uint8Array(bin.length);
     for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
     return new TextDecoder().decode(bytes);
+  }
+
+  /* 学习模式进度（页内 localStorage 为 {gi,qi,ans:{qid:{c,ok,sec}},done}）：
+     逐题取并集，答对的覆盖答错的；gi/qi 取更靠前的进度。 */
+  var LEARN_NOS = ['11', '12', '13', '14', '15'];
+  function mergeLearn(cur, inc) {
+    if (!inc) return cur || null;
+    if (!cur) return inc;
+    var ans = {};
+    [inc, cur].forEach(function (s) {
+      if (!s || !s.ans) return;
+      Object.keys(s.ans).forEach(function (id) {
+        var v = s.ans[id];
+        if (!v) return;
+        var old = ans[id];
+        if (!old || (v.ok && !old.ok)) ans[id] = v;
+      });
+    });
+    var gi = Math.max(cur.gi || 0, inc.gi || 0), qi = 0;
+    if (inc.gi > (cur.gi || 0)) qi = inc.qi || 0;
+    else if (inc.gi === (cur.gi || 0)) qi = Math.max(cur.qi || 0, inc.qi || 0);
+    return { gi: gi, qi: qi, ans: ans, done: !!(cur.done || inc.done) };
   }
 
   function mergeSnapshot(obj) {
@@ -2360,7 +2410,21 @@
     dk.forEach(function (k) { dOut[k] = drafts[k]; });
     localStorage.setItem(LS_DRAFTS, JSON.stringify(dOut));
 
-    return { history: merged.length, days: Object.keys(log).length, seq: Object.keys(seq).length, drafts: dk.length };
+    // 学习模式五个页面的进度
+    var learnN = 0;
+    LEARN_NOS.forEach(function (no) {
+      var key = 'zjxc-learn-' + no + '-v1';
+      var inc = obj.data[key];
+      if (!inc) return;
+      var cur = null;
+      try { cur = JSON.parse(localStorage.getItem(key) || 'null'); } catch (e) {}
+      var out = mergeLearn(cur, inc);
+      if (!out) return;
+      try { localStorage.setItem(key, JSON.stringify(out)); } catch (e) {}
+      learnN += Object.keys(out.ans || {}).length;
+    });
+
+    return { history: merged.length, days: Object.keys(log).length, seq: Object.keys(seq).length, drafts: dk.length, learn: learnN };
   }
 
   function openSync() {
@@ -2438,7 +2502,7 @@
         try {
           if (txt.indexOf('ZJXC1:') === 0) txt = fromB64(txt.slice(6));
           var res = mergeSnapshot(JSON.parse(txt));
-          toast('已合并：历史 ' + res.history + ' 次 / 通关 ' + res.seq + ' 套 / 草稿 ' + res.drafts + ' 份');
+          toast('已合并：历史 ' + res.history + ' 次 / 通关 ' + res.seq + ' 套 / 草稿 ' + res.drafts + ' 份 / 学习模式 ' + (res.learn || 0) + ' 题');
           renderHome(); renderPlan();
         } catch (err) {
           toast('导入失败：' + (err.message || '格式不正确'));

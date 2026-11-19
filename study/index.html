@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学习资料 · 思维导图与错题精讲</title>
+<style>
+  :root{
+    --bg:#f5f8f7; --card:#fff; --ink:#16211e; --sub:#5c6b66;
+    --line:#e2eae7; --brand:#146b58; --brand-soft:#e7f3ef; --warn:#c2410c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#111614; --card:#18201d; --ink:#e6efec; --sub:#9bb0a9;
+           --line:#25322d; --brand:#4fd1ae; --brand-soft:#16302a; --warn:#fb923c; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.75 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;}
+  .wrap{max-width:1040px;margin:0 auto;padding:30px 20px 64px}
+  .top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  h1{font-size:24px;margin:0;letter-spacing:.3px}
+  .back{margin-left:auto;font-size:13px;color:var(--brand);text-decoration:none;
+    border:1px solid var(--line);border-radius:8px;padding:6px 13px;background:var(--card)}
+  .back:hover{border-color:var(--brand);background:var(--brand-soft)}
+  .lead{color:var(--sub);margin:8px 0 24px;font-size:13.5px}
+  .lead b{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:13px}
+  a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:15px 17px;text-decoration:none;color:inherit;transition:.16s;position:relative;overflow:hidden}
+  a.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;
+    background:linear-gradient(90deg,var(--brand),#4fa88e);opacity:0;transition:.16s}
+  a.card:hover{border-color:var(--brand);box-shadow:0 6px 18px rgba(20,60,50,.10);transform:translateY(-2px)}
+  a.card:hover::before{opacity:1}
+  .card .no{font-family:ui-monospace,Consolas,monospace;font-size:11px;font-weight:700;
+    color:var(--brand);background:var(--brand-soft);display:inline-block;padding:1px 7px;border-radius:5px;letter-spacing:.04em}
+  .card .t{font-size:16px;font-weight:600;margin:7px 0 5px}
+  .card .d{font-size:12.5px;color:var(--sub);line-height:1.6}
+  .tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;
+    background:var(--brand-soft);color:var(--brand);margin-left:6px;vertical-align:2px}
+  .tag.warn{background:rgba(194,65,12,.10);color:var(--warn)}
+  .note{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+  .note h2{font-size:14.5px;margin:0 0 9px}
+  .note ul{margin:0;padding-left:19px;color:var(--sub);font-size:13px}
+  .note li{margin:5px 0}
+  kbd{font:12px ui-monospace,Consolas,monospace;border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
+  footer{margin-top:22px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>学习资料 · 五个学习模式 + 申论模板</h1>
+    <a class="back" href="../index.html">← 返回做题</a>
+  </div>
+  <p class="lead">五个学科各<b>只留一个</b>学习模式入口：判断 / 言语 / 数量 / 常识 / 资料。每组 4 道主线题（优先取你 2015—2018 浙江 A 卷错题）+ 3 道同考点加练，提交后才给答案、分步解法和「这一题要用的套路」，关键句<b>已涂黄</b>。另有总览导图、21 天日程、讲义公式速查、206 题错题精讲。全部离线可用。</p>
+
+  <div class="grid">
+    <a class="card" href="06_21天日程.html">
+      <span class="no">06</span>
+      <div class="t">21 天日程<span class="tag warn">先看这张</span></div>
+      <div class="d">11/18 → 12/06 每天一条：练哪个题型、多少题、限时几分钟、到多少算达标。解决"今天做什么"。</div>
+    </a>
+    <a class="card" href="00_总览.html">
+      <span class="no">00</span>
+      <div class="t">总览 · 作战图</div>
+      <div class="d">现状与归因、75 分怎么拆、120 分钟时间切法、三条主线、放弃清单、四阶段验收线。</div>
+    </a>
+      <span class="no">01</span>
+      <div class="t">判断推理<span class="tag">71 错 · 最该先练</span></div>
+      <div class="d">定义判断三步 / 类比两步 / 逻辑判断四型 / 图形推理 30 秒扫查法。</div>
+    </a>
+      <span class="no">02</span>
+      <div class="t">言语理解<span class="tag">44 错</span></div>
+      <div class="d">逻辑填空先内容后形、成语三查、片段先结构后主旨、四类干扰项。</div>
+    </a>
+      <span class="no">03</span>
+      <div class="t">数量关系<span class="tag">33 错</span></div>
+      <div class="d">数推八级判定序列、数学运算五大入口、三大秒杀、20 题 17 分钟方案。</div>
+    </a>
+      <span class="no">04</span>
+      <div class="t">常识判断<span class="tag">37 错</span></div>
+      <div class="d">必背十组对比表：刑责年龄、宪法、处罚权、秦岭淮河、月别称、战役计谋…</div>
+    </a>
+      <span class="no">05</span>
+      <div class="t">资料分析<span class="tag">21 错 · 最不该丢</span></div>
+      <div class="d">六张公式卡、读题三词、五类关键词陷阱、结构识别即跳过。</div>
+    </a>
+      <span class="no">07</span>
+      <div class="t">数量 + 资料 公式与解法<span class="tag warn">49 题逐题</span></div>
+      <div class="d">数推 9 / 运算 24 / 资料 16 道错题，每题四块：题型 → <b>公式 / 模型</b> → 分步详解 → <b>最简单做法</b>（考场 60 秒路径）。</div>
+    </a>
+    <a class="card" href="08_讲义公式速查.html">
+      <span class="no">08</span>
+      <div class="t">讲义公式速查<span class="tag warn">57 张卡</span></div>
+      <div class="d">从讲义 PDF 抠的公式与套路，带原书页码：资料分析 20 条公式 + 速算 8 法 + 数量 25 个方法。</div>
+    </a>
+      <span class="no">09</span>
+      <div class="t">判断推理套路<span class="tag warn">58 条</span></div>
+      <div class="d">类比 / 定义 / 逻辑 / 图推逐条「何时用 → 怎么判」，逻辑判断 11 节全在，带讲义原书页码。</div>
+    </a>
+      <span class="no">10</span>
+      <div class="t">言语理解套路<span class="tag warn">33 条</span></div>
+      <div class="d">片段结构五优先级、四大干扰项、排序定首句与捆绑、逻辑填空色彩与对应关系全表。</div>
+    </a>
+    <a class="card" href="11_%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%BC%8F_%E5%88%A4%E6%96%AD%E6%8E%A8%E7%90%86.html">
+      <span class="no">11</span>
+      <div class="t">判断推理·学习模式<span class="tag">先做后讲</span></div>
+      <div class="d">6 组 42 题：先自己选，提交后才给答案、思路、分步解法和该组套路；错 2 题自动加练。</div>
+    </a>
+    <a class="card" href="12_学习模式_言语理解.html">
+      <span class="no">12</span>
+      <div class="t">学习模式 · 言语理解<span class="tag warn">7 题/组</span></div>
+      <div class="d">言语 5 组（成语／实词／中心理解／细节词句／排序填空）35 题，每题只留这一题要用的套路并涂黄。</div>
+    </a>
+    <a class="card" href="13_学习模式_数量关系.html">
+      <span class="no">13</span>
+      <div class="t">学习模式 · 数量关系<span class="tag warn">7 题/组</span></div>
+      <div class="d">数量 5 组（数字推理／赋值三兄弟／计数／几何钟表／通用入口）35 题，公式卡内联在答案旁。</div>
+    </a>
+    <a class="card" href="14_学习模式_常识判断.html">
+      <span class="no">14</span>
+      <div class="t">学习模式 · 常识判断<span class="tag warn">7 题/组</span></div>
+      <div class="d">常识 4 组（法律／政治／科技／人文）28 题，配必背十组手写规则。</div>
+    </a>
+    <a class="card" href="15_学习模式_资料分析.html">
+      <span class="no">15</span>
+      <div class="t">学习模式 · 资料分析<span class="tag warn">7 题/组</span></div>
+      <div class="d">资料 4 组（增长／比重／平均数倍数／综合分析）28 题，材料原样带图，公式逐题内联。</div>
+    </a>
+    <a class="card" href="16_申论_题型与模板.html">
+      <span class="no">16</span>
+      <div class="t">申论 · 题型与模板<span class="tag warn">浙江 A 卷</span></div>
+      <div class="d">5 大题型模板（概括／词句理解／对策／公文／作文）+ 真题 5 题示范 + 浙江省情素材包 + 自查清单。</div>
+    </a>
+    <a class="card" href="浙江省考行测_四套卷错题精讲与提分方案.html">
+      <span class="no">精讲</span>
+      <div class="t">206 道错题精讲<span class="tag">完整版</span></div>
+      <div class="d">按模块分册，每道错题：原题、你可能的错因（方法/知识/看错/超时）、正确打法、动作口令。带侧栏目录和题号折叠。</div>
+    </a>
+  </div>
+
+  <div class="note">
+    <h2>怎么用</h2>
+    <ul>
+      <li><b>每天只做两件事</b>：照 06 做今天的题 → 做完对照对应科目图检查动作有没有走。</li>
+      <li><b>顺序</b>：06 日程 → 00 总览（定策略）→ 01 判断（丢分最多）→ 02 言语 → 05 资料 → 04 常识 → 03 数量。</li>
+      <li><b>别通读</b>：练哪个题型就看哪一支，看完立刻回去做题。</li>
+      <li>导图操作：<kbd>滚轮</kbd> 缩放 · <kbd>拖动</kbd> 平移 · <kbd>点节点</kbd> 折叠 · 左下角"返回导图索引"。</li>
+      <li>精讲里左上角有目录，可按模块/题号跳；浏览器 <kbd>Ctrl+P</kbd> 可打成 PDF。</li>
+    </ul>
+  </div>
+
+  <footer>生成于 2026-11-17 · markmap 0.18.13 · 单文件离线，双击即可打开</footer>
+</div>
+</body>
+</html>

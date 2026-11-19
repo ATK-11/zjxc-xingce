@@ -2,7 +2,7 @@
    service-worker.js —— 离线缓存（PWA）
    更新内容后请把 VERSION 加 1，用户端会自动换新缓存
    =========================================================== */
-const VERSION = 'zjxc-v69';
+const VERSION = 'zjxc-v76';
 const CACHE = VERSION;
 
 const ASSETS = [
@@ -16,6 +16,7 @@ const ASSETS = [
   './assets/icons/icon-512-maskable.png',
   './assets/js/svgkit.js',
   './assets/js/papers.js',
+  './assets/data/real/real-bundle.js',
   './assets/js/plan.js',
   './assets/js/cloud-config.js',
   './assets/js/gist-sync.js',
@@ -45,7 +46,26 @@ const ASSETS = [
   './assets/js/data/plan-w3.js',
   './assets/js/data/plan-w4.js',
   './assets/js/data/plan-w5.js',
-  './assets/js/data/plan-w67.js'
+  './assets/js/data/plan-w67.js',
+  './study/index.html',
+  './study/00_总览.html',
+  './study/01_判断推理.html',
+  './study/02_言语理解.html',
+  './study/03_数量关系.html',
+  './study/04_常识判断.html',
+  './study/05_资料分析.html',
+  './study/06_21天日程.html',
+  './study/07_数量资料_公式与解法.html',
+  './study/08_讲义公式速查.html',
+  './study/09_判断推理_套路速查.html',
+  './study/10_言语理解_套路速查.html',
+  './study/11_学习模式_判断推理.html',
+  './study/12_学习模式_言语理解.html',
+  './study/13_学习模式_数量关系.html',
+  './study/14_学习模式_常识判断.html',
+  './study/15_学习模式_资料分析.html',
+'./study/16_申论_题型与模板.html',
+  './study/浙江省考行测_四套卷错题精讲与提分方案.html'
 ];
 
 self.addEventListener('install', function (e) {

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>讲义公式与套路速查 · 浙江行测</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1b2430;--sub:#5d6a7a;--line:#e3e8ee;--brand:#146b58;--warn:#b4530a;--chip:#eef5f3}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1c2129;--ink:#e6ebf2;--sub:#93a1b3;--line:#2b333e;--brand:#4fc3a1;--warn:#f0a35e;--chip:#20322e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:22px 18px 60px}
+a{color:var(--brand)}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.top a{font-size:13px;text-decoration:none;border:1px solid var(--line);padding:5px 10px;border-radius:8px;background:var(--card)}
+h1{font-size:24px;margin:10px 0 4px}
+.lead{color:var(--sub);font-size:13.5px;margin:0 0 16px}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+nav.toc a{font-size:13px;text-decoration:none;background:var(--chip);color:var(--brand);border-radius:999px;padding:6px 12px;border:1px solid var(--line)}
+h2{font-size:18px;margin:30px 0 4px;padding-left:10px;border-left:4px solid var(--brand)}
+h2 small{color:var(--sub);font-weight:400;font-size:12.5px;margin-left:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;margin-top:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.card .hd{display:flex;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:6px}
+.card .t{font-weight:600;font-size:15px}
+.card .pg{font-size:11.5px;color:var(--warn);white-space:nowrap}
+.card .when{font-size:12.5px;color:var(--sub);margin-bottom:6px}
+.card .when b{color:var(--brand);font-weight:600;margin-right:4px}
+.card .f{font-size:13.5px;background:var(--chip);border-radius:8px;padding:8px 10px}
+.note{margin-top:28px;font-size:12.5px;color:var(--sub);border-top:1px dashed var(--line);padding-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="../index.html">← 返回做题</a><a href="index.html">学习资料</a></div>
+  <h1>讲义公式与套路速查</h1>
+  <p class="lead">从讲义 PDF 里抠出来的公式与套路，页码即讲义原书页码，可回查。做完题复盘时：先按题型找到卡 → 套公式 → 再看 07 页对应错题的分步解法。</p>
+
+  <nav class="toc">
+    <a href="#zl">资料分析 · 公式 20 条</a>
+    <a href="#ss">资料分析 · 速算 8 法</a>
+    <a href="#mat">材料怎么读</a>
+    <a href="#sl">数量关系 · 25 个方法</a>
+  </nav>
+
+  <h2 id="zl">资料分析 · 公式速查 <small>《2027 资料分析理论+刷题课》p3–p146</small></h2>
+  <div class="grid"><article class="card">
+  <div class="hd"><span class="t">基期与现期</span><span class="pg">p3 / p82</span></div>
+  <div class="when"><b>何时用</b> 题干时间比材料靠前 → 求基期；比材料靠后 → 求现期</div>
+  <div class="f">基期量 = 现期量 ÷ (1+增长率)<br>现期量 = 基期量 × (1+增长率)</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">同比与环比</span><span class="pg">p3</span></div>
+  <div class="when"><b>何时用</b> 同比：与历年同一时期比；环比：与紧邻的上一周期比</div>
+  <div class="f">同比＝第一个时间单位前推一次，其余不变<br>环比＝最后一个时间单位前推一次，其余不变</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">百分数 vs 百分点</span><span class="pg">p3</span></div>
+  <div class="when"><b>何时用</b> 两个增长率/比重之间做比较、加减</div>
+  <div class="f">增长率之间比较用「百分点」，直接相减即可</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">增长率</span><span class="pg">p73 / p155</span></div>
+  <div class="when"><b>何时用</b> 出现「比…增长/下降 x%」「增长几倍」「高几倍」</div>
+  <div class="f">增长率 = 增长量 ÷ 基期量 = (现期−基期)÷基期 = 发展速度−1<br>增速 ≈ 增幅；只有「增幅多少」指增长量</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">增长量</span><span class="pg">p102</span></div>
+  <div class="when"><b>何时用</b> 出现「增长/减少 具体数值」，一般带单位</div>
+  <div class="f">增长量 = 现期−基期 = 基期×r = 现期 × r/(1+r)</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">增长量速算（特殊分数）</span><span class="pg">p102</span></div>
+  <div class="when"><b>何时用</b> r 是或接近 1/n（如 12.5%=1/8）</div>
+  <div class="f">增长量 = 现期量 ÷ (n+1)<br>r 不是特殊分数 → 先算 r/(1+r) 或 现期/(1+r)，再相乘；选项极近 → 代选项反推</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">增长量比较</span><span class="pg">p110</span></div>
+  <div class="when"><b>何时用</b> 四个选项比「增量最大/最小」</div>
+  <div class="f">① 现期大、r 也大 → 增长量大（大大则大）<br>② 一大一小 → 比「现期×r」<br>③ 乘积接近 → 回原公式精算（先看单位）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">间隔增长率</span><span class="pg">p89</span></div>
+  <div class="when"><b>何时用</b> 时间点隔一期或差两期（2024 比 2022）</div>
+  <div class="f">R = r₁ + r₂ + r₁×r₂<br>间隔基期 = 现期 ÷ (1+R)；间隔增长量 = 现期 × R/(1+R)；间隔发展速度 = 1+R</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">混合增速</span><span class="pg">p92 / p155</span></div>
+  <div class="when"><b>何时用</b> 材料里出现整体与各部分增速的关系（A+B=C）</div>
+  <div class="f">① 整体增速居中（小于最大、大于最小）<br>② 整体偏向基期值最大的那部分<br>③ 选不出再用十字交叉</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">年均（平均）增长率</span><span class="pg">p99</span></div>
+  <div class="when"><b>何时用</b> 末期比初期的「平均」+「增长率」</div>
+  <div class="f">末期 = 初期×(1+x)ⁿ，n = 末年份−初年份<br>n≤5 且 x≤5% 时：末期/初期 ≈ 1+nx，直接试算</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">平均增长量</span><span class="pg">p107</span></div>
+  <div class="when"><b>何时用</b> 末期比初期的「平均」+「增长量」</div>
+  <div class="f">平均增长量 = (末期值 − 初期值) ÷ n</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">比重（现期）</span><span class="pg">p117</span></div>
+  <div class="when"><b>何时用</b> 「…占…%」「…在…中占」</div>
+  <div class="f">比重 = 部分 ÷ 整体；整体 = 部分 ÷ 比重；部分 = 整体 × 比重</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">基期比重</span><span class="pg">p124</span></div>
+  <div class="when"><b>何时用</b> 题干时间靠前 + 求比重</div>
+  <div class="f">基期比重 = (A/B) × (1+b%)/(1+a%)<br>A 部分现期量、a 部分增长率；B 整体现期量、b 整体增长率</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">比重变化（两期比重差）</span><span class="pg">p127</span></div>
+  <div class="when"><b>何时用</b> 问比重「上升/下降/不变」或变化几个百分点</div>
+  <div class="f">a > b → 比重上升；a = b → 不变；a &lt; b → 下降（a 部分增速，b 整体增速）<br>要具体几个百分点，需代公式算</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">混合比重</span><span class="pg">p135</span></div>
+  <div class="when"><b>何时用</b> 整体与各部分比重的比较</div>
+  <div class="f">整体比重居中，且偏向部分值最大的那部分</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">平均数与倍数</span><span class="pg">p137</span></div>
+  <div class="when"><b>何时用</b> 「人均/单位面积/户均」「A 是 B 的几倍」</div>
+  <div class="f">平均数 = 总数 ÷ 总份数；倍数 = A ÷ B<br>「均前每后」的量作分母；出现「年均/月均/日均」要除以对应时间</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">基期平均数（倍数）</span><span class="pg">p139</span></div>
+  <div class="when"><b>何时用</b> 时间靠前 + 求平均数或倍数</div>
+  <div class="f">基期平均数 = (A/B) × (1+b%)/(1+a%)</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">平均值（比值）增长量</span><span class="pg">p141</span></div>
+  <div class="when"><b>何时用</b> 问「提高/降低了多少 元、件…」具体值</div>
+  <div class="f">现期比值 − 基期比值（是具体数值，不是百分比）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">比值（平均值）增长率</span><span class="pg">p143</span></div>
+  <div class="when"><b>何时用</b> 问「单价/单位面积产量 增长 x%」，答案一定是百分数</div>
+  <div class="f">比值 r = (a% − b%) ÷ (1 + b%)<br>判趋势：a&gt;b 上升，a&lt;b 下降</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">乘积增长率</span><span class="pg">p146</span></div>
+  <div class="when"><b>何时用</b> A = B×C，已知两个因子的增长率求乘积增长率</div>
+  <div class="f">r_A = r_B + r_C + r_B×r_C（与间隔增长率同形）</div>
+</article></div>
+
+  <h2 id="ss">资料分析 · 速算八法 <small>p29–p69 / p148</small></h2>
+  <div class="grid"><article class="card">
+  <div class="hd"><span class="t">先判选项差距（决定敢不敢估）</span><span class="pg">p29 / p148</span></div>
+  <div class="when"><b>何时用</b> 任何资料题动笔前</div>
+  <div class="f">乘除：两个接近选项的倍数 ≥1.1 → 放心粗算；≈1.1 → 精准算；远小于 1.1 → 别估<br>加减：直接看选项差距与列式的关系</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">尾数法</span><span class="pg">p32</span></div>
+  <div class="when"><b>何时用</b> 精确计算，且只有 + − ×</div>
+  <div class="f">只算最后一位或后两位，选项尾数不同才用；除法不建议用</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">削峰填谷法</span><span class="pg">p148</span></div>
+  <div class="when"><b>何时用</b> 一堆数求和 / 求平均</div>
+  <div class="f">先定一个基准值，只算每个数与基准的差，再回加基准</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">首位直除法</span><span class="pg">p39</span></div>
+  <div class="when"><b>何时用</b> 除法、选项首位数字不同</div>
+  <div class="f">分母四舍五入截前两位，只算商的第一位（首位相同就再算第二、三位）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">特殊值法（分数化）</span><span class="pg">p53</span></div>
+  <div class="when"><b>何时用</b> 增长率是 1/n 附近的百分数</div>
+  <div class="f">9.1%=1/11，10%=1/10，11.1%=1/9，12.5%=1/8，14.3%=1/7，16.7%=1/6，20%=1/5，25%=1/4，33.3%=1/3，50%=1/2<br>A×B(B→1/n)=A/n；A÷B(B→1/n)=A×n</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">画圈法（除化乘）</span><span class="pg">p58</span></div>
+  <div class="when"><b>何时用</b> 求基期且 r ≤ 10%（含基期差/和、基期比重、基期倍数）</div>
+  <div class="f">基期 ≈ A×(1−r)（r≤5% 误差最小，误差率 r²）<br>做法：画个圈、变符号（下正上负、下负上正）→ 粗算 A×r → 用 A 加减</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">截位估算 / 拆分法</span><span class="pg">p148</span></div>
+  <div class="when"><b>何时用</b> 选项差距大 / 要求很精确</div>
+  <div class="f">截位：分子分母各取「老大」，四舍五入留两位，其余按老大舍的位数截<br>拆分：把数拆成好算的两块相加</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">分数比较四招</span><span class="pg">p61 / p148</span></div>
+  <div class="when"><b>何时用</b> 比较两个分数大小（增长率、比重、平均数比较）</div>
+  <div class="f">① 分数性质：钱多人少分数大（分子大且分母小 → 更大）<br>② 首位直除：先比数量级，同数量级比商的首位<br>③ 化同法：通分<br>④ 差分法：分子分母作差得差分数 → 小的和差分数比 → 用大的替换差分数</div>
+</article></div>
+
+  <h2 id="mat">材料怎么读 <small>p18–p27 / p69</small></h2>
+  <div class="grid"><article class="card">
+  <div class="hd"><span class="t">文字材料</span><span class="pg">p18</span></div>
+  <div class="when"><b>何时用</b> 读材料时</div>
+  <div class="f">多段落按「总-分」结构，标记每段第一个数据前的关键词当主旨词；时间点各不相同就直接标记时间</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">表格材料</span><span class="pg">p22</span></div>
+  <div class="when"><b>何时用</b> 读材料时</div>
+  <div class="f">看「标题 + 横标目 + 纵标目 + 单位」四样，先确认单位和时间</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">图形材料</span><span class="pg">p24</span></div>
+  <div class="when"><b>何时用</b> 读材料时</div>
+  <div class="f">看「标题 + 横轴 + 纵轴 + 图例 + 单位」；饼图从 12 点方向顺时针标记</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">综合材料 / 直接读数</span><span class="pg">p26 / p69</span></div>
+  <div class="when"><b>何时用</b> 读材料时</div>
+  <div class="f">简单加减读数的题，验证顺序从 D 到 A；先查时间、主语、单位三个陷阱</div>
+</article></div>
+
+  <h2 id="sl">数量关系 · 25 个方法 <small>《数量关系-理论+刷题》p4–p87</small></h2>
+  <div class="grid"><article class="card">
+  <div class="hd"><span class="t">代入排除法</span><span class="pg">p4</span></div>
+  <div class="when"><b>何时用</b> 选项是具体数字、列式复杂或带不定条件</div>
+  <div class="f">把选项代回题干验条件，先从好算的选项代</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">数字特性法</span><span class="pg">p6</span></div>
+  <div class="when"><b>何时用</b> 出现比例、倍数、奇偶、尾数、整除字眼</div>
+  <div class="f">用奇偶性/整除性/倍数关系直接排除选项</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">方程法</span><span class="pg">p11</span></div>
+  <div class="when"><b>何时用</b> 有等量关系、能设未知数</div>
+  <div class="f">设未知数 → 列等式 → 解；复杂时设中间量</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">不定方程（组）</span><span class="pg">p15</span></div>
+  <div class="when"><b>何时用</b> 未知数多于方程个数，且要求整数解</div>
+  <div class="f">用整除、奇偶、尾数、代入缩小范围</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">工程问题</span><span class="pg">p18</span></div>
+  <div class="when"><b>何时用</b> 出现「完成一项工程需要…天」「效率」</div>
+  <div class="f">给定时间型：赋总量 = 时间的公倍数；给效率比型：直接设效率</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">行程问题</span><span class="pg">p24</span></div>
+  <div class="when"><b>何时用</b> 路程、速度、时间三者关系</div>
+  <div class="f">普通行程 s=vt；相遇 s=(v₁+v₂)t；追及 s=(v₁−v₂)t；平均速度 = 总路程÷总时间（不是速度平均）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">几何问题</span><span class="pg">p32</span></div>
+  <div class="when"><b>何时用</b> 周长、面积、体积、相似、三角形</div>
+  <div class="f">套公式；不规则图形用割补/平移；相似比 k → 面积比 k²、体积比 k³</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">经济利润</span><span class="pg">p46</span></div>
+  <div class="when"><b>何时用</b> 成本、售价、利润、折扣、利润率</div>
+  <div class="f">利润 = 售价−成本；利润率 = 利润÷成本；打折售价 = 原价×折扣；设成本为 100 最好算</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">容斥问题</span><span class="pg">p53</span></div>
+  <div class="when"><b>何时用</b> 「都参加」「只参加」「都不」</div>
+  <div class="f">两集合：A+B−AB = 总数−都不<br>三集合标准：A+B+C−AB−AC−BC+ABC = 总数−都不<br>三集合非标准：只满足两个的、只满足一个的分开算</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">排列组合</span><span class="pg">p57</span></div>
+  <div class="when"><b>何时用</b> 「多少种安排/选法」，有顺序要求或分组</div>
+  <div class="f">排列 A(n,m)=n!/(n−m)!；组合 C(n,m)；相邻用捆绑、不相邻用插空、相同元素用隔板</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">概率</span><span class="pg">p65</span></div>
+  <div class="when"><b>何时用</b> 「概率是多少」</div>
+  <div class="f">古典概型 = 满足条件数 ÷ 总数；分步相乘、分类相加；对立事件 1−P</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">最值问题</span><span class="pg">p69</span></div>
+  <div class="when"><b>何时用</b> 「至少…才能保证」「最多/最少是多少」</div>
+  <div class="f">最不利构造：最坏情况 +1<br>数列构造：设最大/最小为 x，其余按条件列不等式</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">年龄问题</span><span class="pg">p71</span></div>
+  <div class="when"><b>何时用</b> 年龄差不变</div>
+  <div class="f">两人年龄差恒定；n 年后各加 n；用差不变列式或代入</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">溶液问题</span><span class="pg">p73</span></div>
+  <div class="when"><b>何时用</b> 浓度、溶质、溶液</div>
+  <div class="f">浓度 = 溶质÷溶液；溶质守恒（加水/蒸发水时溶质不变）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">星期日期问题</span><span class="pg">p74</span></div>
+  <div class="when"><b>何时用</b> 星期几、日期推算</div>
+  <div class="f">平年 365=52×7+1（星期+1），闰年 +2；一个月内星期几出现次数看该月天数</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">统筹优化</span><span class="pg">p75</span></div>
+  <div class="when"><b>何时用</b> 「最少用多少时间/最少花多少钱」</div>
+  <div class="f">排队打水：短作业优先；烙饼/加工：两两配对；最短路径：找最小生成树思路</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">数列问题</span><span class="pg">p77</span></div>
+  <div class="when"><b>何时用</b> 平均数、等差、等比</div>
+  <div class="f">平均数 = 总和÷个数；等差：aₙ=a₁+(n−1)d，Sₙ=n(a₁+aₙ)/2；等比：aₙ=a₁qⁿ⁻¹</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">循环周期</span><span class="pg">p79</span></div>
+  <div class="when"><b>何时用</b> 「每隔几天」「第 n 个是什么」</div>
+  <div class="f">先找周期长度 T，再看 n÷T 的余数；同时发生的题求最小公倍数</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">牛吃草</span><span class="pg">p80</span></div>
+  <div class="when"><b>何时用</b> 一边匀速消耗、一边匀速增长</div>
+  <div class="f">设每头牛每天吃 1 份：原有草量 = (牛数−每天生长量)×天数，联立两组求生长量</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">比赛问题</span><span class="pg">p82</span></div>
+  <div class="when"><b>何时用</b> 单循环、淘汰赛、轮空、积分</div>
+  <div class="f">单循环场次 = C(n,2)；淘汰赛决出冠军 = n−1 场；积分制先列胜平负方程</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">钟表问题</span><span class="pg">p83</span></div>
+  <div class="when"><b>何时用</b> 时针分针夹角、重合、成直角</div>
+  <div class="f">分针每分钟 6°，时针每分钟 0.5°，速度差 5.5°/分；夹角 = |30H − 5.5M| 取小</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">植树问题</span><span class="pg">p84</span></div>
+  <div class="when"><b>何时用</b> 等距栽树、装路灯</div>
+  <div class="f">两端都栽：棵数 = 段数+1；只栽一端 = 段数；环形 = 段数；段数 = 总长÷间距</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">方阵问题</span><span class="pg">p85</span></div>
+  <div class="when"><b>何时用</b> 正方形阵列、每边 n 个</div>
+  <div class="f">实心方阵总数 = n²；最外层 = 4n−4；相邻两层差 8</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">天平问题</span><span class="pg">p86</span></div>
+  <div class="when"><b>何时用</b> 用天平最少称几次找次品</div>
+  <div class="f">每次最多分 3 堆；n 次最多可分辨 3ⁿ 个（知道轻重）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">杂题</span><span class="pg">p87</span></div>
+  <div class="when"><b>何时用</b> 空瓶换酒、拿牌、划船、剪绳</div>
+  <div class="f">空瓶换酒：n 个空瓶换 1 瓶 → 相当于每瓶实付 (n−1)/n 价<br>拿牌：凑 (1+最大可取数) 的倍数<br>划船：注意返程要留人<br>剪绳：段数 = 剪的次数+1</div>
+</article></div>
+
+  <p class="note">来源：D:\BaiduNetdiskDownload\00.讲义 · 数量关系-理论+刷题.pdf(156 页)、2027年资料分析理论+刷题课——李威猛.pdf(233 页)。<br>整理日期 2026-11-17 · 与 07 页（49 道错题分步解法）配套使用。</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>判断推理套路速查 · 浙江行测</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1b2430;--sub:#5d6a7a;--line:#e3e8ee;--brand:#146b58;--warn:#b4530a;--chip:#eef5f3}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1c2129;--ink:#e6ebf2;--sub:#93a1b3;--line:#2b333e;--brand:#4fc3a1;--warn:#f0a35e;--chip:#20322e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,"Segoe UI","Microsoft YaHei",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:22px 18px 60px}
+a{color:var(--brand)}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.top a{font-size:13px;text-decoration:none;border:1px solid var(--line);padding:5px 10px;border-radius:8px;background:var(--card)}
+h1{font-size:24px;margin:10px 0 4px}
+.lead{color:var(--sub);font-size:13.5px;margin:0 0 16px}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+nav.toc a{font-size:13px;text-decoration:none;background:var(--chip);color:var(--brand);border-radius:999px;padding:6px 12px;border:1px solid var(--line)}
+h2{font-size:18px;margin:30px 0 4px;padding-left:10px;border-left:4px solid var(--brand)}
+h2 small{color:var(--sub);font-weight:400;font-size:12.5px;margin-left:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;margin-top:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.card .hd{display:flex;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:6px}
+.card .t{font-weight:600;font-size:15px}
+.card .pg{font-size:11.5px;color:var(--warn);white-space:nowrap}
+.card .when{font-size:12.5px;color:var(--sub);margin-bottom:6px}
+.card .when b{color:var(--brand);font-weight:600;margin-right:4px}
+.card .f{font-size:13.5px;background:var(--chip);border-radius:8px;padding:8px 10px}
+.note{margin-top:28px;font-size:12.5px;color:var(--sub);border-top:1px dashed var(--line);padding-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="../index.html">← 返回做题</a><a href="index.html">学习资料</a></div>
+  <h1>判断推理 · 套路速查</h1>
+  <p class="lead">四套真题里判断错 71 道，是最大失分块（逻辑判断正确率仅 47.5%、定义 50%）。这张页把讲义的判定规则压成「何时用 → 怎么判」，页码是讲义原书页码，可回查原书例题。复盘时：先按题型找到卡 → 对着自己的错因看是哪一步没做 → 再用 07 页的分步解法对答案。</p>
+
+  <nav class="toc">
+    <a href="#lb">类比推理</a>
+    <a href="#dy">定义判断</a>
+    <a href="#lj">逻辑判断</a>
+    <a href="#tt">图形推理</a>
+  </nav>
+
+  <h2 id="lb">一、类比推理 <small>《判断推理-理论+刷题》p4–p28</small></h2>
+  <div class="grid"><article class="card">
+  <div class="hd"><span class="t">总策略：按考点对号入座，不要造句</span><span class="pg">p4</span></div>
+  <div class="when"><b>何时用</b> 任何类比题的第一反应</div>
+  <div class="f">先在脑子里过考点清单（概念间 / 言语 / 经验常识 / 科学常识），再选答案；<br><b>凭「读着顺」造的句子往往是错项</b></div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">概念间关系 · 全同</span><span class="pg">p5</span></div>
+  <div class="when"><b>何时用</b> 两个词说的是同一个东西</div>
+  <div class="f">华夏＝轩辕，勺子＝调羹，杭州＝武林（旧称）；只要「完全同指」就是全同</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">概念间关系 · 并列</span><span class="pg">p5</span></div>
+  <div class="when"><b>何时用</b> 两个词同级、不重叠</div>
+  <div class="f">矛盾关系：非此即彼（生 / 死、男 / 女）<br>反对关系：还有第三种（红 / 蓝，还有黄）<br>题干给矛盾，选项必给矛盾 —— 这是最常见的挖坑点</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">概念间关系 · 包含</span><span class="pg">p5</span></div>
+  <div class="when"><b>何时用</b> 一个词是另一个的一部分或一类</div>
+  <div class="f">组成关系：A 是 B 的一部分（轮胎 : 汽车）<br>种属关系：A 是 B 的一种（苹果 : 水果）<br>问「组成还是种属」时，用「A 是 B 的一种」去试，通顺＝种属</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">言语关系 · 本义转义 / 一字多义</span><span class="pg">p13</span></div>
+  <div class="when"><b>何时用</b> 词义类考题</div>
+  <div class="f">三字俗语（走后门、炒鱿鱼）、比喻象征（鸽子 : 和平）、本义→引申义；看是否由「实」变「虚」</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">言语关系 · 近义 / 反义</span><span class="pg">p13</span></div>
+  <div class="when"><b>何时用</b> 两个词意思近或相反</div>
+  <div class="f">近义要区分程度与用法（请求 vs 恳求）；反义常在成语间考（一蹴而就 vs 循序渐进）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">经验常识 · 功能 / 配套</span><span class="pg">p18</span></div>
+  <div class="when"><b>何时用</b> 一个东西用来干什么、两个东西配套用</div>
+  <div class="f">功能关系（剪刀 : 裁剪）；配套关系是互补品 —— 一个涨价另一个需求也降（牙膏 : 牙刷）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">经验常识 · 位置 / 属性 / 职业</span><span class="pg">p18</span></div>
+  <div class="when"><b>何时用</b> 空间关系、性质、人物与工作</div>
+  <div class="f">位置（上 : 下、头 : 脚）；属性（盐 : 咸，形容词或「…性」）；职业（医生 : 手术刀）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">经验常识 · 材料工艺 / 顺承 / 因果 / 条件</span><span class="pg">p18</span></div>
+  <div class="when"><b>何时用</b> 制作过程、先后顺序、因果链</div>
+  <div class="f">材料工艺（木材 : 家具，需加工）；顺承（新月→满月→残月，下单→送货→签收）<br>因果（噪声 : 听力衰弱）；条件（下雨 : 地湿）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">科学常识 · 十大公式</span><span class="pg">p26</span></div>
+  <div class="when"><b>何时用</b> 出现物理量、单位换算</div>
+  <div class="f">速度＝路程÷时间；密度＝质量÷体积；重力＝质量×g；压强＝压力÷受力面积<br>功＝力×距离；功率＝功÷时间；欧姆定律 I＝U/R；电功＝电功率×时间；电功率＝电压×电流；浓度＝溶质÷溶液</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">科学常识 · 七大国际单位</span><span class="pg">p26</span></div>
+  <div class="when"><b>何时用</b> 问「单位是什么」</div>
+  <div class="f">米 m、千克 kg、秒 s、安培 A、开尔文 K、摩尔 mol、坎德拉 cd</div>
+</article></div>
+
+  <h2 id="dy">二、定义判断 <small>p29–p55 / 专项 p194–p197</small></h2>
+  <div class="grid"><article class="card">
+  <div class="hd"><span class="t">定义判断四步走</span><span class="pg">p30</span></div>
+  <div class="when"><b>何时用</b> 任何定义题，尤其长定义</div>
+  <div class="f">① 看清设问句式，<b>圈出否定字词</b>（不属于 / 未体现 / 除外）<br>② 关注被定义项本身，先猜它大概指什么<br>③ 细读原文释义，<b>提炼核心要素</b><br>④ 逐项比对，正误一次筛掉</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">关键词标志 · 主体 / 客体</span><span class="pg">p30</span></div>
+  <div class="when"><b>何时用</b> 定义里出现「谁对谁做」</div>
+  <div class="f">主体：数量、种类、性质（≥2 人、企业、行政机关）<br>客体：针对 / 面向 / 面对 / 对于 —— 抓「对象是谁」</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">关键词标志 · 方式 / 结果 / 条件</span><span class="pg">p30</span></div>
+  <div class="when"><b>何时用</b> 定义里出现手段、后果、前提</div>
+  <div class="f">方式：利用 / 通过 / 以 / 借助<br>结果：使 / 导致 / 形成 / 从而<br>条件：「在…情况下」「当…时」</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">关键词标志 · 补充说明</span><span class="pg">p30</span></div>
+  <div class="when"><b>何时用</b> 定义后跟举例、并列、冒号</div>
+  <div class="f">标志：如 / 例如 / 顿号并列 / 冒号 / 包括 —— 这些内容同样是判定要件，别跳过</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">多定义题：抓定义之间的差异</span><span class="pg">p47</span></div>
+  <div class="when"><b>何时用</b> 题干一次给两三个定义，问其中某一个</div>
+  <div class="f">先看问的是哪个定义，再<b>只比这几个定义的分歧点</b>（比如「内隐记忆」与「外显记忆」的差别就在有无意识参与），用差异点排除选项</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">效应类定义（专项）</span><span class="pg">p194</span></div>
+  <div class="when"><b>何时用</b> 回归效应、凯伊效应、印随效应、疤痕效应…</div>
+  <div class="f">效应类名字都唬人，但定义里必给<b>产生条件 + 表现结果</b>；把「条件」和「表现」拆成两条，选项只要缺一条就是错</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">言语类定义（诗句/文言论）</span><span class="pg">p197</span></div>
+  <div class="when"><b>何时用</b> 选项是古诗、成语、文言论断</div>
+  <div class="f">先翻译选项的字面意思，再对定义要件；<b>不要去猜诗人的情感</b>，只比对「谁 + 做了什么 + 结果」</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">选非题（不属于 / 未体现）</span><span class="pg">p30</span></div>
+  <div class="when"><b>何时用</b> 设问带「不」</div>
+  <div class="f">动笔前先圈「不」、在题干旁画 ×；四个选项里三个符合，剩下的就是答案 —— 别按选是题的习惯抢答</div>
+</article></div>
+
+  <h2 id="lj">三、逻辑判断（四卷错 21/40，最该补） <small>p56–p134</small></h2>
+  <div class="grid"><article class="card">
+  <div class="hd"><span class="t">翻译推理 · 前推后</span><span class="pg">p57</span></div>
+  <div class="when"><b>何时用</b> 出现「如果…那么…」「只要…就…」「所有…都…」</div>
+  <div class="f">前推后标志词：如果 / 若 / 只要 / 则 / 那么 / 就 / 会 / 所有 / 都 / 必须<br>写成 A → B</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">翻译推理 · 后推前</span><span class="pg">p57</span></div>
+  <div class="when"><b>何时用</b> 出现「只有…才…」「不…不…」</div>
+  <div class="f">后推前标志词：只有 / 才 / 不A不B（＝A→B）<br>「只有 A 才 B」→ B → A；「不 A 不 B」→ B → A</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">翻译推理 · 除非…否则…</span><span class="pg">p57</span></div>
+  <div class="when"><b>何时用</b> 出现「除非 A，否则 B」</div>
+  <div class="f">去掉关联词，<b>否一推一</b>：¬A → B（默认否前推后）<br>理解法：谁更重要谁放后面；实在绕就代真值试</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">翻译推理 · 逆否等价 / 肯前肯后</span><span class="pg">p57</span></div>
+  <div class="when"><b>何时用</b> 已经推出一个 A → B，判断选项能不能推</div>
+  <div class="f">逆否命题与原命题等价：A→B ⇔ ¬B→¬A<br><b>肯前必肯后，否后必否前；否前肯后都不确定</b>（这是最高频错项）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">集合推理 · 文氏图法</span><span class="pg">p67</span></div>
+  <div class="when"><b>何时用</b> 问「能推出什么」，出现「所有 / 有的」</div>
+  <div class="f">结论型优先画文氏图：<b>先画全量关系（所有），再画部分关系（有的）</b>；位置难定的用虚线相连，「有的」可双向</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">集合推理 · 三段论口诀</span><span class="pg">p67</span></div>
+  <div class="when"><b>何时用</b> 给两个前提求结论（前提型）</div>
+  <div class="f">三概念各出现两遍；中项出现要全覆盖；<b>前提有否，结论必否</b>；<b>前提有特（有的），结论必特</b>；两否无结论、两特无结论</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">真假推理 · 矛盾剩余法</span><span class="pg">p73</span></div>
+  <div class="when"><b>何时用</b> 几个人说话，只有一真/一假</div>
+  <div class="f">① 找矛盾（a 是 b ↔ a 不是 b；A→B ↔ A 且 ¬B）—— 矛盾必一真一假<br>② 看剩余句子的真假<br>③ 有必要时把假命题变真（取反）再推</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">真假推理 · 反对剩余法</span><span class="pg">p73</span></div>
+  <div class="when"><b>何时用</b> 「有的 S 是 P」与「有的 S 不是 P」同现</div>
+  <div class="f">上反对关系：两句<b>不能同假，必有一真</b>；据此先锁定真话位置，再看其余</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">排列组合 · 选项代入法</span><span class="pg">p77</span></div>
+  <div class="when"><b>何时用</b> 选项把所有人的位置/属性都列全了</div>
+  <div class="f">从确定信息最多的选项开始代，一代就验证全部条件，比硬推快</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">排列组合 · 直推 + 列表连线</span><span class="pg">p77</span></div>
+  <div class="when"><b>何时用</b> 选项只问某一项，条件零散</div>
+  <div class="f">以<b>确定信息</b>和<b>出现次数最多（最大信息）</b>为切入点；画表格或连线，边推边划掉不可能</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">削弱论证 · 先找论点</span><span class="pg">p89</span></div>
+  <div class="when"><b>何时用</b> 任何削弱/加强题的第一步</div>
+  <div class="f">论点关键词：认为 / 觉得 / 推测 / 断言 / 因此 / 所以 / 由此可见 / 据此认为<br>有发声主体（专家说、研究发现）就抓主体；<b>论点多在尾句</b></div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">削弱论证 · 削弱论点三法</span><span class="pg">p89</span></div>
+  <div class="when"><b>何时用</b> 要找「最能削弱」</div>
+  <div class="f">① 直接削弱：与论点正面相反<br>② 补充新理由：道理论证（讲机制）、举例（摆反例）、对比（有它没它）<br>③ 力度比较：直接 &gt; 间接；必然 &gt; 可能；本质 &gt; 现象；量大 &gt; 量小</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">加强论证 · 补新理由</span><span class="pg">p103</span></div>
+  <div class="when"><b>何时用</b> 要找「最能加强」</div>
+  <div class="f">直接重复论点几乎不考；<b>给新证据</b>（举例、讲原理、对比）才是强化；注意「加强」≠「同义反复」</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">前提加强 · 搭桥抓新概念</span><span class="pg">p116</span></div>
+  <div class="when"><b>何时用</b> 题干论据与论点之间缺一环</div>
+  <div class="f">论据有 A、论点有 B，而 A 与 B 之间没连线 → 答案必是「A → B」的桥；找不到桥就找必要条件</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">前提加强 · 必要条件（反向代入）</span><span class="pg">p116</span></div>
+  <div class="when"><b>何时用</b> 问「必须假设/前提是」</div>
+  <div class="f"><b>把选项取反，代回题干：题干结论崩了＝它就是必要条件</b>；取反后结论仍成立 → 不是前提</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">评价论证</span><span class="pg">p122</span></div>
+  <div class="when"><b>何时用</b> 问「答案最能评价结论」「关键问题是什么」</div>
+  <div class="f">借必要条件思维：这个问题的两种回答，会让结论一个成立一个不成立 → 就是答案</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">原因解释 · 转折词找矛盾点</span><span class="pg">p123</span></div>
+  <div class="when"><b>何时用</b> 问「最能解释上述现象」</div>
+  <div class="f">先在题干里找<b>转折词</b>（但是 / 然而 / 却 / 结果），转折前后的反差就是矛盾点；答案要能同时兼容两边</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">原因解释 · 不否题干实情</span><span class="pg">p123</span></div>
+  <div class="when"><b>何时用</b> 选项看着很合理</div>
+  <div class="f">坚守客观：<b>不能否定题干已经给出的事实</b>；只解释「为什么」，不改写「是什么」</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">相似结构 · 重形轻义</span><span class="pg">p126</span></div>
+  <div class="when"><b>何时用</b> 问「与上述推理结构最为类似」</div>
+  <div class="f">只看句式骨架，不管内容：① 三段论——标字母（重点看首句后半）、找「朋友」、定方位配对，兼顾范围与是非<br>② 因果——辨因果、分先后<br>③ 条件——写成 A→B、A 或 B 再对号</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">日常结论 · 六类错误选项</span><span class="pg">p132</span></div>
+  <div class="when"><b>何时用</b> 问「由此可以推出」</div>
+  <div class="f">① 绝对化（一定/必须/所有/唯一/完全/凡是）② 无中生有 ③ 偷换概念 ④ 强加比较 ⑤ 过度推断 ⑥ 时态混淆（已经/将要）</div>
+</article></div>
+
+  <h2 id="tt">四、图形推理 <small>p135–p204</small></h2>
+  <div class="grid"><article class="card">
+  <div class="hd"><span class="t">图形推理总扫查顺序（30 秒定方向）</span><span class="pg">p135</span></div>
+  <div class="when"><b>何时用</b> 看到图推第一眼</div>
+  <div class="f">① 组成<b>相同</b> → 位置类（平移/旋转/翻转）<br>② 组成<b>相似</b> → 样式类（加减同异/黑白运算）<br>③ 组成<b>不同</b> → 先属性（对称/曲直/开闭），后数量（面→线→点→角→素）<br>④ 都不像 → 特殊类（图间关系/拼合）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">位置类 · 平移三要素</span><span class="pg">p136</span></div>
+  <div class="when"><b>何时用</b> 元素构成相同，只是位置变了</div>
+  <div class="f">看平移的<b>区域</b>（整行/整列/环形/内外圈）、<b>方向</b>（顺逆时针、上下左右）、<b>步数</b>（恒定、等差、循环）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">位置类 · 旋转与翻转</span><span class="pg">p136</span></div>
+  <div class="when"><b>何时用</b> 图形朝向变了</div>
+  <div class="f">旋转看方向 + 角度（45°/90°/180°）；翻转是镜像 —— <b>左右翻、上下翻，不能靠旋转得到</b>；拿一个不对称的角当锚点判断</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">样式类 · 加减同异</span><span class="pg">p142</span></div>
+  <div class="when"><b>何时用</b> 图形相似但细节有增减</div>
+  <div class="f">求同（只留共同部分）、求异（只留不同部分）；常与旋转/翻转叠加考 —— 先转再算</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">样式类 · 黑白运算</span><span class="pg">p142</span></div>
+  <div class="when"><b>何时用</b> 框架完全一致，只有黑白不同</div>
+  <div class="f">从已知图相同位置推出四组公式：黑+黑、白+白、黑+白、白+黑；<b>顺序不能颠倒（黑+白 ≠ 白+黑）</b>；每题规则都不同，<b>不能背</b></div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">样式类 · 黑白运算秒杀</span><span class="pg">p142</span></div>
+  <div class="when"><b>何时用</b> 九宫格黑白、算得慢</div>
+  <div class="f">① 找<b>成片区域</b>（一大块同色，一眼定一组公式）② <b>穷尽一种颜色</b>（先把黑+黑、黑+白 全推完，剩下自然确定）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">属性类 · 对称性</span><span class="pg">p149</span></div>
+  <div class="when"><b>何时用</b> 图形规整、有轴</div>
+  <div class="f">类型（轴对称/中心对称/既轴又中心）；再看轴的数量、方向、夹角、是否重合、与点线面素的关系；<b>对称常是分类题的分组依据</b></div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">属性类 · 曲直性 / 开闭性</span><span class="pg">p149</span></div>
+  <div class="when"><b>何时用</b> 图形是线条或封闭区域</div>
+  <div class="f">曲直：全直 / 全曲 / 曲直混合，还可与位置叠加<br>开闭：全封闭 / 全开放 / 半开半闭；有开口就优先数开口方向</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">数量类 · 面</span><span class="pg">p156</span></div>
+  <div class="when"><b>何时用</b> 图形被切割成很多块</div>
+  <div class="f">特征图：四边形被切割、数字/汉字、生活化图标、三角形、麻将桌<br>数：无差别面数 → 相同面 → 最大/最小面 → 三角形/四边形个数 → 面积大小</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">数量类 · 线</span><span class="pg">p156</span></div>
+  <div class="when"><b>何时用</b> 单一长线、多边形、圆、字母汉字</div>
+  <div class="f">数：总线条数 → 直线/曲线 → 内线/外框线 → 平行线 → <b>一笔画</b></div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">数量类 · 一笔画判定</span><span class="pg">p156</span></div>
+  <div class="when"><b>何时用</b> 图形能一笔画成 / 问笔画数</div>
+  <div class="f"><b>奇点判定法</b>：奇点＝0 或 2 → 一笔画；奇点数 &gt; 2 → 笔画数＝奇点数 ÷ 2</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">数量类 · 点 / 角 / 素</span><span class="pg">p155</span></div>
+  <div class="when"><b>何时用</b> 线交叉多、有尖角、小元素多</div>
+  <div class="f">点：交点、切点、端点、十字交叉点<br>角：锐角/直角/钝角个数，直角优先<br>素：小元素个数、种类、部分数；遍历——缺啥补啥（元素/颜色/位置遍历）</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">特殊类 · 图间关系</span><span class="pg">p170</span></div>
+  <div class="when"><b>何时用</b> 多个小图形摆在一起</div>
+  <div class="f">位置（上下左右/中心/边缘）、相邻或相隔、相邻或相对、相接/相交/相离/相含/相压、点接或线接</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">特殊类 · 平面拼合</span><span class="pg">p170</span></div>
+  <div class="when"><b>何时用</b> 给几个零散小块拼成大图</div>
+  <div class="f">① <b>锁定特殊边</b>：最长边、斜边、凹凸边当基准<br>② <b>平行等长消边</b>：拼合后重合的边抵消，只看外轮廓</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">立体类 · 拆折纸盒（通用解法）</span><span class="pg">p179</span></div>
+  <div class="when"><b>何时用</b> 六面体展开图折成盒子</div>
+  <div class="f">① 选基准面 ② 比对它的右面 + 顶面，不符就换下一项 ③ 相邻面没直接给出时用<b>滚动法</b>，靠 L 型两侧共边判定</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">立体类 · 公共点法</span><span class="pg">p179</span></div>
+  <div class="when"><b>何时用</b> 要滚 2 次以上、卷面乱</div>
+  <div class="f">① 取 L 型结构的公共顶点为 1，L 两端标 2 ② 若 2 是完全公共点（在 3 个面上），顺/逆时针续标 3 ③ 遇到非完全公共点就停，换另一个 L 型重新开始</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">立体类 · 视图 / 截面</span><span class="pg">p180</span></div>
+  <div class="when"><b>何时用</b> 三视图、切一刀</div>
+  <div class="f">视图：分清主/俯/左/右/后/仰六个视角，比轮廓形状再查细节差异<br>截面：先看能不能切出<b>斜边、圆弧</b>，再看面数上限</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">黑白类专项（十三考点）</span><span class="pg">p203</span></div>
+  <div class="when"><b>何时用</b> 黑白球、黑白块</div>
+  <div class="f">数量（黑/白块数）→ 位置（平移旋转翻转）→ 叠加（黑+黑等四种）→ 对称性 → 部分数 → 笔画数 → 线条数 → 分割区域 → 面积占比 → 周长 → 相连方式（点连/线连）→ 两两比较 → 黑白接壤</div>
+</article>
+<article class="card">
+  <div class="hd"><span class="t">判断做题时间分配（本模块专用）</span><span class="pg">—</span></div>
+  <div class="when"><b>何时用</b> 整卷时</div>
+  <div class="f">定义 8 题 8 分钟；类比 10 题 6 分钟；逻辑判断 14 题 16 分钟；图推 6 题 5 分钟；<b>卡住 40 秒就跳</b>，全模块不超 38 分钟</div>
+</article></div>
+
+  <p class="note">来源：D:\BaiduNetdiskDownload\00.讲义\判断推理-理论+刷题.pdf（399 页）。整理日期 2026-11-17。<br>配套：08 页（数量/资料公式）· 07 页（49 道数量资料错题分步解法）· 01 页（判断思维导图）。</p>
+</div>
+</body>
+</html>
