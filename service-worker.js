@@ -2,7 +2,7 @@
    service-worker.js —— 离线缓存（PWA）
    更新内容后请把 VERSION 加 1，用户端会自动换新缓存
    =========================================================== */
-const VERSION = 'zjxc-v76';
+const VERSION = 'zjxc-v77';
 const CACHE = VERSION;
 
 const ASSETS = [
@@ -65,6 +65,7 @@ const ASSETS = [
   './study/14_学习模式_常识判断.html',
   './study/15_学习模式_资料分析.html',
 './study/16_申论_题型与模板.html',
+'./study/17_申论_2025A卷_真题模考.html',
   './study/浙江省考行测_四套卷错题精讲与提分方案.html'
 ];
 
