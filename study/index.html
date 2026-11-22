@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>学习资料 · 思维导图与错题精讲</title>
+<title>学习资料 · 导图 / 速查 / 错题精讲</title>
 <style>
   :root{
     --bg:#f5f8f7; --card:#fff; --ink:#16211e; --sub:#5c6b66;
@@ -44,15 +44,36 @@
   .note li{margin:5px 0}
   kbd{font:12px ui-monospace,Consolas,monospace;border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink)}
   footer{margin-top:22px;color:var(--sub);font-size:12px}
+  .modentry{margin:2px 0 20px;background:var(--card);border:1px solid var(--brand);
+    border-left:5px solid var(--brand);border-radius:12px;padding:15px 18px}
+  .modentry .me-t{font-size:16px;font-weight:700;color:var(--brand)}
+  .modentry .me-d{font-size:12.5px;color:var(--sub);margin:4px 0 10px}
+  .modentry .me-links{display:flex;flex-wrap:wrap;gap:8px}
+  .modentry .me-links a{font-size:12.5px;text-decoration:none;color:var(--brand);
+    background:var(--brand-soft);border-radius:999px;padding:4px 12px;line-height:1.6}
+  .modentry .me-links a:first-child{background:var(--brand);color:#fff;font-weight:700}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <h1>学习资料 · 五个学习模式 + 申论模板</h1>
+    <h1>学习资料 · 导图 / 速查 / 错题精讲</h1>
     <a class="back" href="../index.html">← 返回做题</a>
   </div>
-  <p class="lead">五个学科各<b>只留一个</b>学习模式入口：判断 / 言语 / 数量 / 常识 / 资料。每组 4 道主线题（优先取你 2015—2018 浙江 A 卷错题）+ 3 道同考点加练，提交后才给答案、分步解法和「这一题要用的套路」，关键句<b>已涂黄</b>。另有总览导图、21 天日程、讲义公式速查、206 题错题精讲。全部离线可用。</p>
+  <p class="lead">这一页是<b>资料区</b>：总览作战图、21 天日程、各科导图、讲义公式速查、206 题错题精讲、申论模板。<b>练题请走上面的「学习模式」</b>（已单独拆出去，不在这个列表里混）。全部离线可用。</p>
+
+  <div class="modentry">
+    <div class="me-t">🎯 学习模式（练题区 · 单独一块）</div>
+    <div class="me-d">五科练题：先自己做 → 提交后才给答案、思路、分步解法和套路。和学习资料分开，不会混。</div>
+    <div class="me-links">
+      <a href="学习模式.html"><b>进入学习模式</b></a>
+      <a href="11_学习模式_判断推理.html">判断推理</a>
+      <a href="12_学习模式_言语理解.html">言语理解</a>
+      <a href="13_学习模式_数量关系.html">数量关系</a>
+      <a href="14_学习模式_常识判断.html">常识判断</a>
+      <a href="15_学习模式_资料分析.html">资料分析</a>
+    </div>
+  </div>
 
   <div class="grid">
     <a class="card" href="06_21天日程.html">
@@ -65,26 +86,32 @@
       <div class="t">总览 · 作战图</div>
       <div class="d">现状与归因、75 分怎么拆、120 分钟时间切法、三条主线、放弃清单、四阶段验收线。</div>
     </a>
+    <a class="card" href="01_判断推理.html">
       <span class="no">01</span>
       <div class="t">判断推理<span class="tag">71 错 · 最该先练</span></div>
       <div class="d">定义判断三步 / 类比两步 / 逻辑判断四型 / 图形推理 30 秒扫查法。</div>
     </a>
+    <a class="card" href="02_言语理解.html">
       <span class="no">02</span>
       <div class="t">言语理解<span class="tag">44 错</span></div>
       <div class="d">逻辑填空先内容后形、成语三查、片段先结构后主旨、四类干扰项。</div>
     </a>
+    <a class="card" href="03_数量关系.html">
       <span class="no">03</span>
       <div class="t">数量关系<span class="tag">33 错</span></div>
       <div class="d">数推八级判定序列、数学运算五大入口、三大秒杀、20 题 17 分钟方案。</div>
     </a>
+    <a class="card" href="04_常识判断.html">
       <span class="no">04</span>
       <div class="t">常识判断<span class="tag">37 错</span></div>
       <div class="d">必背十组对比表：刑责年龄、宪法、处罚权、秦岭淮河、月别称、战役计谋…</div>
     </a>
+    <a class="card" href="05_资料分析.html">
       <span class="no">05</span>
       <div class="t">资料分析<span class="tag">21 错 · 最不该丢</span></div>
       <div class="d">六张公式卡、读题三词、五类关键词陷阱、结构识别即跳过。</div>
     </a>
+    <a class="card" href="07_数量资料_公式与解法.html">
       <span class="no">07</span>
       <div class="t">数量 + 资料 公式与解法<span class="tag warn">49 题逐题</span></div>
       <div class="d">数推 9 / 运算 24 / 资料 16 道错题，每题四块：题型 → <b>公式 / 模型</b> → 分步详解 → <b>最简单做法</b>（考场 60 秒路径）。</div>
@@ -94,38 +121,15 @@
       <div class="t">讲义公式速查<span class="tag warn">57 张卡</span></div>
       <div class="d">从讲义 PDF 抠的公式与套路，带原书页码：资料分析 20 条公式 + 速算 8 法 + 数量 25 个方法。</div>
     </a>
+    <a class="card" href="09_判断推理_套路速查.html">
       <span class="no">09</span>
       <div class="t">判断推理套路<span class="tag warn">58 条</span></div>
       <div class="d">类比 / 定义 / 逻辑 / 图推逐条「何时用 → 怎么判」，逻辑判断 11 节全在，带讲义原书页码。</div>
     </a>
+    <a class="card" href="10_言语理解_套路速查.html">
       <span class="no">10</span>
       <div class="t">言语理解套路<span class="tag warn">33 条</span></div>
       <div class="d">片段结构五优先级、四大干扰项、排序定首句与捆绑、逻辑填空色彩与对应关系全表。</div>
-    </a>
-    <a class="card" href="11_%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%BC%8F_%E5%88%A4%E6%96%AD%E6%8E%A8%E7%90%86.html">
-      <span class="no">11</span>
-      <div class="t">判断推理·学习模式<span class="tag">先做后讲</span></div>
-      <div class="d">6 组 42 题：先自己选，提交后才给答案、思路、分步解法和该组套路；错 2 题自动加练。</div>
-    </a>
-    <a class="card" href="12_学习模式_言语理解.html">
-      <span class="no">12</span>
-      <div class="t">学习模式 · 言语理解<span class="tag warn">7 题/组</span></div>
-      <div class="d">言语 5 组（成语／实词／中心理解／细节词句／排序填空）35 题，每题只留这一题要用的套路并涂黄。</div>
-    </a>
-    <a class="card" href="13_学习模式_数量关系.html">
-      <span class="no">13</span>
-      <div class="t">学习模式 · 数量关系<span class="tag warn">7 题/组</span></div>
-      <div class="d">数量 5 组（数字推理／赋值三兄弟／计数／几何钟表／通用入口）35 题，公式卡内联在答案旁。</div>
-    </a>
-    <a class="card" href="14_学习模式_常识判断.html">
-      <span class="no">14</span>
-      <div class="t">学习模式 · 常识判断<span class="tag warn">7 题/组</span></div>
-      <div class="d">常识 4 组（法律／政治／科技／人文）28 题，配必背十组手写规则。</div>
-    </a>
-    <a class="card" href="15_学习模式_资料分析.html">
-      <span class="no">15</span>
-      <div class="t">学习模式 · 资料分析<span class="tag warn">7 题/组</span></div>
-      <div class="d">资料 4 组（增长／比重／平均数倍数／综合分析）28 题，材料原样带图，公式逐题内联。</div>
     </a>
     <a class="card" href="16_申论_题型与模板.html">
       <span class="no">16</span>
@@ -136,6 +140,11 @@
       <span class="no">17</span>
       <div class="t">申论 · 2025 浙江 A 卷真题模考<span class="tag warn">先写后看</span></div>
       <div class="d">10 则给定资料 + 3 道真题（20／30／50 分）+ 计时 + 作答框；参考答案默认锁着，写完自己点开对照。</div>
+    </a>
+    <a class="card" href="18_申论_小马哥真题精练.html">
+      <span class="no">18</span>
+      <div class="t">申论真题精练 · 小马哥理论篇<span class="tag warn">28 题 · 写完看模板</span></div>
+      <div class="d">归纳概括／提出对策／综合分析／应用文／大作文，五类 28 道真题。<b>先自己写 → 再点开</b>：给你这道题的采分点 + 答题模板 + 步骤 + 技巧 + 扣分点。</div>
     </a>
     <a class="card" href="浙江省考行测_四套卷错题精讲与提分方案.html">
       <span class="no">精讲</span>
