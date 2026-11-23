@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学习模式 · 五科练题</title>
+<style>
+  :root{
+    --bg:#f4f7fb; --card:#fff; --ink:#132030; --sub:#5b6b7d;
+    --line:#e0e8f1; --brand:#1d4ed8; --brand-soft:#e8efff; --accent:#0f766e; --warn:#c2410c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f141b; --card:#161d26; --ink:#e7eef7; --sub:#9aabbf;
+           --line:#25303d; --brand:#7aa2ff; --brand-soft:#18233a; --accent:#4fd1ae; --warn:#fb923c; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.75 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;}
+  .wrap{max-width:1040px;margin:0 auto;padding:30px 20px 64px}
+  .top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  h1{font-size:24px;margin:0;letter-spacing:.3px}
+  .back{margin-left:auto;font-size:13px;color:var(--brand);text-decoration:none;
+    border:1px solid var(--line);border-radius:8px;padding:6px 13px;background:var(--card)}
+  .back:hover{border-color:var(--brand);background:var(--brand-soft)}
+  .lead{color:var(--sub);margin:8px 0 22px;font-size:13.5px}
+  .lead b{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;text-decoration:none;color:inherit;transition:.16s;position:relative;overflow:hidden}
+  a.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;
+    background:linear-gradient(90deg,var(--brand),var(--accent));opacity:.85}
+  a.card:hover{border-color:var(--brand);box-shadow:0 8px 22px rgba(20,40,80,.12);transform:translateY(-2px)}
+  .card .t{font-size:17px;font-weight:700;margin:4px 0 6px}
+  .card .d{font-size:12.5px;color:var(--sub);line-height:1.65}
+  .tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;
+    background:var(--brand-soft);color:var(--brand);margin-left:6px;vertical-align:2px;font-weight:600}
+  .note{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+  .note h2{font-size:14.5px;margin:0 0 9px}
+  .note ul{margin:0;padding-left:19px;color:var(--sub);font-size:13px}
+  .note li{margin:5px 0}
+  footer{margin-top:22px;color:var(--sub);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>学习模式 · 五科练题</h1>
+    <a class="back" href="index.html">← 学习资料</a>
+    <a class="back" href="../index.html">← 返回做题</a>
+  </div>
+  <p class="lead">这里是<b>练题区</b>：每页按考点分 4–6 组，<b>先自己做，选完点「提交答案」</b>，答案、思路、分步解法和这一组要用的套路才会出来。错 2 题以上会自动出现「同考点加练」。
+  和左侧的「学习资料」（导图、公式速查、错题精讲、申论模板）分开，别混。</p>
+
+  <div class="grid">
+    <a class="card" href="11_学习模式_判断推理.html">
+      <div class="t">判断推理<span class="tag">6 组 42 题</span></div>
+      <div class="d">定义 / 类比 / 逻辑 / 图推全覆盖，先自己选，提交后才给答案、思路、分步解法。</div>
+    </a>
+    <a class="card" href="12_学习模式_言语理解.html">
+      <div class="t">言语理解<span class="tag">5 组 35 题</span></div>
+      <div class="d">成语 / 实词 / 中心理解 / 细节词句 / 排序填空，每题只留这一题要用的套路并涂黄。</div>
+    </a>
+    <a class="card" href="13_学习模式_数量关系.html">
+      <div class="t">数量关系<span class="tag">5 组 35 题</span></div>
+      <div class="d">数字推理 / 赋值三兄弟 / 计数 / 几何钟表 / 通用入口，公式卡内联在答案旁。</div>
+    </a>
+    <a class="card" href="14_学习模式_常识判断.html">
+      <div class="t">常识判断<span class="tag">4 组 28 题</span></div>
+      <div class="d">法律 / 政治 / 科技 / 人文，配必背十组手写规则。</div>
+    </a>
+    <a class="card" href="15_学习模式_资料分析.html">
+      <div class="t">资料分析<span class="tag">4 组 28 题</span></div>
+      <div class="d">增长 / 比重 / 平均数倍数 / 综合分析，材料原样带图表，公式逐题内联。</div>
+    </a>
+  </div>
+
+  <div class="note">
+    <h2>和学习资料怎么分工</h2>
+    <ul>
+      <li><b>学习模式（这一页）</b>：手上有题就做，做完立刻看这题的解法与套路 —— 练手感、练速度。</li>
+      <li><b>学习资料（上一页）</b>：先看 06 日程 → 00 总览定策略 → 各科导图与公式速查；错题精讲按模块翻。</li>
+      <li>建议节奏：一天最多两页学习模式（各 4 组），做错超过 2 题的组，去学习资料对应科目把套路过一遍再回来重做。</li>
+    </ul>
+  </div>
+  <footer>全部离线可用 · 数据来自你的错题卷与讲义</footer>
+</div>
+</body>
+</html>

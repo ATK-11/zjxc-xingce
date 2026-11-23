@@ -457,13 +457,25 @@
     saveProgress();
   }
 
+  // 恢复草稿时判断“这份草稿对应哪套可加载的真题卷”：
+  // 整卷草稿 ref=卷id；专项练习草稿 ref=模块名(judge/verbal...)，真正的卷在 paperId 里。
+  // 旧草稿没有 paperId 且 ref 不是卷 id 时返回空，直接同步恢复，避免 404 打日志/提示加载失败。
+  function paperRefOf(s) {
+    if (!s) return '';
+    var r = s.paperId || s.ref;
+    if (!r) return '';
+    var ps = window.PAPERS || [];
+    if (!ps.length) return r;
+    return ps.some(function (p) { return p.id === r; }) ? r : '';
+  }
   function resumeDraft(s0, cur, untimed) {
     var ids = s0.ids || [];
     var need = ids.some(function (id) { return !ALL[id]; });
     var done = ids.filter(function (id) { return s0.answers[id] != null; }).length;
-    if (need && s0.ref) {
+    var pref = paperRefOf(s0);
+    if (need && pref) {
       toast('正在载入真题…');
-      loadRealPaper(s0.ref).then(function (pack) {
+      loadRealPaper(pref).then(function (pack) {
         registerReal(pack);
         enterSession(s0, cur, { untimed: untimed });
         toast((untimed ? '已转为不限时 · ' : '') + '已答 ' + done + ' 题');
@@ -601,7 +613,7 @@
         registerReal(d);
         qs = qs.slice().sort(function () { return Math.random() - 0.5; }).slice(0, Math.min(n, qs.length));
         startSession({
-          kind: "module", ref: m,
+          kind: "module", ref: m, paperId: paper.id,
           title: "专项 · " + MODULES[m].name,
           sub: "真题随机 " + qs.length + " 题 · " + paper.year + " " + (paper.exam === "gk" ? "国考" : "浙江省考") + " " + paper.code,
           mode: mode, minutes: mode === "exam" ? (window.modulePracticeMinutes ? window.modulePracticeMinutes(qs.length) : 0) : 0,
@@ -778,6 +790,48 @@
     if (state.paused) resumeExam(); else pauseExam();
   }
 
+  /* ---------------- 落盘心跳 ----------------
+     手机系统随时可能杀后台，只在「退出/暂停」时保存太脆：每 10 秒把累计用时
+     与逐题用时结算进 localStorage，草稿 30 秒刷一次（草稿带同步，不用太勤）。 */
+  var beatAt = 0, draftBeatAt = 0;
+  function heartbeat() {
+    if (!state) return;
+    var now = Date.now();
+    if (now - beatAt < 10000) return;
+    beatAt = now;
+    saveProgress();
+    if (state.ref && state.kind !== 'seq' && now - draftBeatAt > 30000) {
+      draftBeatAt = now;
+      saveDraft();
+    }
+  }
+
+  /* ---------------- 单题倒计时（熔断提醒） ----------------
+     不是锁题：到点只变红 + 提示一次「该跳过了」，答不答随你。
+     档位 关 / 60 / 90 / 120 秒，存在本机 localStorage。 */
+  var CD_KEY = 'zjxc.cdsec';
+  var CD_STEPS = [0, 60, 90, 120];
+  function cdSec() {
+    var v = 0;
+    try { v = parseInt(localStorage.getItem(CD_KEY) || '0', 10) || 0; } catch (e) { v = 0; }
+    return CD_STEPS.indexOf(v) >= 0 ? v : 0;
+  }
+  function cdNext() {
+    var i = CD_STEPS.indexOf(cdSec());
+    var nx = CD_STEPS[(i + 1) % CD_STEPS.length];
+    try { localStorage.setItem(CD_KEY, String(nx)); } catch (e) {}
+    if (state) state.cdWarned = {};
+    paintCdBtn();
+    return nx;
+  }
+  function paintCdBtn() {
+    var b = $('#btnCd');
+    if (!b) return;
+    var v = cdSec();
+    b.textContent = v ? '倒计 ' + v + 's' : '倒计 关';
+    b.classList.toggle('is-on', !!v);
+  }
+
   /* ---------------- 计时 ---------------- */
   function startTimer() {
     stopTimer();
@@ -790,6 +844,7 @@
   function tick() {
     if (!state) return;
     if (state.paused) { stopTimer(); return; }
+    heartbeat();
     var el = $('#timer');
     if (state.mode === 'exam') {
       var remain = Math.max(0, Math.round((state.deadline - Date.now()) / 1000));
@@ -807,10 +862,29 @@
       $('#timerValue').textContent = fmtClock(elapsedNow());
       el.classList.remove('is-warn', 'is-danger');
     }
-    // 本题用时小标签（两种模式都显示）
+    // 本题用时小标签（两种模式都显示）；开了倒计时就显示剩余，超时变红并提示一次
     var qtv = $('#qTimeVal');
     if (qtv && state.ids && state.ids[current] != null) {
-      qtv.textContent = fmtClock(qSeconds(state.ids[current]));
+      var qid = state.ids[current];
+      var qsec = qSeconds(qid);
+      var cd = cdSec();
+      var over = false;
+      if (cd) {
+        var left = cd - qsec;
+        over = left < 0;
+        qtv.textContent = over ? '-' + fmtClock(-left) : fmtClock(left);
+      } else {
+        qtv.textContent = fmtClock(qsec);
+      }
+      var qtag = $('#qTime');
+      if (qtag) qtag.classList.toggle('is-over', over);
+      if (cd && over) {
+        if (!state.cdWarned) state.cdWarned = {};
+        if (!state.cdWarned[qid]) {
+          state.cdWarned[qid] = 1;
+          toast('这题超了 ' + cd + ' 秒，标记后先跳过');
+        }
+      }
     }
   }
 
@@ -828,12 +902,19 @@
         tick();
       }
     });
-    // 页面被关闭/刷新前也结算一次，减少丢失
-    window.addEventListener('pagehide', function () {
+    // 页面被关闭/刷新/APP 掉后台前：先结算，再立刻落盘。
+    // 只结算不落盘等于白做——下一次启动还是读到旧快照（11-23 计时重记就是这么来的）。
+    function flushSave() {
       if (!state) return;
-      qSettle();
-      if (state.mode !== 'exam') settleElapsed();
-    });
+      if (!state.paused) {
+        qSettle();
+        if (state.mode !== 'exam') settleElapsed();
+      }
+      saveProgress();
+      if (state.ref && state.kind !== 'seq') saveDraft();
+    }
+    window.addEventListener('pagehide', flushSave);
+    window.addEventListener('beforeunload', flushSave);
   }
 
   /* ---------------- 答题渲染 ---------------- */
@@ -1063,8 +1144,11 @@
         Math.round((Date.now() - state.startedAt) / 1000)
       );
     } else {
-      used = elapsedNow();
-      // 兜底：老草稿没有 elapsedSec 字段时退回墙钟时间
+      // 累计秒数与逐题用时之和取大的：中途被杀过 / 老草稿可能只有其中一份是全的，
+      // 取大的不会把时间算少（算少比算多更误导训练判断）。
+      var sumQ = 0;
+      Object.keys(state.qms || {}).forEach(function (k) { sumQ += (state.qms[k] || 0); });
+      used = Math.max(elapsedNow(), Math.round(sumQ / 1000));
       if (!used) used = Math.max(0, Math.round((Date.now() - state.startedAt) / 1000));
     }
     var report = grade(used);
@@ -1579,7 +1663,12 @@
     var totalSec = rows.reduce(function (a, x) { return a + x.sec; }, 0) || 1;
 
     // ① 最慢 5 题（标红第一名）
-    var slow = rows.slice().sort(function (a, b) { return b.sec - a.sec; }).slice(0, 5);
+    var slow = rows.filter(function (x) { return x.sec >= 2; })
+      .sort(function (a, b) { return b.sec - a.sec; }).slice(0, 5);
+    if (!slow.length) {
+      $('#timeTop').innerHTML = '<h4 class="time-sub">最花时间的 5 题</h4>' +
+        '<p class="empty-line">这次没记到逐题用时（中途被杀过进程或从旧草稿恢复），下一套会正常统计。</p>';
+    } else {
     $('#timeTop').innerHTML =
       '<h4 class="time-sub">最花时间的 5 题</h4>' +
       '<div class="time-top-list">' + slow.map(function (x) {
@@ -1593,6 +1682,7 @@
           '<span class="tt-pct">占 ' + Math.round(x.sec / totalSec * 100) + '%</span>' +
         '</button>';
       }).join('') + '</div>';
+    }
 
     // ② 分模块用时
     $('#timeByModule').innerHTML = '<h4 class="time-sub">各模块用时</h4>' +
@@ -1603,10 +1693,11 @@
         var sec = sub.reduce(function (a, x) { return a + x.sec; }, 0);
         var avg = sub.length ? Math.round(sec / sub.length) : 0;
         var w = Math.round(sec / totalSec * 100);
+        var valTxt = sec > 0 ? fmtDuration(sec) + '　均 ' + avg + ' 秒' : '未记录';
         return '<div class="tbm-row">' +
           '<span class="tbm-name">' + MODULES[m].short + '</span>' +
           '<span class="tbm-track"><i style="width:' + w + '%;background:' + MODULES[m].color + '"></i></span>' +
-          '<span class="tbm-val">' + fmtDuration(sec) + '　均 ' + avg + ' 秒</span>' +
+          '<span class="tbm-val">' + valTxt + '</span>' +
         '</div>';
       }).join('') + '</div>';
 
@@ -1617,7 +1708,7 @@
       var w = Math.max(2, Math.round(x.sec / totalSec * 100 * 4));
       return '<div class="tall-cell' + cls + '" title="第 ' + x.no + ' 题 · ' + fmtDuration(x.sec) + '">' +
         '<b>' + x.no + '</b><i style="height:' + Math.min(100, w) + '%"></i>' +
-        '<span>' + (x.sec >= 60 ? Math.round(x.sec / 6) / 10 + 'm' : x.sec + 's') + '</span>' +
+        '<span>' + (!x.sec ? '—' : (x.sec >= 60 ? Math.round(x.sec / 6) / 10 + 'm' : x.sec + 's')) + '</span>' +
       '</div>';
     }).join('') + '</div>';
 
@@ -1843,6 +1934,10 @@
   function saveProgress() {
     if (!state) return;
     try {
+      // 落盘前先结算：练习模式运行中 state.elapsedSec 还是旧值、state.qms 里也没有
+      // 正在计的这一段，直接写会存下「时间停在起跑线」的快照。APP 被系统杀掉、
+      // 或者直接关掉再恢复，前面做的时间就全丢了（11-23 那次 65 题就这么丢的）。
+      if (!state.paused) { settleElapsed(true); qSettle(true); }
       localStorage.setItem(LS_PROGRESS, JSON.stringify({ state: state, current: current, savedAt: Date.now() }));
     } catch (e) { /* 忽略容量/隐私模式错误 */ }
   }
@@ -1885,9 +1980,9 @@
       setView('report');
     }
     var need = (h.ids || []).some(function (id) { return !ALL[id]; });
-    if (need && h.ref) {
+    if (need && paperRefOf(h)) {
       toast('正在载入真题…');
-      loadRealPaper(h.ref).then(function (pack) {
+      loadRealPaper(paperRefOf(h)).then(function (pack) {
         registerReal(pack);
         go();
       }).catch(function () { toast('真题包加载失败，检查网络'); });
@@ -2086,6 +2181,14 @@
     $('#btnFlag').addEventListener('click', toggleFlag);
     $('#btnQuit').addEventListener('click', quitExam);
     $('#btnPause').addEventListener('click', togglePause);
+    if ($('#btnCd')) {
+      $('#btnCd').addEventListener('click', function () {
+        var v = cdNext();
+        toast(v ? '单题倒计时 ' + v + ' 秒（到点只提示，不锁题）' : '单题倒计时已关闭');
+        tick();
+      });
+    }
+    paintCdBtn();
     $('#btnResume').addEventListener('click', resumeExam);
     $('#btnSubmit').addEventListener('click', askSubmit);
     $('#btnUntimed').addEventListener('click', function () {
